@@ -10,46 +10,47 @@
         }
 
         #navigation {
-            width: 100%; /* Adjust the width as needed */
-            height: 100px; /* You can adjust the height as needed */
-            background-color: white; /* Background color for the navigation box */
+            width: 100%;
+            height: 100px;
+            background-color: white;
             position: fixed;
             top: 0;
             left: 0;
-            color: #fff; /* Text color for the navigation box */
-            text-align: center; /* Center-align text within the navigation box */
-            line-height: 100px; /* Vertically center-align text */
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
             z-index: 2;
         }
 
-        #content-box { /*Add a photo*/
-            background-color: grey; /* Background color for the content box */
+        #content-box {
+            background-color: grey;
             width: 100%;
-            height: 330px; /* Adjust the height as needed */
+            height: 330px;
             position: absolute;
             z-index: -1;
         }
 
-        #rectangle { /*Add text and Photos*/ 
-            background-color: #CF1616; /* Background color for the rectangle */
-            width: 1000px; /* Width of the rectangle */
-            height: 1000px; /* Height of the rectangle */
+        #rectangle {
+            background-color: #CF1616;
+            width: 1013px;
+            height: 1323px; /* Reduced the height to create a gap */
             display: flex;
             align-items: center;
             justify-content: center;
             margin: auto;
-            top: 200px;
+            top: 134px;
             position: relative;
             z-index: 1;
         }
 
-        #black-box { /*I need this to have a small gap between the rectangle and make sure they dont overlap*/ 
+        #black-box {
             background-color: black;
-            height: 50px;
+            height: 355px; /* Reduced the height to create a small gap */
             width: 100%;
             position: absolute;
-            bottom: 0;
-            z-index: 1; /* Kept as 1 */
+            top: 1500px; /* Adjusted the top position to create the gap */
+            bottom: 355px;
+            z-index: 1;
         }
     </style>
 </head>
@@ -62,7 +63,7 @@
         <!-- Add content here -->
     </div>
     <div id="rectangle"></div>
-    <div id="black-box"></div>  
+    <div id="black-box"></div>
 </body>
 </html>
-  
+ 
