@@ -1,2 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <title>PIZZA HUT</title>
 
+</head>
+<body>
+<style>
+body {
+            margin: 0;
+            padding: 0;
+        }
+section{
+   padding:2rem;
+   margin:0 auto;
+   max-width: 1200px;
+}        
+      
+.header{
+   position: fixed;
+   top:0; left:0; right:0;
+   background-color:white;
+      box-shadow: var(--box-shadow);
+        z-index: 9999;
+}
+
+.header .flex{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   position: relative;
+}
+
+
+.header .flex .navbar a{
+   margin:0 1rem;
+   color: black;
+   display: inline-block;
+  font-size: 17px;
+  padding:14px 18px;
+}
+
+.header .flex .navbar a.active{
+   color:#da291c;
+   cursor: pointer;
+   transition: 0.5;
+
+}
+.header .flex .navbar a:hover{
+   text-decoration: underline;
+   color:#da291c;
+}
+
+
+
+.header .flex .icons div{
+   font-size: 2.5rem;
+   color:var(--light-color);
+   display:inline-block;
+   float: right;
+   cursor: pointer;
+   margin-left: 1.0rem;
+}
+
+
+.header .flex .icons div:hover{
+   color:var(--red);
+    cursor: pointer;
+}
+
+.header .flex .icons div span{
+   font-size: 2rem;
+}
+.btn_s
+{
+  width:80px;
+  height: 35px;
+  background-color:#da291c;
+  border-radius:5px;
+  border: none;
+  color: white;
+   cursor: pointer;
+}
+
+#menu-btn{
+   display: none;
+}
+  
+
+
+   </style>
+
+<!-- header section starts  -->
+
+<div class="header">
+
+   <section class="flex">
+
+         <a href="#" class="logo"><img src="static\logo.png" width="205px" height="30px"></a>
+
+      <nav class="navbar">
+         <a href="#home" class="active">Home</a>
+         <a href="about_page.html">About</a>
+         <a href="menu_page.html">Menu</a>
+         <a href="store_locate.html">Store Locate</a>
+      </nav>
+       
+      <div class="icons">
+           <button class="btn_s" onclick="openForm()">Signin</button>
+          <div id="menu-btn" class="fas fa-bars"></div>    
+      </div>
+   </section>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>
  
