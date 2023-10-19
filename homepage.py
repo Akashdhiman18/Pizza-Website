@@ -14,6 +14,7 @@ def about():
 def menu():
     return render_template('menu.html')
 
+
 @app.route('/store_location')
 def store_location():
     return render_template('store_location.html')
