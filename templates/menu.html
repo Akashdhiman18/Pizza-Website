@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="static\main.css" rel="stylesheet" type="text/css" media="all">
+    <title>Pizza Website</title>
+</head>
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <section class="flex">
+            <a href="#" class="rainbow rainbow_text_animated"><img src="static\logo.png" style="width:5%;">Pizza Pizza</a>
+            <nav class="navbar">
+                <a href="#home" class="active">Home</a>
+                <a href="about_page.html" class="active">About</a>
+                <a href="menu_page.html" class="active">Menu</a>
+                <a href="store_locate.html" class="active">Store Location</a>
+            </nav>
+            <div class="icons">
+                <button class="btn_s" onclick="openForm()">Register</button>
+            </div>
+        </section>
+    </div>
+    <!-- MENU -->
+    <div class="Menu-Container">
+        <nav class="Menu">
+            <a>PIZZA</a>
+            <a>SIDES</a>
+            <a>DRINKS</a>
+            <a>MEAL DEALS</a>
+            <a>DESSERTS</a>
+            <a>VEGETARIAN</a>
+            <a>NON-VEGETARIAN</a>
+            <!-- SEARCH BAR -->
+            <div class="search">
+                <input type="text" placeholder="Search...">
+                <button class="search-btn"><i class="fa fa-search"></i>Search</button>
+            </div>
+        </nav>
+    </div>
+
+    <div class="sorting-options">
+        <label for="sort">Sort by:</label>
+        <select id="sort" class="sort-select">
+            <option value="low-to-high">Price: Low to High</option>
+            <option value="high-to-low">Price: High to Low</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <div class="listProduct">
+            <div class="item" >
+                <img src="static/pizza1.webp" alt="">
+                <h2>Pizza</h2>
+                <p>Spiced paneer, Onion</p>
+                <p>Green Capsicum & Red Paprika</p>
+                <p>in Tandoori Sauce</p>
+                <div class="price">$20</div>
+                <div class="buttons">
+                    <div class="dropdown" id="sizeDropdown">
+                        <button class="dropdown-button" id="sizeDropdownBtn">Size</button>
+                        <div class="dropdown-content">
+                            <select class="size-select">
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown" id="baseDropdown">
+                        <button class="dropdown-button" id="baseDropdownBtn">Base</button>
+                        <div class="dropdown-content">
+                            <select class="base-select">
+                                <option value="thin">Thin Crust</option>
+                                <option value="thick">Thick Crust</option>
+                                <option value="gluten-free">Gluten-Free</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="cart-button">Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="static/pizza2.webp" alt="">
+                <h2>Pizza</h2>
+                <p>Spiced paneer, Onion</p>
+                <p>Green Capsicum & Red Paprika</p>
+                <p>in Tandoori Sauce</p>
+                <div class="price">$52</div>
+                <div class="buttons">
+                    <div class="dropdown" id="sizeDropdown">
+                        <button class="dropdown-button" id="sizeDropdownBtn">Size</button>
+                        <div class="dropdown-content">
+                            <select class="size-select">
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown" id="baseDropdown">
+                        <button class="dropdown-button" id="baseDropdownBtn">Base</button>
+                        <div class="dropdown-content">
+                            <select class="base-select">
+                                <option value="thin">Thin Crust</option>
+                                <option value="thick">Thick Crust</option>
+                                <option value="gluten-free">Gluten-Free</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="cart-button">Add To Cart</button>
+                </div>
+            </div>
+
+
+            <div class="item">
+                <img src="static/pizza3.jpg" alt="">
+                <h2>Pizza</h2>
+                <p>Spiced paneer, Onion</p>
+                <p>Green Capsicum & Red Paprika</p>
+                <p>in Tandoori Sauce</p>
+                <div class="price">$52</div>
+                <div class="buttons">
+                    <div class="dropdown" id="sizeDropdown">
+                        <button class="dropdown-button" id="sizeDropdownBtn">Size</button>
+                        <div class="dropdown-content">
+                            <select class="size-select">
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown" id="baseDropdown">
+                        <button class="dropdown-button" id="baseDropdownBtn">Base</button>
+                        <div class="dropdown-content">
+                            <select class="base-select">
+                                <option value="thin">Thin Crust</option>
+                                <option value="thick">Thick Crust</option>
+                                <option value="gluten-free">Gluten-Free</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="cart-button">Add To Cart</button>
+                </div>
+            </div>
+
+
+
+            <div class="item">
+                <img src="static/pizza4.jpg" alt="">
+                <h2>Pizza</h2>
+                <p>Spiced paneer, Onion</p>
+                <p>Green Capsicum & Red Paprika</p>
+                <p>in Tandoori Sauce</p>
+                <div class="price">$52</div>
+                <div class="buttons">
+                    <div class="dropdown" id="sizeDropdown">
+                        <button class="dropdown-button" id="sizeDropdownBtn">Size</button>
+                        <div class="dropdown-content">
+                            <select class="size-select">
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown" id="baseDropdown">
+                        <button class="dropdown-button" id="baseDropdownBtn">Base</button>
+                        <div class="dropdown-content">
+                            <select class="base-select">
+                                <option value="thin">Thin Crust</option>
+                                <option value="thick">Thick Crust</option>
+                                <option value="gluten-free">Gluten-Free</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="cart-button">Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="static/pizza5.jpg" alt="">
+                <h2>Pizza</h2>
+                <p>Spiced paneer, Onion</p>
+                <p>Green Capsicum & Red Paprika</p>
+                <p>in Tandoori Sauce</p>
+                <div class="price">$52</div>
+                <div class="buttons">
+                    <div class="dropdown" id="sizeDropdown">
+                        <button class="dropdown-button" id="sizeDropdownBtn">Size</button>
+                        <div class="dropdown-content">
+                            <select class="size-select">
+                                <option value="small">Size : Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown" id="baseDropdown">
+                        <button class="dropdown-button" id="baseDropdownBtn">Base</button>
+                        <div class="dropdown-content">
+                            <select class="base-select">
+                                <option value="thin">Thin Crust</option>
+                                <option value="thick">Thick Crust</option>
+                                <option value="gluten-free">Gluten-Free</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="cart-button">Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="item" data-price="300">
+                <img src="static\logo.png" alt="">
+                <h2>Pizza</h2>
+                <p>Spiced paneer, Onion</p>
+                <p>Green Capsicum & Red Paprika</p>
+                <p>in Tandoori Sauce</p>
+                <div class="price">$3002</div>
+                <div class="buttons">
+                    <div class="dropdown" id="sizeDropdown">
+                        <button class="dropdown-button" id="sizeDropdownBtn">Size</button>
+                        <div class="dropdown-content">
+                            <select class="size-select">
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown" id="baseDropdown">
+                        <button class="dropdown-button" id="baseDropdownBtn">Base</button>
+                        <div class="dropdown-content">
+                            <select class="base-select">
+                                <option value="thin">Thin Crust</option>
+                                <option value="thick">Thick Crust</option>
+                                <option value="gluten-free">Gluten-Free</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="cart-button">Add To Cart</button>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="item">
+                <img src="static\logo.png" alt="">
+                <h2>Pizza</h2>
+                <p>Spiced paneer, Onion</p>
+                <p>Green Capsicum & Red Paprika</p>
+                <p>in Tandoori Sauce</p>
+                <div class="price">$52</div>
+                <div class="buttons">
+                    <div class="dropdown" id="sizeDropdown">
+                        <button class="dropdown-button" id="sizeDropdownBtn">Size</button>
+                        <div class="dropdown-content">
+                            <select class="size-select">
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown" id="baseDropdown">
+                        <button class="dropdown-button" id="baseDropdownBtn">Base</button>
+                        <div class="dropdown-content">
+                            <select class="base-select">
+                                <option value="thin">Thin Crust</option>
+                                <option value="thick">Thick Crust</option>
+                                <option value="gluten-free">Gluten-Free</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="cart-button">Add To Cart</button>
+                </div>
+            </div>
+
+
+
+
+            <div class="item">
+                <img src="static\logo.png" alt="">
+                <h2>Pizza</h2>
+                <p>Spiced paneer, Onion</p>
+                <p>Green Capsicum & Red Paprika</p>
+                <p>in Tandoori Sauce</p>
+                <div class="price">$52</div>
+                <div class="buttons">
+                    <div class="dropdown" id="sizeDropdown">
+                        <button class="dropdown-button" id="sizeDropdownBtn">Size</button>
+                        <div class="dropdown-content">
+                            <select class="size-select">
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown" id="baseDropdown">
+                        <button class="dropdown-button" id="baseDropdownBtn">Base</button>
+                        <div class="dropdown-content">
+                            <select class="base-select">
+                                <option value="thin">Thin Crust</option>
+                                <option value="thick">Thick Crust</option>
+                                <option value="gluten-free">Gluten-Free</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="cart-button">Add To Cart</button>
+                </div>
+            </div>
+
+
+
+
+            <div class="item">
+                <img src="static\logo.png" alt="">
+                <h2>Pizza</h2>
+                <p>Spiced paneer, Onion</p>
+                <p>Green Capsicum & Red Paprika</p>
+                <p>in Tandoori Sauce</p>
+                <div class="price">$300</div>
+                <div class="buttons">
+                    <div class="dropdown" id="sizeDropdown">
+                        <button class="dropdown-button" id="sizeDropdownBtn">Size</button>
+                        <div class="dropdown-content">
+                            <select class="size-select">
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown" id="baseDropdown">
+                        <button class="dropdown-button" id="baseDropdownBtn">Base</button>
+                        <div class="dropdown-content">
+                            <select class="base-select">
+                                <option value="thin">Thin Crust</option>
+                                <option value="thick">Thick Crust</option>
+                                <option value="gluten-free">Gluten-Free</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="cart-button">Add To Cart</button>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="item">
+                <img src="static\logo.png" alt="">
+                <h2>Pizza</h2>
+                <p>Spiced paneer, Onion</p>
+                <p>Green Capsicum & Red Paprika</p>
+                <p>in Tandoori Sauce</p>
+                <div class="price">$52</div>
+                <div class="buttons">
+                    <div class="dropdown" id="sizeDropdown">
+                        <button class="dropdown-button" id="sizeDropdownBtn">Size</button>
+                        <div class="dropdown-content">
+                            <select class="size-select">
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown" id="baseDropdown">
+                        <button class="dropdown-button" id="baseDropdownBtn">Base</button>
+                        <div class="dropdown-content">
+                            <select class="base-select">
+                                <option value="thin">Thin Crust</option>
+                                <option value="thick">Thick Crust</option>
+                                <option value="gluten-free">Gluten-Free</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="cart-button">Add To Cart</button>
+                </div>
+            </div>
+
+
+            <div class="item">
+                <img src="static\logo.png" alt="">
+                <h2>Pizza</h2>
+                <p>Spiced paneer, Onion</p>
+                <p>Green Capsicum & Red Paprika</p>
+                <p>in Tandoori Sauce</p>
+                <div class="price">$52</div>
+                <div class="buttons">
+                    <div class="dropdown" id="sizeDropdown">
+                        <button class="dropdown-button" id="sizeDropdownBtn">Size</button>
+                        <div class="dropdown-content">
+                            <select class="size-select">
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown" id="baseDropdown">
+                        <button class="dropdown-button" id="baseDropdownBtn">Base</button>
+                        <div class="dropdown-content">
+                            <select class="base-select">
+                                <option value="thin">Thin Crust</option>
+                                <option value="thick">Thick Crust</option>
+                                <option value="gluten-free">Gluten-Free</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="cart-button">Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="static\logo.png" alt="">
+                <h2>Pizza</h2>
+                <p>Spiced paneer, Onion</p>
+                <p>Green Capsicum & Red Paprika</p>
+                <p>in Tandoori Sauce</p>
+                <div class="price">$52</div>
+                <div class="buttons">
+                    <div class="dropdown" id="sizeDropdown">
+                        <button class="dropdown-button" id="sizeDropdownBtn">Size</button>
+                        <div class="dropdown-content">
+                            <select class="size-select">
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                    </div>   
+                    <div class="dropdown" id="baseDropdown">
+                        <button class="dropdown-button" id="baseDropdownBtn">Base</button>
+                        <div class="dropdown-content">
+                            <select class="base-select">
+                                <option value="thin">Thin Crust</option>
+                                <option value="thick">Thick Crust</option>
+                                <option value="gluten-free">Gluten-Free</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="cart-button">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cart">
+        <h2>
+            CART
+        </h2>
+        <div class="listCart">
+            <div class="item">
+                <img src="images/1.webp">
+                <div class="content">
+                    <div class="name">CoPilot / Black / Automatic</div>
+                    <div class="price">$550 / 1 product</div>
+                </div>
+                <div class="quantity">
+                    <button>-</button>
+                    <span class="value">3</span>
+                    <button>+</button>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <div class="close">
+                CLOSE
+            </div>
+            <div class="checkout">
+                <a href="checkout.html">CHECKOUT</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Get the select element and product container
+        const priceSortSelect = document.getElementById('sort');
+        const productContainer = document.querySelector('.listProduct');
+        // Function to sort products based on price
+        function sortProducts(sortOption) {
+            const items = Array.from(productContainer.children);
+            items.sort((a, b) => {
+                const priceA = parseFloat(a.getAttribute('data-price'));
+                const priceB = parseFloat(b.getAttribute('data-price'));
+                if (sortOption === 'low-to-high') {
+                    return priceA - priceB;
+                } else {
+                    return priceB - priceA;
+                }
+            });
+            // Clear the container and append sorted items
+            productContainer.innerHTML = '';
+            items.forEach(item => {
+                productContainer.appendChild(item);
+            });
+        }
+        // Event listener for select change
+        priceSortSelect.addEventListener('change', function() {
+            const selectedOption = this.value;
+            sortProducts(selectedOption);
+        });
+
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
