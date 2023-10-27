@@ -19,21 +19,15 @@
 body {
     width: 100%;
     height: 100%;
-    background-image: url('static/background-pizza.jpg');
+    background-image: url('https://img.freepik.com/free-vector/seamless-pizza-ingredients_1176-269.jpg?w=826&t=st=1698367151~exp=1698367751~hmac=585f84b607a087463f79d13df97689a340d4ec63d534a081b3db543bb65013c3');
     background-size: cover; /* Optional: specify how the background image should be sized */
     background-repeat: no-repeat; /* Optional: prevent the background image from repeating */
-    background-position: center center;
+    background-position: center center; /* Optional: position the background image */
     /* flex-direction: column; Ensure child elements are stacked vertically */
     /* align-items: center; Center content horizontally */
     /* padding-top: 10px; */
 }
 /* Center content and limit width */
-section {
-    padding: 0rem;
-    margin: 0;
-    max-width: 100%;
-}
-
 /* Header styles */
 .header {
     position: fixed;
@@ -43,10 +37,8 @@ section {
     right: 0;
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 99999; /* Set a higher z-index value */
+    z-index: 1; /* Set a higher z-index value */
 }
-
-
 /* Header flex container styles */
 .header .flex {
     display: flex;
@@ -57,7 +49,6 @@ section {
 
 /* Navbar links styles */
 .header .flex .navbar a {
-    margin: 0;
     color: var(--blackColor);
     text-decoration: none;
     font-size: 20px;
@@ -128,22 +119,22 @@ section {
     color: black;
     text-decoration: none;
     font-size: 18px;
-    padding: 8px 12px;
+    padding: 10px 2px;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
-
 .Menu a:hover {
-    background-color: rgb(231, 99, 99);
+    background-color: rgb(235, 0, 0);
 }
 .Menu {
     background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: center; /* Center the items horizontally */
     align-items: center; /* Center the items vertically */
-    padding-top: 100px;
-    margin-bottom: 20px;
+    padding-top: 80px;
+    padding-bottom: 10px;
     gap: 20px
+    
 }
 /* Button styles */
 .rainbow {
@@ -221,35 +212,19 @@ section {
     color: rgb(255, 255, 255); /* Color for NON-VEGETARIAN link */
     background-color: red;
 }
-.Menu-Container {
-    width: 100%;
-    position: inherit;
-    background-color: #f1f1f1;
-    padding: 10px;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.Menu-Container  {
-    width: 100%;
-    position: absolute;
-    background-color: #f1f1f1;
-    padding: 10px;
-    text-align: center;
-    margin-bottom: 20px;
-}
 /*-------------------------------------------------------*/
 
 /* Styling for sorting options */
 .sorting-options {
-    padding-top: 200px;
+    padding-top: 50px;
     margin-bottom: 20px;
     font-family: 'Arial', sans-serif; /* Change the font family */
 }
 
 .sorting-options label {
-    margin-right: 10px;
+    color: white;
     font-weight: bold;
+    padding-left: 10px;
 }
 
 .sorting-options select {
@@ -316,8 +291,6 @@ section {
     opacity: 1; /* Set opacity to 1 when hovering */
     pointer-events: auto; /* Enable pointer events */
 }
-
-
 /* Dropdown option styles */
 .size-select,
 .base-select {
@@ -340,11 +313,11 @@ section {
 /*-------------------------------------------------------*/
 .container {
     width: 100%;
-    background-color: #fdfdfd;
-    padding-top: 20px;
-    padding-bottom: 200px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* background-color: #fdfdfd; */
+    padding-top: 10px;
+    padding-bottom: 50px;
+    /* border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
     /* justify-content: center; */
     transition: transform 1s;
 }
@@ -352,39 +325,43 @@ section {
     padding-left: 50px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+    gap: 50px;
 }
-.listProduct .item img{
-    width: 50%;
-    height: 50%;
-    border-radius: 20px;
-    object-fit: cover;
+.listProduct .item img {
+    width: 100%; /* Set the width to 100% to fill the container */
+    height: 50%; /* Automatically adjust the height to maintain aspect ratio */
+    border-radius: 10px; /* Optional: Add border radius for rounded corners */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
 }
-.listProduct .item{
+
+.listProduct .item {
+    background-color: white;
+    padding: 10px; /* Adjust padding */
     position: relative;
+    border: 1px solid var(--blackColor); /* Border properties */
+    border-radius: 20px; /* Optional: Border radius for rounded corners */
 }
-.listProduct .item h2{
+.listProduct .item h2 {
     font-weight: 700;
     font-size: x-large;
 }
-.listProduct .item .price{
+.listProduct .item .price {
     font-size: x-large;
 }
 .listProduct .item .buttons {
     position: absolute;
     bottom: 20px;
-    left: 30%;
+    left: 50%;
     transform: translateX(-50%);
     opacity: 0;
     transition: 0.5s;
     /* display: flex; */
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
 .listProduct .item:hover .buttons {
     opacity: 1;
-    bottom: 10px;
 }
 
 .listProduct .item .buttons button {
