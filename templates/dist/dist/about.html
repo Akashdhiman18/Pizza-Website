@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Navigation Layout</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+}
+:root {
+    --header-padding: 1px;
+    --navbar-margin: 0.5rem;
+    --primaryColor: green;
+    --secondaryColor: yellow;
+    --whiteColor: white;
+    --blackColor: black;
+    --greyColor: grey;
+    --darkGreyColor: var(--darkGreyColor); /* This variable is undefined, you might want to define it */
+    --softGreenColor: var(--softGreenColor); /* This variable is undefined, you might want to define it */
+}
+body {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column; /* Ensure child elements are stacked vertically */
+    align-items: center; /* Center content horizontally */
+    padding-top: 10px;
+}
+/* Center content and limit width */
+section {
+    padding: 1rem;
+    margin: 0 auto;
+    max-width: 100%;
+}
+        /* Header styles */
+.header {
+    position: fixed;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 99999; /* Set a higher z-index value */
+}
+
+/* Header flex container styles */
+.header .flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--header-padding);
+}
+
+/* Navbar links styles */
+.header .flex .navbar a {
+    margin: 0;
+    color: var(--blackColor);
+    text-decoration: none;
+    font-size: 20px;
+    transition: color 0.5s, background-color 0.3s, border-radius 0.3s;
+    padding-right: 30px;
+    position: relative;
+}
+
+.header .flex .navbar a:hover {
+    color: var(--whiteColor);
+    background-color: #969696;
+    border-radius: 10px;
+}
+
+/* Triangle indicator on hover */
+.header .flex .navbar a:hover::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: #000 transparent transparent;
+}
+/* Updated styles for the search bar */
+.header .flex .navbar a:hover::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: #000 transparent transparent;
+}
+
+        #content-box {
+            background-color: grey;
+            width: 100%;
+            height: 330px;
+            position: absolute;
+            z-index: -1;
+        }
+
+        #rectangle {
+            background-color: #CF1616;
+            width: 1013px;
+            height: 1323px; /* Reduced the height to create a gap */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            top: 134px;
+            position: relative;
+            z-index: 1;
+        }
+
+    /* footer */
+    .footer {
+        width: 100%;
+        height: 200px;
+        background-color:black;
+    }
+    .footer .col {
+        width: 190px;
+        height: auto;
+        float: left;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        padding: 0px 20px 20px 20px;
+    }
+    .footer .col h1 {
+        margin: 0;
+        padding: 0;
+        font-family: inherit;
+        font-size: 12px;
+        line-height: 17px;
+        padding: 20px 0px 5px 0px;
+        color:white;
+        font-weight: normal;
+        text-transform: uppercase;
+        letter-spacing: 0.250em;
+    }
+    .footer .col ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    .footer .col ul li {
+        color: #999999;
+        font-size: 14px;
+        font-family: inherit;
+        font-weight: bold;
+        padding: 5px 0px 5px 0px;
+        cursor: pointer;
+        transition: .2s;
+        -webkit-transition: .2s;
+        -moz-transition: .2s;
+    }
+    </style>
+</head>
+<body>
+    <!-- header section starts  -->
+    <div class="header">
+        <section class="flex">
+            <a href="#" class="rainbow rainbow_text_animated"><img src="static\logo.png" style="width:5%;">Pizza Pizza</a>
+            <nav class="navbar">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/menu">Menu</a>
+            <a href="/store_location">Store Locate</a>
+            </nav>
+            <div class="icons">
+                <button class="btn_s" onclick="openForm()">Register</button>
+            </div>
+        </section>
+    </div>
+
+    <div id="content-box">
+        <!-- Add content here -->
+    </div>
+    <div id="rectangle"></div>
+    <!--footer section start-->
+   <!---footer section---->
+   <div class="footer" style="margin-top:20px;">
+    <div class="contain" style="padding:20px;">
+    <div class="col">
+  <h1>Menu</h1>
+  <ul>
+    <li>Deals</li>
+    <li>Pizza</li>
+    <li>Sides</li>
+    <li>Drinks</li>
+    <li>Desserts</li>
+  </ul>
+</div>
+ <div class="col">
+ <h1>About</h1>
+ <ul>
+    <li>About Us</li>
+    <li>Contactless delivery</li>
+    <li>Nutrition</li>
+ </ul>
+</div>
+<div class="col">
+<h1>Our Policies</h1>
+<ul>
+ <li>Privacy</li>
+ <li>Terms & Conditions</li>
+ <li>FAQs & Help</li>
+</ul>
+</div>
+<div class="col">
+<h1>Visit Pizza Hut</h1>
+<ul>
+ <li>Locate a store</li>
+ <li>Blog</li>
+</ul>
+</div>
+<div class="col social">
+  <h1>Follow Us</h1>
+  <ul>
+    <li><img src="static/img/twitter.png" width="25" style="width: 25px;"></li>
+    <li><img src="static/img/instas.png" width="25" style="width: 25px;"></li>
+    <li><img src="static/img/facebook.png" width="25" style="width: 25px;"></li>
+         <li><img src="static/img/youtube.png" width="25" style="width: 25px;"></li>
+  </ul>
+</div>
+ <div class="col social">
+     <ul>
+         <li><img src="static/img/apps.jpg" width="32" style="width: 200px;"></li>
+     </ul>
+   </div>
+</div>
+</div>
+    
+</body>
+</html>
+ 
