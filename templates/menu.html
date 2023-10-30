@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Add this line to include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link href="static\menu.css" rel="stylesheet" type="text/css" media="all">
@@ -14,7 +16,7 @@
     <!-- HEADER -->
     <div class="header">
         <section class="flex">
-            <a href="#" class="rainbow rainbow_text_animated"><img src="static\logo.png" style="width:5%;">Pizza Pizza</a>
+            <a href="#" class="rainbow rainbow_text_animated"><img src="static\logo.png" style="width:5%; ">Pizza Pizza</a>
             <nav class="navbar">
             <a href="/">Home</a>
             <a href="/about">About</a>
@@ -44,16 +46,20 @@
                 <button class="search-btn"><i class="fa fa-search"></i>Search</button>
             </div>
             
+            <button class="cart-icon-btn" onclick="toggleCart()">
+                <img src="static/food-stand.png" alt="Cart Logo">
+            </button>
+             
         </nav>
     </div>
 
-    <div class="sorting-options">
+    <!-- <div class="sorting-options">
         <label for="sort">Sort by:</label>
         <select id="sort" class="sort-select">
             <option value="low-to-high">Price: Low to High</option>
             <option value="high-to-low">Price: High to Low</option>
         </select>
-    </div>
+    </div> -->
 
     <div class="container">
         <div class="listProduct">
@@ -259,10 +265,6 @@
             </div>
 
 
-
-
-
-
             <div class="item">
                 <img src="static\pizza7.jpeg" alt="">
                 <h2>Pizza</h2>
@@ -395,46 +397,34 @@
                 </div>
             </div>
 
+             <!-- Carrttttttttttttttt -->
+             
+             
+            
+            <div class="cart-container">
+                <div class="cart-header">
+                    <img src="static/food-stand.png" alt="Cart Logo">
+                    <h2>Pizza Cart</h2>
+                </div>
+                
+                <div class="coupon-section">
+                    <p style="padding-bottom: 10px;">Do you have Coupon code?</p>
+                    <input type="text" id="coupon-input" placeholder="Enter coupon code" style="padding-bottom: 2px;">
+                    <button onclick="applyCoupon()">Apply</button>
+                </div>
 
+                <div class="cart-items" style="padding-top: 10px;"></div>
+            </div>
             
 
-            
         </div>
     </div>
-    <!-- Carrttttttttttttttt -->
+   
     <script>
-        // Get the select element and product container
-        const priceSortSelect = document.getElementById('sort');
-        const productContainer = document.querySelector('.listProduct');
-        // Function to sort products based on price
-        function sortProducts(sortOption) {
-            const items = Array.from(productContainer.children);
-            items.sort((a, b) => {
-                const priceA = parseFloat(a.getAttribute('data-price'));
-                const priceB = parseFloat(b.getAttribute('data-price'));
-                if (sortOption === 'low-to-high') {
-                    return priceA - priceB;
-                } else {
-                    return priceB - priceA;
-                }
-            });
-            // Clear the container and append sorted items
-            productContainer.innerHTML = '';
-            items.forEach(item => {
-                productContainer.appendChild(item);
-            });
-        }
-        // Event listener for select change
-        priceSortSelect.addEventListener('change', function() {
-            const selectedOption = this.value;
-            sortProducts(selectedOption);
-
-        });
         document.addEventListener("DOMContentLoaded", function() {
             // Get all the size dropdown buttons and size select elements
             const sizeDropdownBtns = document.querySelectorAll('.size-dropdown-btn');
             const sizeSelects = document.querySelectorAll('.size-select');
-        
             // Add event listener for each size select element
             sizeSelects.forEach((select, index) => {
                 select.addEventListener('change', function() {
@@ -442,7 +432,6 @@
                     sizeDropdownBtns[index].textContent = 'Size (' + selectedSize + ')';
                 });
             });
-        
             // Get all the base dropdown buttons and base select elements
             const baseDropdownBtns = document.querySelectorAll('.base-dropdown-btn');
             const baseSelects = document.querySelectorAll('.base-select');
@@ -454,9 +443,124 @@
                     baseDropdownBtns[index].textContent = 'Base (' + selectedBase + ')';
                 });
             });
+            // Get all the cart buttons and cart items container
+        const cartButtons = document.querySelectorAll('.cart-button');
+        const cartItemsContainer = document.querySelector('.cart-items');
+
+        // Array to store selected items
+        let cartItems = [];
+
+        // Define a lookup table for prices based on size and base options
+        const priceLookup = {
+            small: {
+                thin: 11,  // Small + Thin Crust: $5 + $6 = $11
+                thick: 18,  // Small + Thick Crust: $5 + $13 = $18
+                'Gluten-Free': 30  // Small + Gluten-Free: $5 + $25 = $30
+            },
+            Medium: {
+                thin: 16,  // Medium + Thin Crust: $10 + $6 = $16
+                thick: 23,  // Medium + Thick Crust: $10 + $13 = $23
+                'Gluten-Free': 35  // Medium + Gluten-Free: $10 + $25 = $35
+            },
+            Large: {
+                thin: 26,  // Large + Thin Crust: $20 + $6 = $26
+                thick: 33,  // Large + Thick Crust: $20 + $13 = $33
+                'Gluten-Free': 45  // Large + Gluten-Free: $20 + $25 = $45
+            }
+        };
+
+        // Function to calculate the total price based on selected options
+        function calculatePrice(size, base) {
+            // Retrieve the price from the lookup table based on selected size and base
+            return priceLookup[size][base];
+        }
+
+        // Add event listener for each "Add to Cart" button
+        cartButtons.forEach((button, index) => {
+            button.addEventListener('click', function() {
+                const selectedItem = {
+                    name: 'Pizza',  // You can customize this based on your product
+                    size: sizeSelects[index].value,
+                    base: baseSelects[index].value,
+                    price: calculatePrice(sizeSelects[index].value, baseSelects[index].value)
+                };
+
+                // Add the selected item to the cartItems array
+                cartItems.push(selectedItem);
+
+                // Update the cart items container
+                updateCartItems(cartItemsContainer, cartItems);
+
+                // Calculate total price and update the UI
+                const totalPrice = calculateTotalPrice(cartItems);
+                console.log('Total Price:', totalPrice);
+            });
         });
 
+        // Function to calculate the total price of selected items
+        function calculateTotalPrice(items) {
+            return items.reduce((total, item) => total + item.price, 0);
+        }
+
+        // Function to update the cart items container
+        function updateCartItems(container, items) {
+            container.innerHTML = '';
+            items.forEach(item => {
+                const cartItemDiv = document.createElement('div');
+                cartItemDiv.textContent = `${item.size} ${item.base} - $${item.price}`;
+                container.appendChild(cartItemDiv);
+            });
+        }
+        const imageLookup = {
+            small: {
+                thin: 'static/small_thin.jpg',
+                thick: 'static/small_thick.jpg',
+                'Gluten-Free': 'static/small_gluten_free.jpg'
+            },
+            Medium: {
+                thin: 'static/medium_thin.jpg',
+                thick: 'static/medium_thick.jpg',
+                'Gluten-Free': 'static/medium_gluten_free.jpg'
+            },
+            Large: {
+                thin: 'static/large_thin.jpg',
+                thick: 'static/large_thick.jpg',
+                'Gluten-Free': 'static/large_gluten_free.jpg'
+            }
+        };
+        
+    
+        // Function to update the cart items container including images
+        function updateCartItems(container, items) {
+            container.innerHTML = '';
+            items.forEach(item => {
+                const cartItemDiv = document.createElement('div');
+                cartItemDiv.className = 'cart-item'; // Add a class for styling if needed
+        
+                const itemImage = document.createElement('img');
+                itemImage.src = imageLookup[item.size][item.base]; // Get corresponding image source
+                itemImage.alt = `Pizza  `;
+                cartItemDiv.appendChild(itemImage);
+        
+                const itemDescription = document.createElement('span');
+                itemDescription.textContent = `  ${item.size} ${item.base} - $${item.price}`;
+                cartItemDiv.appendChild(itemDescription);
+        
+                container.appendChild(cartItemDiv);
+            });
+        }
+        
+    });
+        // Function to toggle cart container
+        function toggleCart() {
+            const cartContainer = document.querySelector('.cart-container');
+            cartContainer.classList.toggle('open');
+        }
+
+
+
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
