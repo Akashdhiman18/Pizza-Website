@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Add this line to include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="static\menu.css" rel="stylesheet" type="text/css" media="all">
+    <title>Pizza Website</title>
+</head>
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <section class="flex">
+            <a href="#" class="rainbow rainbow_text_animated"><img src="static\logo.png" style="width:5%; ">Pizza Pizza</a>
+            <nav class="navbar">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/menu">Menu</a>
+            <a href="/store_location">Store Locate</a>
+            </nav>
+            <div class="icons">
+                <button class="btn_s" onclick="openForm()">Register</button>
+            </div>
+            
+            
+        </section>
+    </div>
+    <!-- MENU -->
+    <div class="Menu-Container"> 
+        <nav class="Menu"> <!--Unsure if this will work, if not go back to <a>PIZZA</a>-->
+            <a href="/menu">PIZZA</a> 
+            <a href="/sides">SIDES</a> 
+             <a href="/drinks">DRINKS</a>    
+            <a href="/meal_deals">MEAL DEALS</a> 
+            <a href="/desserts">DESSERTS</a> 
+            <a href="/">VEGETARIAN</a>
+            <a href="/""> NON-VEGETARIAN</a>  
+            
+            <!-- SEARCH BAR -->
+            <div class="search">
+                <input type="text" placeholder="Search...">
+                <button class="search-btn"><i class="fa fa-search"></i>Search</button>
+            </div>
+            
+            <button class="cart-icon-btn" onclick="toggleCart()">
+                <img src="static/food-stand.png" alt="Cart Logo">
+            </button>
+             
+        </nav>
+    </div>

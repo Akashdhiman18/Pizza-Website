@@ -13,8 +13,23 @@ def about():
 
 @app.route('/menu')
 def menu():
-    return render_template('menu.html')
+    return render_template('menu.html') 
 
+@app.route('/sides')
+def sides():
+    return render_template('sides.html') 
+
+@app.route('/drinks')
+def drinks():
+    return render_template('drinks.html')
+
+@app.route('/meal_deals')
+def meal_deals():
+    return render_template('meal_deals.html') 
+
+@app.route('/desserts')
+def desserts():
+    return render_template('desserts.html')
 
 @app.route('/store_location')
 def store_location():
@@ -54,6 +69,11 @@ def add_to_cart():
     conn.commit()
 
     return jsonify({'message': 'Item added to cart successfully'})
+
+    
+
+
+ 
 
 if __name__ == '__main__':
     app.run(debug=True) 
