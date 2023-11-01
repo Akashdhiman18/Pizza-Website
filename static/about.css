@@ -13,7 +13,7 @@ box-sizing: border-box;
 :root {
 --header-padding: 1px;
 --navbar-margin: 0.5rem;
---primaryColor: green;
+--primaryColor: rgb(0, 0, 0);
 --secondaryColor: yellow;
 --whiteColor: white;
 --blackColor: black;
@@ -95,15 +95,14 @@ border-style: solid;
 border-color: #000 transparent transparent;
 } 
 .image img {
-    width: 50%;
-    height: 50%;
+    width: 80%;
+    height: 70%;
 }
 .content-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     width: 1200px;
-    border: 2px solid var(--primaryColor);
     border-radius: 10px;
     padding: 20px;
     padding-top: 100px;
