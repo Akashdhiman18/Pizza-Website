@@ -20,6 +20,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: gray;
     background-image: url('https://img.freepik.com/free-vector/seamless-pizza-ingredients_1176-269.jpg?w=826&t=st=1698367151~exp=1698367751~hmac=585f84b607a087463f79d13df97689a340d4ec63d534a081b3db543bb65013c3');
     background-size: cover; /* Optional: specify how the background image should be sized */
     background-repeat: no-repeat; /* Optional: prevent the background image from repeating */

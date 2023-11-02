@@ -5,6 +5,7 @@
         "Carrttttttttttttttt",
         "jsonify",
         "paneer",
-        "signin"
+        "signin",
+        "sqlalchemy"
     ]
 }
