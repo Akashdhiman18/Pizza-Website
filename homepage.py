@@ -213,7 +213,70 @@ def menu():
 
 @app.route('/sides')
 def sides():
-    return render_template('sides.html') 
+    sides = [ 
+        {
+            'name': 'Garlic Bread',
+            'image': 'static/Garlicbread.jpg',
+            'description': 'Buttery and garlicky,scattered with parsley, hot from the oven.' 
+        },
+
+         {
+            'name': 'Onion Rings',
+            'image': 'static/Onion Rings.jpg',
+            'description': 'Sweetly and soft on the inside, with a crispy crunchy coating.' 
+        },
+
+         {
+            'name': 'Fries',
+            'image': 'static/Fries.jpg',
+            'description': 'Lightly golden, crinkle-cut and seasoned to perfection.' 
+        },
+
+         {
+            'name': 'Hash Bites',
+            'image': 'static/Hashbites.jpg',
+            'description': 'Crunchy bites of fluffy potato, dip into aioli sauce for 50 cents more.' 
+        },
+
+         {
+            'name': 'Jalapeño Poppers',
+            'image': 'static/Jalapeno Poppers.jpg',
+            'description': '6 spicy poppers filled with cheese, corn and chopped Jalapeños.' 
+        },
+
+        {
+            'name': 'Chickens Bites',
+            'image': 'static/Chicken Bites.jpg',
+            'description': 'Southern style mini chicken bites with ranch sauce.'  
+        },
+
+        {
+            'name': 'Bread Sticks',
+            'image': 'static/Breadsticks.jpg',
+            'description': 'Crispy on the outside, soft and chewy on the inside. Served with marinara dipping sauce. Try an order with cheese.'  
+        },
+
+         {
+            'name': 'Cheesy Pull Apart Bread',
+            'image': 'static/Cheesy Bread.jpg',
+            'description': 'Warm baked dough bites coated in a buttery garlic glaze and covered in cheese.'  
+        },
+
+         {
+            'name': 'Boneless Chicken Bites',
+            'image': 'static/Boneless Bites.jpg',
+            'description': 'Warm baked dough bites coated in a buttery garlic glaze and covered in cheese.'  
+        },
+
+          {
+            'name': 'Caesar Salad',
+            'image': 'static/Caesar Salad.jpg',
+            'description': 'Warm baked dough bites coated in a buttery garlic glaze and covered in cheese.'  
+        },
+ 
+    ] 
+    
+    return render_template('sides.html' , sides=sides) 
 
 @app.route('/drinks')
 def drinks():
