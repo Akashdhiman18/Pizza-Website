@@ -224,6 +224,10 @@ def meal_deals():
 def desserts():
     return render_template('desserts.html')
 
+@app.route('/checkout')
+def checkout():
+    return render_template('checkout.html')
+
 @app.route('/store_location')
 def store_location():
     return render_template('store_location.html')

@@ -130,3 +130,6 @@ function toggleCart() {
     const cartContainer = document.querySelector('.cart-container');
     cartContainer.classList.toggle('open');
 }
+function checkout() {
+    window.location.href = '/checkout';
+}
