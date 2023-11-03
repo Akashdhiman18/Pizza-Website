@@ -421,13 +421,53 @@ def meal_deals():
         },  
 
     ]
-    return render_template('meal_deals.html') 
+    return render_template('meal_deals.html' , meal_deals=meal_deals)  
 
 @app.route('/desserts')
 def desserts():
+    desserts= [
 
-    
-    return render_template('desserts.html')
+         {
+            'name': 'Strawberry Cheesecake',
+            'image': 'static/Strawberry Cheesecake.jpg',
+            'description': 'Velvety strawberry cheesecake on a sweet biscuit base.',
+            'price': 6.39 
+        }, 
+
+         {
+            'name': 'Chocolate Lava Cake',
+            'image': 'static/Lava Cake.jpg',
+            'description': 'Delicious Hershey’s chocolate cake with a warm, rich gooey centre, dusted with icing sugar', 
+            'price': 6.39 
+        }, 
+
+           {
+            'name': 'Chocolate Mousse',
+            'image': 'static/Chocolate Mousse.jpg',
+            'description': 'A decadent, creamy swirl of chocolate mousse.',  
+            'price': 6.39 
+        }, 
+
+           {
+            'name': 'The Ultimate Chocolate Chip Cookie',
+            'image': 'static/Chocolate Chip Cookie.jpg',
+            'description': 'A giant chocolate chip cookie full of rich chocolate chips.',  
+            'price': 9.99
+        }, 
+
+          {
+            'name': 'Cookie Dough Ice Cream', 
+            'image': 'static/Cookie Dough Ice Cream.jpg', 
+            'sizes': [
+                {'name': '1 Pint', 'price': 16.49},
+                {'name': '4 Ounces', 'price': 7.49},
+                
+            ],  
+            
+        }, 
+
+    ]
+    return render_template('desserts.html' , desserts=desserts) 
 
 @app.route('/checkout')
 def checkout():
