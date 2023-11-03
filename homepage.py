@@ -364,6 +364,63 @@ def drinks():
 
 @app.route('/meal_deals') 
 def meal_deals():
+    meal_deals= [
+        {
+            'name': 'Double Value Deal',
+            'image': 'static/Double Value Deal.jpg',
+            'description': 'B2 Large Pizzas & 2 Sides.',
+            'price': 35.00  
+        }, 
+
+        {
+            'name': 'Triple Value Deal',
+            'image': 'static/Triple Value Deal.jpg',
+            'description': '3 Large Pizzas & 2 Sides.',
+            'price': 42.00 
+
+        }, 
+
+        {
+            'name': 'Mega Value Deal',
+            'image': 'static/Mega Value Deal.jpg',
+            'description': '4 Large Pizzas & 2 Sides.',
+            'price': 49.00              
+
+        }, 
+
+        {
+            'name': 'Chicken Lovers Combo',
+            'image': 'static/Chicken Lovers Combo.jpg',
+            'description': '1 large Chicken Pizza, Southern Style Chicken Bites with Ranch Sauce and Garlic Bread.', 
+            'price': 29.00 
+
+        },
+
+        {
+            'name': '3 Pizza Deal',
+            'image': 'static/3 Pizza Deal.jpg',
+            'description': '3 Large Classic Value Pizzas.',
+            'price': 33.00
+
+        }, 
+
+         {
+            'name': '3 Pizzas 3 Sides',
+            'image': 'static/3 Pizza 3 Sides.jpg', 
+            'description': '3 Large Classic Value Pizzas & 3 Sides. Sides include Garlic Bread, Fries or 1.5L Drink.', 
+            'price': 45.00 
+
+        }, 
+
+         {
+            'name': '4 Pizzas 4 Sides',
+            'image': 'static/4 Pizza 4 Sides.jpg', 
+            'description': '4 Large Classic Value Pizzas & 4 Sides. Sides include Garlic Bread, Fries or 1.5L Drink.', 
+            'price': 56.00 
+
+        },  
+
+    ]
     return render_template('meal_deals.html') 
 
 @app.route('/desserts')
