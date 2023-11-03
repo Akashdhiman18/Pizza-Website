@@ -425,6 +425,8 @@ def meal_deals():
 
 @app.route('/desserts')
 def desserts():
+
+    
     return render_template('desserts.html')
 
 @app.route('/checkout')
