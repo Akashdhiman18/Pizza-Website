@@ -208,78 +208,161 @@ def menu():
     return render_template('menu.html', pizzas=pizzas)
 
 
-@app.route('/sides')
+@app.route('/sides') 
 def sides():
     sides = [ 
         {
             'name': 'Garlic Bread',
             'image': 'static/Garlicbread.jpg',
-            'description': 'Buttery and garlicky,scattered with parsley, hot from the oven.' 
-        },
+            'description': 'Buttery and garlicky, scattered with parsley, hot from the oven.',
+            'price': 6.99  
+        }, 
 
-         {
+        {
             'name': 'Onion Rings',
             'image': 'static/Onion Rings.jpg',
-            'description': 'Sweetly and soft on the inside, with a crispy crunchy coating.' 
+            'description': 'Sweetly and soft on the inside, with a crispy crunchy coating.',
+            'price': 5.99   
         },
 
          {
             'name': 'Fries',
             'image': 'static/Fries.jpg',
-            'description': 'Lightly golden, crinkle-cut and seasoned to perfection.' 
-        },
+            'description': 'Lightly golden, crinkle-cut and seasoned to perfection.',
+            'price': 5.99 
+             
+        }, 
 
-         {
-            'name': 'Hash Bites',
-            'image': 'static/Hashbites.jpg',
-            'description': 'Crunchy bites of fluffy potato, dip into aioli sauce for 50 cents more.' 
-        },
+        {
+        'name': 'Hash Bites',
+        'image': 'static/Hashbites.jpg',
+        'description': 'Crunchy bites of fluffy potato, dip into aioli sauce for 50 cents more.',
+        'price': 5.99  
+        }, 
 
-         {
-            'name': 'Jalapeño Poppers',
-            'image': 'static/Jalapeno Poppers.jpg',
-            'description': '6 spicy poppers filled with cheese, corn and chopped Jalapeños.' 
+
+        {
+        'name': 'Jalapeño Poppers',
+        'image': 'static/Jalapeno Poppers.jpg',
+        'description': '6 spicy poppers filled with cheese, corn and chopped Jalapeños.',
+        'price': 7.50  
+        }, 
+
+       {
+        'name': 'Chickens Bites',
+        'image': 'static/Chicken Bites.jpg',
+        'description': 'Southern style mini chicken bites with ranch sauce.',
+        'price': 6.50  # Add the price here
         },
 
         {
-            'name': 'Chickens Bites',
-            'image': 'static/Chicken Bites.jpg',
-            'description': 'Southern style mini chicken bites with ranch sauce.'  
+        'name': 'Bread Sticks',
+        'image': 'static/Breadsticks.jpg',
+        'description': 'Crispy on the outside, soft and chewy on the inside. Served with marinara dipping sauce. Try an order with cheese.',
+        'price': 6.50  
+        },
+
+       {
+        'name': 'Cheesy Pull Apart Bread',
+        'image': 'static/Cheesy Bread.jpg',
+        'description': 'Warm baked dough bites coated in a buttery garlic glaze and covered in cheese.',
+        'price': 5.50
         },
 
         {
-            'name': 'Bread Sticks',
-            'image': 'static/Breadsticks.jpg',
-            'description': 'Crispy on the outside, soft and chewy on the inside. Served with marinara dipping sauce. Try an order with cheese.'  
+        'name': 'Boneless Chicken Bites',
+        'image': 'static/Boneless Bites.jpg',
+        'description': 'Warm baked dough bites coated in a buttery garlic glaze and covered in cheese.',
+        'price': 8.50  
         },
 
-         {
-            'name': 'Cheesy Pull Apart Bread',
-            'image': 'static/Cheesy Bread.jpg',
-            'description': 'Warm baked dough bites coated in a buttery garlic glaze and covered in cheese.'  
+        {
+        'name': 'Caesar Salad',
+        'image': 'static/Caesar Salad.jpg',
+        'description': 'Crisp romaine lettuce, croutons, and Caesar dressing.',
+        'price': 6.50
         },
-
-         {
-            'name': 'Boneless Chicken Bites',
-            'image': 'static/Boneless Bites.jpg',
-            'description': 'Warm baked dough bites coated in a buttery garlic glaze and covered in cheese.'  
-        },
-
-          {
-            'name': 'Caesar Salad',
-            'image': 'static/Caesar Salad.jpg',
-            'description': 'Warm baked dough bites coated in a buttery garlic glaze and covered in cheese.'  
-        },
- 
     ] 
-    
+
     return render_template('sides.html' , sides=sides) 
 
 @app.route('/drinks')
 def drinks():
-    return render_template('drinks.html')
+    drinks= [
+        {
+            'name': 'Coca Cola',
+            'image': 'static/Coca Cola.jpg',
+            'sizes': [
+                {'name': '1.5L', 'price': 5.99},
+                {'name': '600ml', 'price': 3.89},
+                {'name': '330ml', 'price': 2.99},
+            ],
+        },
+         {
+            'name': 'Coke Zero',
+            'image': 'static/Coke Zero.jpg',  
+            'sizes': [
+                {'name': '1.5L', 'price': 5.99},
+                {'name': '600ml', 'price': 3.89},
+                {'name': '330ml', 'price': 2.99},
+            ],  
+            
+        }, 
 
-@app.route('/meal_deals')
+        {
+            'name': 'Sprite', 
+            'image': 'static/Sprite.jpg', 
+            'sizes': [
+                {'name': '1.5L', 'price': 5.99},
+                {'name': '600ml', 'price': 3.89},
+                {'name': '330ml', 'price': 2.99},
+            ],  
+            
+        }, 
+
+         {
+            'name': 'Fanta', 
+            'image': 'static/Fanta.jpg', 
+            'sizes': [
+                {'name': '1.5L', 'price': 5.99},
+                {'name': '330ml', 'price': 2.99},
+            ],  
+            
+        },
+
+          {
+            'name': 'L&P',
+            'image': 'static/L&P.jpg', 
+            'sizes': [
+                {'name': '1.5L', 'price': 5.99},
+            ],  
+            
+        }, 
+
+        
+       {
+            'name': 'Orange Juice',
+            'image': 'static/Orange Juice.jpg', 
+            'sizes': [
+                {'name': '330ml', 'price': 2.99},
+            ],  
+            
+        },
+
+        {
+            'name': 'Water',
+            'image': 'static/Water.jpg', 
+            'sizes': [
+                {'name': '1.5L', 'price': 5.99},
+                {'name': '750ml', 'price': 3.99},  
+
+            ],  
+            
+        },
+    ]
+    return render_template('drinks.html', drinks=drinks)  
+
+@app.route('/meal_deals') 
 def meal_deals():
     return render_template('meal_deals.html') 
 
