@@ -16,23 +16,23 @@ class CartItem(db.Model):
 with app.app_context():
     db.create_all()
 
-image_lookup = {
-    'small': {
-        'thin': 'static/small_thin.jpg',
-        'thick': 'static/small_thick.jpg',
-        'Gluten-Free': 'static/small_gluten_free.jpg'
-    },
-    'Medium': {
-        'thin': 'static/medium_thin.jpg',
-        'thick': 'static/medium_thick.jpg',
-        'Gluten-Free': 'static/medium_gluten_free.jpg'
-    },
-    'Large': {
-        'thin': 'static/large_thin.jpg',
-        'thick': 'static/large_thick.jpg',
-        'Gluten-Free': 'static/large_gluten_free.jpg'
-    }
-}
+# image_lookup = {
+#     'small': {
+#         'thin': 'static/small_thin.jpg',
+#         'thick': 'static/small_thick.jpg',
+#         'Gluten-Free': 'static/small_gluten_free.jpg'
+#     },
+#     'Medium': {
+#         'thin': 'static/medium_thin.jpg',
+#         'thick': 'static/medium_thick.jpg',
+#         'Gluten-Free': 'static/medium_gluten_free.jpg'
+#     },
+#     'Large': {
+#         'thin': 'static/large_thin.jpg',
+#         'thick': 'static/large_thick.jpg',
+#         'Gluten-Free': 'static/large_gluten_free.jpg'
+#     }
+# }
 
 @app.route('/remove/<int:item_id>')
 def remove_item(item_id):
@@ -58,7 +58,7 @@ def menu():
             'image': 'static/Neapolitan-Pizza.jpg.webp',
             'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
             'sizes': [
-                {'name': 'Small', 'price': 10},
+                {'id': 1, 'name': 'Small', 'price': 10},
                 {'name': 'Medium', 'price': 15},
                 {'name': 'Large', 'price': 20}
             ],

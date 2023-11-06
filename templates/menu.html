@@ -63,7 +63,7 @@
                 <p>{{ pizza.ingredients }}</p>
                 <div class="buttons">
                     <div class="dropdown">
-                        <button class="dropdown-button size-dropdown-btn">Size</button>
+                        <button class="dropdown-button size-dropdown-btn">Size<span class="selected-size"></span></button>
                         <div class="dropdown-content">
                             <select class="size-select">
                                 {% for size in pizza.sizes %}
@@ -73,7 +73,7 @@
                         </div>
                     </div>
                     <div class="dropdown">
-                        <button class="dropdown-button base-dropdown-btn">Base</button>
+                        <button class="dropdown-button base-dropdown-btn">Base<span class="selected-base"></span></button>
                         <div class="dropdown-content">
                             <select class="base-select">
                                 {% for base in pizza.bases %}

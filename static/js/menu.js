@@ -6,18 +6,17 @@ document.addEventListener("DOMContentLoaded", function() {
     sizeSelects.forEach((select, index) => {
         select.addEventListener('change', function() {
             const selectedSize = select.value;
-            sizeDropdownBtns[index].textContent = 'Size (' + selectedSize + ')';
+            sizeDropdownBtns[index].textContent = 'Size';
+            document.querySelector('.selected-size').textContent = selectedSize;
         });
     });
-    // Get all the base dropdown buttons and base select elements
-    const baseDropdownBtns = document.querySelectorAll('.base-dropdown-btn');
-    const baseSelects = document.querySelectorAll('.base-select');
 
-    // Add event listener for each base select element
+    // Add event listener for base select elements
     baseSelects.forEach((select, index) => {
         select.addEventListener('change', function() {
             const selectedBase = select.value;
-            baseDropdownBtns[index].textContent = 'Base (' + selectedBase + ')';
+            baseDropdownBtns[index].textContent = 'Base';
+            document.querySelector('.selected-base').textContent = selectedBase;
         });
     });
     // Get all the cart buttons and cart items container
