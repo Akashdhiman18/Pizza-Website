@@ -8,7 +8,17 @@ document.addEventListener("DOMContentLoaded", function() {
     const cartButtons = document.querySelectorAll('.cart-button');
 
     // Function to toggle dropdown visibility
+    // Function to toggle dropdown visibility with animation
     function toggleDropdown(dropdownContent) {
+        // Close other open dropdowns
+        sizeDropdownContents.forEach(content => {
+            content.classList.remove('show');
+        });
+        baseDropdownContents.forEach(content => {
+            content.classList.remove('show');
+        });
+
+        // Toggle dropdown visibility with animation
         dropdownContent.classList.toggle('show');
     }
 
@@ -16,10 +26,6 @@ document.addEventListener("DOMContentLoaded", function() {
     sizeDropdownBtns.forEach((button, index) => {
         button.addEventListener('click', function(event) {
             event.stopPropagation();
-            // Close other open dropdowns
-            baseDropdownContents.forEach(content => {
-                content.classList.remove('show');
-            });
             toggleDropdown(sizeDropdownContents[index]);
         });
     });
@@ -28,49 +34,16 @@ document.addEventListener("DOMContentLoaded", function() {
     baseDropdownBtns.forEach((button, index) => {
         button.addEventListener('click', function(event) {
             event.stopPropagation();
-            // Close other open dropdowns
-            sizeDropdownContents.forEach(content => {
-                content.classList.remove('show');
-            });
             toggleDropdown(baseDropdownContents[index]);
         });
     });
 
-    // Add-to-cart functionality
-    cartButtons.forEach((button, index) => {
-        button.addEventListener('click', function() {
-            const selectedSize = sizeSelects[index].value;
-            const selectedBase = baseSelects[index].value;
-            const pizzaName = button.parentNode.parentNode.querySelector('h2').textContent;
+    
+});
 
-            const data = {
-                size: selectedSize,
-                base: selectedBase,
-                pizzaName: pizzaName
-            };
-
-            fetch('/add_to_cart', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data.message);  // Log the response message
-                // You can update the UI or handle the response as needed
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        });
-    });
-
-    // Function to toggle cart container
-    const cartIconBtn = document.querySelector('.cart-icon-btn');
-    cartIconBtn.addEventListener('click', function() {
-        const cartContainer = document.querySelector('.cart-container');
-        cartContainer.classList.toggle('open');
-    });
+// Function to toggle cart container
+const cartIconBtn = document.querySelector('.cart-icon-btn');
+cartIconBtn.addEventListener('click', function() {
+    const cartContainer = document.querySelector('.cart-container');
+    cartContainer.classList.toggle('open');
 });

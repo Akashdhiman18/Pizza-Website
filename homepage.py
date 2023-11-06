@@ -16,25 +16,6 @@ class CartItem(db.Model):
     price = db.Column(db.Float, nullable=False)
 
 
-with app.app_context():
-    db.create_all()
-
-
-
-@app.route('/add_to_cart', methods=['POST'])
-def add_to_cart():
-    data = request.get_json()
-    pizza_name = data['pizzaName']
-    size = data['size']
-    base = data['base']
-    # Calculate total_price based on pizza_name, size, and base (implement this logic)
-    total_price = calculate_total_price(pizza_name, size, base)
-    cart_item = CartItem(pizza_name=pizza_name, size=size, base=base, price=total_price)
-    db.session.add(cart_item)
-    db.session.commit()
-    return jsonify({'message': 'Pizza added to cart successfully!'})
-
-
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -51,7 +32,7 @@ def menu():
             'image': 'static/Neapolitan-Pizza.jpg.webp',
             'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
             'sizes': [
-                {'id': 1, 'name': 'Small', 'price': 10},
+                {'name': 'Small', 'price': 10},
                 {'name': 'Medium', 'price': 15},
                 {'name': 'Large', 'price': 20}
             ],
