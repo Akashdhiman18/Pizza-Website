@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 import os
+from flask import jsonify
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pizza_cart.db'
@@ -9,38 +10,30 @@ db = SQLAlchemy(app)
 
 class CartItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    pizza_name = db.Column(db.String(50), nullable=False)
     size = db.Column(db.String(20), nullable=False)
     base = db.Column(db.String(20), nullable=False)
     price = db.Column(db.Float, nullable=False)
 
+
 with app.app_context():
     db.create_all()
 
-# image_lookup = {
-#     'small': {
-#         'thin': 'static/small_thin.jpg',
-#         'thick': 'static/small_thick.jpg',
-#         'Gluten-Free': 'static/small_gluten_free.jpg'
-#     },
-#     'Medium': {
-#         'thin': 'static/medium_thin.jpg',
-#         'thick': 'static/medium_thick.jpg',
-#         'Gluten-Free': 'static/medium_gluten_free.jpg'
-#     },
-#     'Large': {
-#         'thin': 'static/large_thin.jpg',
-#         'thick': 'static/large_thick.jpg',
-#         'Gluten-Free': 'static/large_gluten_free.jpg'
-#     }
-# }
 
-@app.route('/remove/<int:item_id>')
-def remove_item(item_id):
-    item = CartItem.query.get(item_id)
-    if item:
-        db.session.delete(item)
-        db.session.commit()
-    return redirect('/menu')
+
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    data = request.get_json()
+    pizza_name = data['pizzaName']
+    size = data['size']
+    base = data['base']
+    # Calculate total_price based on pizza_name, size, and base (implement this logic)
+    total_price = calculate_total_price(pizza_name, size, base)
+    cart_item = CartItem(pizza_name=pizza_name, size=size, base=base, price=total_price)
+    db.session.add(cart_item)
+    db.session.commit()
+    return jsonify({'message': 'Pizza added to cart successfully!'})
+
 
 @app.route('/')
 def home():
@@ -54,7 +47,7 @@ def about():
 def menu():
     pizzas = [
         {
-            'name': 'The True Italian Pizza: Neapolitan ',
+            'name': ' True Italian Pizza ',
             'image': 'static/Neapolitan-Pizza.jpg.webp',
             'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
             'sizes': [
@@ -69,7 +62,7 @@ def menu():
             ]
         },
         {
-            'name': 'The Sicilian Pizza',
+            'name': ' Sicilian Pizza',
             'image': 'static/Sicilian-Pizza.jpg.webp',
             'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
             'sizes': [
@@ -99,7 +92,7 @@ def menu():
             ]
         },
         {
-            'name': 'The Staple American Pizza: Chicago Deep-dish, New York- or Detroit-Style Pizza',
+            'name': 'Staple American Pizza: ',
             'image': 'static/Chicago-Deep-Dish-Pizza.jpg.webp',
             'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
             'sizes': [
@@ -114,7 +107,7 @@ def menu():
             ]
         },
         {
-            'name': 'The New York-style Pizza',
+            'name': ' New York-style Pizza',
             'image': 'static/New-York-Style-Pizza.jpg.webp',
             'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
             'sizes': [
@@ -129,7 +122,7 @@ def menu():
             ]
         },
         {
-            'name': 'The Californian Pizza',
+            'name': ' Californian Pizza',
             'image': 'static/Californian-Pizza.jpg.webp',
             'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
             'sizes': [
@@ -144,7 +137,7 @@ def menu():
             ]
         },
         {
-            'name': 'The Detroit Pizza',
+            'name': ' Detroit Pizza',
             'image': 'static/Detroit-Pizza.jpg.webp',
             'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
             'sizes': [
@@ -159,7 +152,7 @@ def menu():
             ]
         },
         {
-            'name': 'The St. Louis Pizza',
+            'name': ' St. Louis Pizza',
             'image': 'static/St.-Louis-Pizza.jpg.webp',
             'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
             'sizes': [
@@ -189,7 +182,7 @@ def menu():
             ]
         },
         {
-            'name': 'The Mexican Pizza',
+            'name': ' Mexican Pizza',
             'image': 'static/Mexican-Pizza.jpg.webp',
             'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
             'sizes': [
@@ -214,14 +207,14 @@ def sides():
         {
             'name': 'Garlic Bread',
             'image': 'static/Garlicbread.jpg',
-            'description': 'Buttery and garlicky, scattered with parsley, hot from the oven.',
+            'description': 'Buttery and garlicky, scattered with parsley, hot from  oven.',
             'price': 6.99  
         }, 
 
         {
             'name': 'Onion Rings',
             'image': 'static/Onion Rings.jpg',
-            'description': 'Sweetly and soft on the inside, with a crispy crunchy coating.',
+            'description': 'Sweetly and soft on  inside, with a crispy crunchy coating.',
             'price': 5.99   
         },
 
@@ -251,14 +244,14 @@ def sides():
        {
         'name': 'Chickens Bites',
         'image': 'static/Chicken Bites.jpg',
-        'description': 'Southern style mini chicken bites with ranch sauce.',
-        'price': 6.50  # Add the price here
+        'description': 'Sourn style mini chicken bites with ranch sauce.',
+        'price': 6.50  # Add  price here
         },
 
         {
         'name': 'Bread Sticks',
         'image': 'static/Breadsticks.jpg',
-        'description': 'Crispy on the outside, soft and chewy on the inside. Served with marinara dipping sauce. Try an order with cheese.',
+        'description': 'Crispy on  outside, soft and chewy on  inside. Served with marinara dipping sauce. Try an order with cheese.',
         'price': 6.50  
         },
 
@@ -391,7 +384,7 @@ def meal_deals():
         {
             'name': 'Chicken Lovers Combo',
             'image': 'static/Chicken Lovers Combo.jpg',
-            'description': '1 large Chicken Pizza, Southern Style Chicken Bites with Ranch Sauce and Garlic Bread.', 
+            'description': '1 large Chicken Pizza, Sourn Style Chicken Bites with Ranch Sauce and Garlic Bread.', 
             'price': 29.00 
 
         },
@@ -449,7 +442,7 @@ def desserts():
         }, 
 
            {
-            'name': 'The Ultimate Chocolate Chip Cookie',
+            'name': ' Ultimate Chocolate Chip Cookie',
             'image': 'static/Chocolate Chip Cookie.jpg',
             'description': 'A giant chocolate chip cookie full of rich chocolate chips.',  
             'price': 9.99

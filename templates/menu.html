@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="static\menu.css" rel="stylesheet" type="text/css" media="all">
     <title>Pizza Website</title>
 </head>
@@ -63,8 +64,9 @@
                 <p>{{ pizza.ingredients }}</p>
                 <div class="buttons">
                     <div class="dropdown">
-                        <button class="dropdown-button size-dropdown-btn">Size<span class="selected-size"></span></button>
-                        <div class="dropdown-content">
+                        <span class="button-name">Select Size : </span>
+                        <button class="dropdown-button size-dropdown-btn">Size <i class="fas fa-arrow-down"></i></button>
+                        <div class="size-dropdown-content dropdown-content">
                             <select class="size-select">
                                 {% for size in pizza.sizes %}
                                 <option value="{{ size.name }}">{{ size.name }}: ${{ size.price }}</option>
@@ -72,16 +74,18 @@
                             </select>
                         </div>
                     </div>
+                    
                     <div class="dropdown">
-                        <button class="dropdown-button base-dropdown-btn">Base<span class="selected-base"></span></button>
-                        <div class="dropdown-content">
+                        <span class="button-name">Select Base : </span>
+                        <button class="dropdown-button base-dropdown-btn">Base <i class="fas fa-arrow-down"></i></button>
+                        <div class="base-dropdown-content dropdown-content">
                             <select class="base-select">
                                 {% for base in pizza.bases %}
                                 <option value="{{ base.name }}">{{ base.name }}: ${{ base.price }}</option>
                                 {% endfor %}
                             </select>
                         </div>
-                    </div>
+                    </div>                    
                     <button class="cart-button" onclick="addToCart('{{ pizza.name }}')">Add To Cart</button>
                 </div>
             </div>
