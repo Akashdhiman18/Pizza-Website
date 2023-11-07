@@ -24,162 +24,31 @@ def home():
 def about():
     return render_template('about.html')
 
+{'name':'True Italian Pizza', 'image': 'static/Neapolitan-Pizza.jpg.webp','ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
+{'name':'Sicilian Pizza',  'image': 'static/Sicilian-Pizza.jpg.webp','ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'}, 
+{'name':'Roman-style Pizza', 'image': 'static/Neapolitan-Pizza.jpg.webp','ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
+{'name':'Staple American Pizza: ','image': 'static/Chicago-Deep-Dish-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
+{'name':'New York-style Pizza','image': 'static/New-York-Style-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'}, 
+{'name': 'Californian Pizza', 'image': 'static/Californian-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'}, 
+{'name': 'Detroit Pizza', 'image': 'static/Detroit-Pizza.jpg.webp','ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
+{'name': 'St. Louis Pizza', 'image': 'static/St.-Louis-Pizza.jpg.webp' , 'ingredients':'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
+{'name': 'Canadian Pizza', 'image': 'static/St.-Louis-Pizza.jpg.webp' , 'ingredients':'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
+{'name': 'Mexican Pizza', 'image': 'static/Mexican-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
+
+
+#Gotta do this with other menu items + sides and bases code :P
+
+
+
+
+
 @app.route('/menu')
 def menu():
-    pizzas = [
-        {
-            'name': ' True Italian Pizza ',
-            'image': 'static/Neapolitan-Pizza.jpg.webp',
-            'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
-            'sizes': [
-                {'name': 'Small', 'price': 10},
-                {'name': 'Medium', 'price': 15},
-                {'name': 'Large', 'price': 20}
-            ],
-            'bases': [
-                {'name': 'Thin Crust', 'price': 2},
-                {'name': 'Thick Crust', 'price': 3},
-                {'name': 'Gluten-Free', 'price': 5}
-            ]
-        },
-        {
-            'name': ' Sicilian Pizza',
-            'image': 'static/Sicilian-Pizza.jpg.webp',
-            'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
-            'sizes': [
-                {'name': 'Small', 'price': 10},
-                {'name': 'Medium', 'price': 15},
-                {'name': 'Large', 'price': 20}
-            ],
-            'bases': [
-                {'name': 'Thin Crust', 'price': 2},
-                {'name': 'Thick Crust', 'price': 3},
-                {'name': 'Gluten-Free', 'price': 5}
-            ]
-        },
-        {
-            'name': 'Roman-style Pizza',
-            'image': 'static/Roman-Style-Pizza.jpg.webp',
-            'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
-            'sizes': [
-                {'name': 'Small', 'price': 10},
-                {'name': 'Medium', 'price': 15},
-                {'name': 'Large', 'price': 20}
-            ],
-            'bases': [
-                {'name': 'Thin Crust', 'price': 2},
-                {'name': 'Thick Crust', 'price': 3},
-                {'name': 'Gluten-Free', 'price': 5}
-            ]
-        },
-        {
-            'name': 'Staple American Pizza: ',
-            'image': 'static/Chicago-Deep-Dish-Pizza.jpg.webp',
-            'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
-            'sizes': [
-                {'name': 'Small', 'price': 10},
-                {'name': 'Medium', 'price': 15},
-                {'name': 'Large', 'price': 20}
-            ],
-            'bases': [
-                {'name': 'Thin Crust', 'price': 2},
-                {'name': 'Thick Crust', 'price': 3},
-                {'name': 'Gluten-Free', 'price': 5}
-            ]
-        },
-        {
-            'name': ' New York-style Pizza',
-            'image': 'static/New-York-Style-Pizza.jpg.webp',
-            'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
-            'sizes': [
-                {'name': 'Small', 'price': 10},
-                {'name': 'Medium', 'price': 15},
-                {'name': 'Large', 'price': 20}
-            ],
-            'bases': [
-                {'name': 'Thin Crust', 'price': 2},
-                {'name': 'Thick Crust', 'price': 3},
-                {'name': 'Gluten-Free', 'price': 5}
-            ]
-        },
-        {
-            'name': ' Californian Pizza',
-            'image': 'static/Californian-Pizza.jpg.webp',
-            'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
-            'sizes': [
-                {'name': 'Small', 'price': 10},
-                {'name': 'Medium', 'price': 15},
-                {'name': 'Large', 'price': 20}
-            ],
-            'bases': [
-                {'name': 'Thin Crust', 'price': 2},
-                {'name': 'Thick Crust', 'price': 3},
-                {'name': 'Gluten-Free', 'price': 5}
-            ]
-        },
-        {
-            'name': ' Detroit Pizza',
-            'image': 'static/Detroit-Pizza.jpg.webp',
-            'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
-            'sizes': [
-                {'name': 'Small', 'price': 10},
-                {'name': 'Medium', 'price': 15},
-                {'name': 'Large', 'price': 20}
-            ],
-            'bases': [
-                {'name': 'Thin Crust', 'price': 2},
-                {'name': 'Thick Crust', 'price': 3},
-                {'name': 'Gluten-Free', 'price': 5}
-            ]
-        },
-        {
-            'name': ' St. Louis Pizza',
-            'image': 'static/St.-Louis-Pizza.jpg.webp',
-            'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
-            'sizes': [
-                {'name': 'Small', 'price': 10},
-                {'name': 'Medium', 'price': 15},
-                {'name': 'Large', 'price': 20}
-            ],
-            'bases': [
-                {'name': 'Thin Crust', 'price': 2},
-                {'name': 'Thick Crust', 'price': 3},
-                {'name': 'Gluten-Free', 'price': 5}
-            ]
-        },
-        {
-            'name': 'Canadian Pizza',
-            'image': 'static/Nova-Scotia-Garlic-Fingers-Pizza.jpg.webp',
-            'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
-            'sizes': [
-                {'name': 'Small', 'price': 10},
-                {'name': 'Medium', 'price': 15},
-                {'name': 'Large', 'price': 20}
-            ],
-            'bases': [
-                {'name': 'Thin Crust', 'price': 2},
-                {'name': 'Thick Crust', 'price': 3},
-                {'name': 'Gluten-Free', 'price': 5}
-            ]
-        },
-        {
-            'name': ' Mexican Pizza',
-            'image': 'static/Mexican-Pizza.jpg.webp',
-            'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce',
-            'sizes': [
-                {'name': 'Small', 'price': 10},
-                {'name': 'Medium', 'price': 15},
-                {'name': 'Large', 'price': 20}
-            ],
-            'bases': [
-                {'name': 'Thin Crust', 'price': 2},
-                {'name': 'Thick Crust', 'price': 3},
-                {'name': 'Gluten-Free', 'price': 5}
-            ]
-        },
-        
+    [
+
     ]
-    return render_template('menu.html', pizzas=pizzas)
+    
+    return render_template('menu.html')  
 
 
 @app.route('/sides') 
