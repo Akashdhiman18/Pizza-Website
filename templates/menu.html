@@ -84,7 +84,7 @@
                             </select>
                         </div>
                     </div>                    
-                    <button class="cart-button" onclick="addToCart('{{ pizza.name }}')">Add To Cart</button>
+                    <button class="add-cart-button" onclick="addToCart('{{ pizza.name }}')">Add To Cart</button>
                 </div>
             </div>
             {% endfor %}
@@ -97,11 +97,11 @@
                     <h2>Pizza Cart</h2>
                 </div>
                 
-                <div class="coupon-section">
+                <!-- <div class="coupon-section">
                     <p style="padding-bottom: 10px;">Do you have Coupon code?</p>
                     <input type="text" id="coupon-input" placeholder="Enter coupon code" style="padding-bottom: 2px;">
                     <button onclick="applyCoupon()">Apply</button>
-                </div>
+                </div> -->
 
                 <div class="cart-items" style="padding-top: 10px;"></div>
                 <button class="checkout-button" onclick="checkout()">Checkout</button>
