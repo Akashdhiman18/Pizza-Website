@@ -23,19 +23,19 @@ def home():
 @app.route('/about')
 def about():
     return render_template('about.html')
-pizzas = [
+menu = [
     {'name':'True Italian Pizza', 'image': 'static/Neapolitan-Pizza.jpg.webp','ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
     {'name':'Sicilian Pizza',  'image': 'static/Sicilian-Pizza.jpg.webp','ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'}, 
     {'name':'Roman-style Pizza', 'image': 'static/Neapolitan-Pizza.jpg.webp','ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
     {'name':'Staple American Pizza: ','image': 'static/Chicago-Deep-Dish-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
     {'name':'New York-style Pizza','image': 'static/New-York-Style-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'}, 
     {'name': 'Californian Pizza', 'image': 'static/Californian-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'}, 
-    {'name': 'Detroit Pizza', 'image': 'static/Detroit-Pizza.jpg.webp','ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
+    {'name': 'Detroit Pizza', 'image': 'static/Detroit-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
     {'name': 'St. Louis Pizza', 'image': 'static/St.-Louis-Pizza.jpg.webp' , 'ingredients':'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
     {'name': 'Canadian Pizza', 'image': 'static/St.-Louis-Pizza.jpg.webp' , 'ingredients':'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
     {'name': 'Mexican Pizza', 'image': 'static/Mexican-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
 ] 
-
+ 
 sizes = [
     {'name': 'Small', 'price': 10},
     {'name': 'Medium', 'price': 15},
@@ -50,16 +50,12 @@ bases = [
 
 @app.route('/menu')
 def menu():
-    [
-
-    ]
-    
-    return render_template('menu.html')   #,pizza=pizza?
-
+    return render_template('menu.html')  
+ 
 sides = [
     {'name':'Garlic Bread', 'image': 'static/Garlicbread.jpg','description': 'Buttery and garlicky, scattered with parsley, hot from  oven', 'price': 5.99},  
     {'name':'Onion Rings', 'image': 'static/Onion Rings.jpg','description': 'Sweetly and soft on  inside, with a crispy crunchy coating.', 'price': 5.99},
-    {'name':'Fries', 'image': 'static/Fries.jpg','description': 'Crunchy bites of fluffy potato, dip into aioli sauce for 50 cents more.', 'price': 5.99},  
+    {'name':'Fries', 'image': 'static/Fries.jpg.','description': 'Crunchy bites of fluffy potato, dip into aioli sauce for 50 cents more.', 'price': 5.99},  
     {'name':'Hash Bites', 'image': 'static/Hashbites.jpg','description': 'Crunchy bites of fluffy potato, dip into aioli sauce for 50 cents more.', 'price': 5.99}, 
     {'name':'Jalapeño Poppers', 'image': 'static/Jalapeno Poppers.jpg','description': '6 spicy poppers filled with cheese, corn and chopped Jalapeños.', 'price': 7.50},    
     {'name':'Chicken Bites', 'image': 'static/Chicken Bites.jpg','description': 'Southern style mini chicken bites with ranch sauce.', 'price': 7.50}, 
