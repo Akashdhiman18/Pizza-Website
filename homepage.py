@@ -19,11 +19,11 @@ class CartItem(db.Model):
 @app.route('/')
 def home():
     return render_template('index.html')
-    
+
 @app.route('/about')
 def about():
     return render_template('about.html')
-menu = [
+pizzas = [ 
     {'name':'True Italian Pizza', 'image': 'static/Neapolitan-Pizza.jpg.webp','ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
     {'name':'Sicilian Pizza',  'image': 'static/Sicilian-Pizza.jpg.webp','ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'}, 
     {'name':'Roman-style Pizza', 'image': 'static/Neapolitan-Pizza.jpg.webp','ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
@@ -35,7 +35,7 @@ menu = [
     {'name': 'Canadian Pizza', 'image': 'static/St.-Louis-Pizza.jpg.webp' , 'ingredients':'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
     {'name': 'Mexican Pizza', 'image': 'static/Mexican-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
 ] 
- 
+
 sizes = [
     {'name': 'Small', 'price': 10},
     {'name': 'Medium', 'price': 15},
@@ -50,8 +50,8 @@ bases = [
 
 @app.route('/menu')
 def menu():
-    return render_template('menu.html')  
- 
+    return render_template('menu.html', pizzas=pizzas)  
+
 sides = [
     {'name':'Garlic Bread', 'image': 'static/Garlicbread.jpg','description': 'Buttery and garlicky, scattered with parsley, hot from  oven', 'price': 5.99},  
     {'name':'Onion Rings', 'image': 'static/Onion Rings.jpg','description': 'Sweetly and soft on  inside, with a crispy crunchy coating.', 'price': 5.99},
@@ -129,4 +129,3 @@ def signin():
 if __name__ == '__main__':
     app.run(debug=True)
 
- 
