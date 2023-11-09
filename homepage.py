@@ -33,10 +33,10 @@ pizzas = [
     {'name': 'Detroit Pizza', 'image': 'static/Detroit-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
     {'name': 'St. Louis Pizza', 'image': 'static/St.-Louis-Pizza.jpg.webp' , 'ingredients':'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
     {'name': 'Canadian Pizza', 'image': 'static/St.-Louis-Pizza.jpg.webp' , 'ingredients':'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
-    {'name': 'Mexican Pizza', 'image': 'static/Mexican-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
+    {'name': 'Mexican Pizza', 'image': 'static/Mexican-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'}, 
 ] 
 
-sizes = [
+pizza_sizes = [
     {'name': 'Small', 'price': 10},
     {'name': 'Medium', 'price': 15},
     {'name': 'Large', 'price': 20}, 
@@ -67,22 +67,26 @@ sides = [
 
 @app.route('/sides') 
 def sides():
-    return render_template('sides.html') 
+    return render_template('sides.html' , sides=sides)   
 
 drinks = [ 
-     {'name':'Coca Cola', 'image': 'static/Coca Cola.jpg'},
-     {'name':'Coke Zero', 'image': 'static/Coke Zero.jpg'},
+     {'name':'Coca Cola', 'image': 'static/Coca Cola.jpg'}, #Codes working but cant get the drink sizes up :<
+     {'name':'Coke Zero', 'image': 'static/Coke Zero.jpg'}, 
      {'name':'Sprite', 'image': 'static/Sprite.jpg'},
      {'name':'Fanta', 'image': 'static/Fanta.jpg'},
      {'name':'L&P', 'image': 'static/L&P.jpg'},
      {'name':'Orange Juice', 'image': 'static/Orange Juice.jpg'},
      {'name':'Water', 'image': 'static/Water.jpg'},
 ]
-#Drink Sizes code to be added
+drink_sizes = [
+    {'name': '1.5L', 'price': 5.99}, 
+    {'name': '600ml', 'price': 3.89},
+    {'name': '330ml', 'price': 2.99},
+]
 
 @app.route('/drinks') 
 def drinks():
-    return render_template('drinks.html')  
+    return render_template('drinks.html' , drinks=drinks)  
 
 meal_deals = [  
     {'name': 'Double Value Deal', 'image': 'Double Value Deal.jpg', 'Description': '2 Large Pizzas & 2 Sides.' , 'price': 35.00},
@@ -96,7 +100,7 @@ meal_deals = [
 
 @app.route('/meal_deals') 
 def meal_deals():
-    return render_template('meal_deals.html')   
+    return render_template('meal_deals.html', meal_deals=meal_deals)    
 
 desserts = [
      {'name': 'Strawberry Cheesecake', 'image': 'static/Strawberry Cheesecake.jpg', 'Description': 'Velvety strawberry cheesecake on a sweet biscuit base.' , 'price': 6.39},
@@ -108,10 +112,9 @@ desserts = [
      #sizes for the ice cream  
 ]
 
-
 @app.route('/desserts') 
 def desserts():
-    return render_template('desserts.html')  
+    return render_template('desserts.html', desserts=desserts)   
 
 @app.route('/checkout')
 def checkout():
