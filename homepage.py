@@ -1,8 +1,9 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import os
 from flask import jsonify
 
+#first configuration for the database
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pizza_cart.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -10,11 +11,15 @@ db = SQLAlchemy(app)
 
 class CartItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    pizza_name = db.Column(db.String(50), nullable=False)
-    size = db.Column(db.String(20), nullable=False)
-    base = db.Column(db.String(20), nullable=False)
-    price = db.Column(db.Float, nullable=False)
+    size = db.Column(db.String(50))
+    base = db.Column(db.String(50))
+    price = db.Column(db.Float)
 
+class CheckoutItem(db.Model): #added code remove if it doesnt work  
+    id = db.Column(db.Integer, primary_key=True)
+    size = db.Column(db.String(50))
+    base = db.Column(db.String(50))
+    price = db.Column(db.Float)  
 
 @app.route('/')
 def home():
@@ -42,7 +47,7 @@ pizza_sizes = [
     {'name': 'Large', 'price': 20}, 
 ]
 
-bases = [
+pizza_bases = [
 {'name': 'Thin Crust', 'price': 2},
 {'name': 'Thick Crust', 'price': 3},
 {'name': 'Gluten-Free', 'price': 5},    
@@ -70,7 +75,7 @@ def sides():
     return render_template('sides.html' , sides=sides)   
 
 drinks = [ 
-     {'name':'Coca Cola', 'image': 'static/Coca Cola.jpg'}, #Codes working but cant get the drink sizes up :<
+     {'name':'Coca Cola', 'image': 'static/Coca Cola.jpg'}, 
      {'name':'Coke Zero', 'image': 'static/Coke Zero.jpg'}, 
      {'name':'Sprite', 'image': 'static/Sprite.jpg'},
      {'name':'Fanta', 'image': 'static/Fanta.jpg'},
@@ -109,7 +114,7 @@ desserts = [
      {'name': 'Strawberry Cheesecake', 'image': 'static/Strawberry Cheesecake.jpg', 'Description': 'Velvety strawberry cheesecake on a sweet biscuit base.' , 'price': 6.39},
      {'name': ' Ultimate Chocolate Chip Cookie', 'image': 'static/Chocolate Chip Cookie.jpg', 'Description': 'A giant chocolate chip cookie full of rich chocolate chips.' , 'price': 9.99},
      {'name': 'Cookie Dough Ice Cream', 'image': 'static/Cookie Dough Ice Cream.jpg'}, 
-     #sizes for the ice cream  
+     
 ]
 
 @app.route('/desserts') 
@@ -118,7 +123,38 @@ def desserts():
 
 @app.route('/checkout')
 def checkout():
+
+    cart_items = CartItem.query.all() #added code remove if it doesnt work
+
+    total_price = sum(item.price for item in cart_items) #added code remove if it doesnt work 
     return render_template('checkout.html')
+
+def process_checkout():
+    name = request.form.get('name') #added code remove if it doesnt work
+    email = request.form.get('email')
+    address = request.form.get('address')
+    credit_card = request.form.get('credit_card')
+    expiry_date = request.form.get('expiry_date')
+
+    cart_items = CartItem.query.all() 
+    for item in cart_items:
+        checkout_item = CheckoutItem( #added code remove if it doesnt work
+            size = item.size,
+            base = item.base,
+            price = item.price,
+             name= name,
+            email= email,
+            address= address,
+            credit_card= credit_card,
+            expiry_date= expiry_date 
+        )
+        db.session.add(checkout_item)
+        db.session.delete(item)
+    
+    db.session.commit()
+
+    return redirect(url_for('checkout')) 
+
 
 @app.route('/store_location')
 def store_location():
@@ -130,5 +166,7 @@ def signin():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    with app.app_context(): #added code remove if it doesnt work
+        db.create_all()
+    app.run(debug=True) 
 
