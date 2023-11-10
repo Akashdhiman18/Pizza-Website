@@ -7,7 +7,7 @@ from flask import jsonify
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pizza_cart.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+db = SQLAlchemy(app)  
 
 class CartItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -15,11 +15,12 @@ class CartItem(db.Model):
     base = db.Column(db.String(50))
     price = db.Column(db.Float)
 
-class CheckoutItem(db.Model): #added code remove if it doesnt work  
-    id = db.Column(db.Integer, primary_key=True)
-    size = db.Column(db.String(50))
-    base = db.Column(db.String(50))
-    price = db.Column(db.Float)  
+    class CheckoutItem(db.Model): #added code remove if it doesnt work  
+     id = db.Column(db.Integer, primary_key=True)
+     size = db.Column(db.String(50))
+     base = db.Column(db.String(50))
+     price = db.Column(db.Float)   
+
 
 @app.route('/')
 def home():
@@ -124,34 +125,9 @@ def desserts():
 @app.route('/checkout')
 def checkout():
 
-    cart_items = CartItem.query.all() #added code remove if it doesnt work
-
-    total_price = sum(item.price for item in cart_items) #added code remove if it doesnt work 
     return render_template('checkout.html')
 
 def process_checkout():
-    name = request.form.get('name') #added code remove if it doesnt work
-    email = request.form.get('email')
-    address = request.form.get('address')
-    credit_card = request.form.get('credit_card')
-    expiry_date = request.form.get('expiry_date')
-
-    cart_items = CartItem.query.all() 
-    for item in cart_items:
-        checkout_item = CheckoutItem( #added code remove if it doesnt work
-            size = item.size,
-            base = item.base,
-            price = item.price,
-             name= name,
-            email= email,
-            address= address,
-            credit_card= credit_card,
-            expiry_date= expiry_date 
-        )
-        db.session.add(checkout_item)
-        db.session.delete(item)
-    
-    db.session.commit()
 
     return redirect(url_for('checkout')) 
 
