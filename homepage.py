@@ -58,7 +58,7 @@ pizza_bases = [
 def menu():
     return render_template('menu.html', pizzas=pizzas)  
 
-sides = [
+sides = [  
     {'name':'Garlic Bread', 'image': 'static/Garlicbread.jpg','description': 'Buttery and garlicky, scattered with parsley, hot from  oven', 'price': 5.99},  
     {'name':'Onion Rings', 'image': 'static/Onion Rings.jpg','description': 'Sweetly and soft on  inside, with a crispy crunchy coating.', 'price': 5.99},
     {'name':'Fries', 'image': 'static/Fries.jpg.','description': 'Crunchy bites of fluffy potato, dip into aioli sauce for 50 cents more.', 'price': 5.99},  
@@ -71,17 +71,17 @@ sides = [
     {'name':'Caesar Salad', 'image': 'static/Caesar Salad.jpg','description':'Crisp romaine lettuce, croutons, and Caesar dressing.', 'price': 6.50},   
 ]
 
-@app.route('/sides') 
-def sides():
+@app.route('/sides')  
+def get_sides(): 
     return render_template('sides.html' , sides=sides)   
 
-drinks = [ 
-     {'name':'Coca Cola', 'image': 'static/Coca Cola.jpg'}, 
-     {'name':'Coke Zero', 'image': 'static/Coke Zero.jpg'}, 
+drinks_data = [ 
+     {'name':'Coca Cola', 'image': 'static/Coca_Cola.jpg'}, 
+     {'name':'Coke Zero', 'image': 'static/Coke_Zero.jpg'}, 
      {'name':'Sprite', 'image': 'static/Sprite.jpg'},
      {'name':'Fanta', 'image': 'static/Fanta.jpg'},
      {'name':'L&P', 'image': 'static/L&P.jpg'},
-     {'name':'Orange Juice', 'image': 'static/Orange Juice.jpg'},
+     {'name':'Orange Juice', 'image': 'static/Orange_Juice.jpg'},
      {'name':'Water', 'image': 'static/Water.jpg'},
 ]
 drink_sizes = [
@@ -90,37 +90,38 @@ drink_sizes = [
     {'name': '330ml', 'price': 2.99},
 ]
 
-@app.route('/drinks') 
-def drinks():
-    return render_template('drinks.html' , drinks=drinks)  
+@app.route('/drinks')  
+def get_drinks():
+   return render_template('drinks.html', drinks_data=drinks_data, drink_sizes=drink_sizes) 
+ 
 
-meal_deals = [  
-    {'name': 'Double Value Deal', 'image': 'Double Value Deal.jpg', 'Description': '2 Large Pizzas & 2 Sides.' , 'price': 35.00},
-    {'name': 'Triple Value Deal', 'image': 'Triple Value Deal.jpg', 'Description':'3 Large Pizzas & 2 Sides.' , 'price': 42.00},   
-    {'name': 'Mega Value Deal', 'image': 'Mega Value Deal.jpg', 'Description': '4 Large Pizzas & 2 Sides.' , 'price': 49.00}, 
-    {'name': 'Chicken Lovers Combo', 'image': 'Chicken Lovers Combo.jpg', 'Description': '1 large Chicken Pizza, Sourn Style Chicken Bites with Ranch Sauce and Garlic Bread.' , 'price': 29.00}, 
-    {'name': '3 Pizza Deal', 'image': '3 Pizza Deal.jpg', 'Description':'3 Large Classic Value Pizzas.' , 'price': 33.00},  
-    {'name': '3 Pizzas 3 Sides', 'image': '3 Pizzas 3 Sides.jpg', 'Description': '3 Large Classic Value Pizzas & 3 Sides. Sides include Garlic Bread, Fries or 1.5L Drink.' , 'price': 45.00},
-    {'name': '4 Pizzas 4 Sides', 'image': '4 Pizzas 4 Sides.jpg', 'Description':'4 Large Classic Value Pizzas & 4 Sides. Sides include Garlic Bread, Fries or 1.5L Drink.' , 'price': 33.00},  
+meal_deals = [    
+    {'name': 'Double Value Deal', 'image': 'Double Value Deal.jpg', 'Description': '2 Large Pizzas & 2 Sides.', 'price': 35.00},
+    {'name': 'Triple Value Deal', 'image': 'Triple Value Deal.jpg', 'Description': '3 Large Pizzas & 2 Sides.', 'price': 42.00},   
+    {'name': 'Mega Value Deal', 'image': 'Mega Value Deal.jpg', 'Description': '4 Large Pizzas & 2 Sides.', 'price': 49.00}, 
+    {'name': 'Chicken Lovers Combo', 'image': 'Chicken Lovers Combo.jpg', 'Description': '1 large Chicken Pizza, Sourn Style Chicken Bites with Ranch Sauce and Garlic Bread.', 'price': 29.00}, 
+    {'name': '3 Pizza Deal', 'image': '3 Pizza Deal.jpg', 'Description': '3 Large Classic Value Pizzas.', 'price': 33.00},  
+    {'name': '3 Pizzas 3 Sides', 'image': '3 Pizzas 3 Sides.jpg', 'Description': '3 Large Classic Value Pizzas & 3 Sides. Sides include Garlic Bread, Fries or 1.5L Drink.', 'price': 45.00},
+    {'name': '4 Pizzas 4 Sides', 'image': '4 Pizzas 4 Sides.jpg', 'Description': '4 Large Classic Value Pizzas & 4 Sides. Sides include Garlic Bread, Fries or 1.5L Drink.', 'price': 33.00},  
 ]
 
 @app.route('/meal_deals') 
-def meal_deals():
-    return render_template('meal_deals.html', meal_deals=meal_deals)    
+def get_meal_deals():
+    return render_template('meal_deals.html', meal_deals=meal_deals) 
 
-desserts = [
-     {'name': 'Strawberry Cheesecake', 'image': 'static/Strawberry Cheesecake.jpg', 'Description': 'Velvety strawberry cheesecake on a sweet biscuit base.' , 'price': 6.39},
-     {'name': 'Chocolate Lava Cake', 'image': 'static/Lava Cake.jpg', 'Description': 'Delicious Hershey’s chocolate cake with a warm, rich gooey centre, dusted with icing sugar' , 'price': 6.39},
-     {'name': 'Chocolate Mousse', 'image': 'static/Chocolate Mousse.jpg', 'Description': 'A decadent, creamy swirl of chocolate mousse.' , 'price': 6.39}, 
-     {'name': 'Strawberry Cheesecake', 'image': 'static/Strawberry Cheesecake.jpg', 'Description': 'Velvety strawberry cheesecake on a sweet biscuit base.' , 'price': 6.39},
-     {'name': ' Ultimate Chocolate Chip Cookie', 'image': 'static/Chocolate Chip Cookie.jpg', 'Description': 'A giant chocolate chip cookie full of rich chocolate chips.' , 'price': 9.99},
-     {'name': 'Cookie Dough Ice Cream', 'image': 'static/Cookie Dough Ice Cream.jpg'}, 
-     
+desserts_data = [
+    {'name': 'Strawberry Cheesecake', 'image': 'static/Strawberry Cheesecake.jpg', 'Description': 'Velvety strawberry cheesecake on a sweet biscuit base.', 'price': 6.39},
+    {'name': 'Chocolate Lava Cake', 'image': 'static/Lava Cake.jpg', 'Description': 'Delicious Hershey’s chocolate cake with a warm, rich gooey centre, dusted with icing sugar', 'price': 6.39},
+    {'name': 'Chocolate Mousse', 'image': 'static/Chocolate Mousse.jpg', 'Description': 'A decadent, creamy swirl of chocolate mousse.', 'price': 6.39},
+    {'name': 'Strawberry Cheesecake', 'image': 'static/Strawberry Cheesecake.jpg', 'Description': 'Velvety strawberry cheesecake on a sweet biscuit base.', 'price': 6.39},
+    {'name': 'Ultimate Chocolate Chip Cookie', 'image': 'static/Chocolate Chip Cookie.jpg', 'Description': 'A giant chocolate chip cookie full of rich chocolate chips.', 'price': 9.99},
+    {'name': 'Cookie Dough Ice Cream', 'image': 'static/Cookie Dough Ice Cream.jpg', 'price': 16.49},  # Added a default price
 ]
 
 @app.route('/desserts') 
-def desserts():
-    return render_template('desserts.html', desserts=desserts)   
+def show_desserts():
+    return render_template('desserts.html', desserts=desserts_data)
+
 
 @app.route('/checkout')
 def checkout():

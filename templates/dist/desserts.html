@@ -12,131 +12,71 @@
     <link href="static\menu.css" rel="stylesheet" type="text/css" media="all">
     <title>Pizza Website</title>
 </head>
+
 <body>
     <!-- HEADER -->
     <div class="header">
         <section class="flex">
-            <a href="#" class="rainbow rainbow_text_animated"><img src="static\logo.png" style="width:5%; ">Pizza Pizza</a>
+            <a href="/" class="rainbow rainbow_text_animated">
+                <img src="static\logo.png" style="width:5%;">Pizza Pizza
+            </a>
             <nav class="navbar">
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/menu">Menu</a>
-            <a href="/store_location">Store Locate</a>
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/menu">Menu</a>
+                <a href="/store_location">Store Locate</a>
             </nav>
             <div class="icons">
                 <button class="btn_s" onclick="openForm()">Register</button>
             </div>
-            
-            
         </section>
     </div>
     <!-- MENU -->
-    <div class="Menu-Container"> 
-        <nav class="Menu"> <!--Unsure if this will work, if not go back to <a>PIZZA</a>-->
-            <a href="/menu">PIZZA</a>  
-            <a href="/sides">SIDES</a> 
-             <a href="/drinks">DRINKS</a>    
-            <a href="/meal_deals">MEAL DEALS</a> 
-            <a href="/desserts">DESSERTS</a> 
+    <div class="Menu-Container">
+        <nav class="Menu">
+            <a href="/menu">PIZZA</a>
+            <a href="/sides">SIDES</a>
+            <a href="/drinks">DRINKS</a>
+            <a href="/meal_deals">MEAL DEALS</a>
+            <a href="/desserts">DESSERTS</a>
             <a href="/">VEGETARIAN</a>
-            <a href="/""> NON-VEGETARIAN</a>  
-            
+            <a href="/">NON-VEGETARIAN</a>
             <!-- SEARCH BAR -->
             <div class="search">
                 <input type="text" placeholder="Search...">
                 <button class="search-btn"><i class="fa fa-search"></i>Search</button>
             </div>
-            
             <button class="cart-icon-btn" onclick="toggleCart()">
                 <img src="static/food-stand.png" alt="Cart Logo">
             </button>
-             
         </nav>
     </div>
 
-    <div class="container"> <!--the only issue is that the buttons cover the picture :<--> 
+    <div class="container">
         <div class="listProduct">
-            <div class="item" >
-                <img src="static/Strawberry Cheesecake.jpg" alt="">  
-                <h2>Strawberry Cheesecake</h2>
-                <p>Velvety strawberry cheesecake on a sweet biscuit base.</p> 
-                <div class="buttons">
-                    <div class="dropdown">
-                        <div class="dropdown-content">
-                            <select class="size-select">
-                                
-                            </select>
-                        </div>
-                    </div>
-                    <button class="cart-button">Add To Cart $6.39</button>
-                </div>
-            </div> 
-
+            {% for dessert in desserts %}
             <div class="item">
-                <img src="static/Lava Cake.jpg" alt="">
-                <h2>Chocolate Lava Cake</h2>  
-                <p>Delicious Hershey’s chocolate cake with a warm, rich gooey centre, dusted with icing sugar</p>
+                <img src="{{ url_for('static', filename=dessert.image) }}" alt="{{ dessert.name }}">
+                <h2>{{ dessert.name }}</h2>
+                <p>{{ dessert.Description }}</p>
                 <div class="buttons">
-                    <div class="dropdown">
-                        <div class="dropdown-content">
-                            <select class="size-select">
-                                
-                            </select>
-                        </div>
-                    </div>
-                    <button class="cart-button">Add To Cart $6.39</button> 
-                </div>
-            </div> 
-
-
-
-            <div class="item">
-                 <img src="static/Chocolate Mousse.jpg" alt="">
-                 <h2>Chocolate Mousse</h2>
-                 <p>A decadent, creamy swirl of chocolate mousse.</p>
-                <div class="buttons">
-                    <div class="dropdown">
-                        <div class="dropdown-content">
-                            <select class="size-select">
-                                
-                            </select>
-                        </div>
-                    </div>
-                    <button class="cart-button">Add To Cart $6.39</button> 
-                </div>
-            </div> 
-
-
-            <div class="item">
-                <img src="static/Chocolate Chip Cookie.jpg" alt="">
-                <h2>The Ultimate Chocolate Chip Cookie</h2>
-                <p>A giant chocolate chip cookie full of rich chocolate chips.</p>
-                <div class="buttons">
-                    <div class="dropdown">
-                        <div class="dropdown-content">
-                            <select class="size-select">
-                                
-                            </select>
-                        </div>
-                    </div>
-                    <button class="cart-button">Add To Cart $9.99</button> 
-                </div>
-            </div>  
-
-            <div class="item">
-                <img src="static/Cookie Dough Ice Cream.jpg" alt="">
-                <h2>Cookie Dough Ice Cream</h2> 
-                <p>Big delicious chunks of chocolate chip cookie dough surrounded by creamy vanilla ice cream.</p> 
-                <div class="buttons">
+                    {% if 'Cookie Dough Ice Cream' in dessert.name %}
                     <div class="dropdown">
                         <button class="dropdown-button size-dropdown-btn">Size</button>
                         <div class="dropdown-content">
                             <select class="size-select">
                                 <option value="1 Pint"> 1 Pint: $16.49</option>
-                                <option value="4 Ounces"> 4 Ounces: $7.49</option>         
+                                <option value="4 Ounces"> 4 Ounces: $7.49</option>
                             </select>
                         </div>
                     </div>
-                    <button class="cart-button">Add To Cart</button>
+                    {% endif %}
+                    <button class="cart-button">Add To Cart ${{ dessert.price }}</button>
                 </div>
-            </div>   
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
