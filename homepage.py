@@ -141,9 +141,10 @@ def store_location():
 def signin():
     return render_template('signin.html')
 
-
+with app.app_context(): #added code remove if it doesnt work
+    db.create_all()
+        
 if __name__ == '__main__':
-    with app.app_context(): #added code remove if it doesnt work
-        db.create_all()
-    app.run(debug=True) 
+    app.run(debug=True, port=8080)
+
 
