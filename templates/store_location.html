@@ -1,30 +1,203 @@
 <!DOCTYPE html>
-<html>
+<html lang="en"> 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Add this line to include Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <link href="static\about.css" rel="stylesheet" type="text/css" media="all">
+    <link href="static\style.css" rel="stylesheet" type="text/css" media="all">
     <title>Store Location</title>
 </head>
-<body>
-    <!-- header section starts  -->
-    <div class="header">
-        <section class="flex">
-            <a href="#" class="rainbow rainbow_text_animated"><img src="static\logo.png" style="width:5%;">Pizza Pizza</a>
-            <nav class="navbar">
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/menu">Menu</a>
-            <a href="/store_location">Store Locate</a>
-            </nav>
-            <div class="icons">
-                <button class="btn_s" onclick="openForm()">Register</button>
-            </div>
-        </section>
-    </div>
-    </body>
+<body style="background:url('img/background.jpg')">
+   
+<!-- header section starts  -->
+<div class="header">
+    <section class="flex">
+     <a href="/" class="rainbow rainbow_text_animated"><img src="static\logo.png" style="width:5%; ">Pizza Pizza</a>
+        <nav class="navbar">
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/menu">Menu</a>
+          <a href="/store_location">Store Locate</a>
+        </nav>
+        <div class="icons">
+            <button class="btn_s" onclick="openForm()">Register</button>
+        </div>
+    </section>
+ </div>
+<!----pop sigin--->
+<div class="form-popup" id="myForm" style="display: revert-layer;">
+  <form action="/home.html" class="form-con">
+           <label for="show" class="close-btn" title="close" onclick="closeForm()">×</label>
+    <h2 style="text-align:center; ">Signin</h2>
 
-    </html>
+    <p style="font-size:12px; margin-top:20px; margin-bottom:10px;">
+        We need to send a One Time Password to your phone to help us keep your account safe.</p>
+    <label for="mobilenumber" ><b style="font-size:13px; margin-top:10px;">Mobile Number</b></label>
+    <input type="text" placeholder="Enter Number" name="number" required>
+
+  <button type="submit" class="btn">Send One Time Password OTP</button>
+    <center><h5>OR</h5></center>
+    <div class="social" style="padding:20px;">
+  <center><ul>
+        <li><img src="static/img/fb.png" width="25" style="width: 25px;"></li>
+        <li><img src="static/img/google.png" width="25" style="width: 25px;"></li>
+    </ul></center>
+</div>
+  </form>
+</div>
+</div>
+
+   </section>
+
+
+</div>
+<!----store section --->
+
+<div class="store_section" >
+     <div class="store_sec">
+			 <img src="static/location_pizza.jpg" width="100%" height="400px" >
+		 </div>
+		 <div class="search_box" style="height:160px; width:50%; background-color:white;
+  position: absolute;
+  justify-content: center;
+  display: block;
+  margin-left:20%;
+  top:150px;
+  border-radius:4px;
+  z-index:3;
+  min-height:150px;
+   overflow:hidden;">
+   <div class="s_content">
+		 	<p style="font-size:15px;">Locate the nearest restaurant(s)</p>
+		 	<input type="text" name="searching_box" id="s_box" placeholder="Search nearby restaurants by locality" style="width:90%;height:30px; margin-top:5px;">
+		 	<div class="btns" >
+		 	<ul>
+		 <li><button class="btn_searchby">Search ByNear</button></li>
+		<li> <button class="btn_advsearch">Advance Search</button></li>
+		<li><button class="btn_search"><i class="fa fa-search "></i>Search</button></li>
+		 </ul>
+		</div>
+		 </div>
+		</div>
+		 <div class="label">
+		 <button class="btn_label">Pizza Pizza Stores - Find Pizza near you!</button>
+		</div>
+
+
+
+<div class="row" style=" width:100%;" >
+	<div class="contact_col">
+   <div class="contact" style="font-size:13px; margin-left:10px;">
+
+      <ul>
+         <li><i class="fa fa-flag"></i></li>
+         <li><p> Pizza Pizza</p></li>
+      </ul>
+<ul>
+   <li><i class="fa fa-suitcase "></i></li>
+<li><p>PH Wea Tank Road Karol Bagh</p>
+</li>
+</ul>
+<ul>
+<li><i class="fa fa-map-marker" ></i></li>
+<li><p>No 17A & 54, Ajmal Khan Road, Block 10, WEA Tank Road</p>
+<p>Karol Bagh
+New Delhi - 110005</p>
+</li>
+</ul>
+<ul>
+<li><i class="fa fa-phone"></i></li>
+<li><p>   18002022022</p></li>
+</ul>
+<ul>
+<li><i class="fa fa-globe "></i></li>
+  <li> <p> what3words: cafe.being.chariots</p></li>
+</ul>
+  <ul>
+   <li>
+<i class="fa fa-clock"></i></li>
+<li><p>   Opens at 11:00 AM</p></li>
+</ul>
+<ul>
+ <li><button class="btn_map"><i class="fa fa-map-marker" ></i>MAP</button></li>
+      <li> <button class="btn_detls"><i class="fa fa-globe "></i>DEATILS</button></li>
+      <li> <button class="btn_order"><i class="fa fa-shopping-cart "></i>ORDER</button></li>
+      </ul>  
+   </div>
+   </div>   
+
+<div id="googlemap">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1750857.0046008162!2d75.40113740740264!3d31.008341761640768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3910291270302143%3A0xf973e95e5b6cf35!2sPizza%20Hut!5e0!3m2!1sen!2sin!4v1670750198196!5m2!1sen!2sin"     width="60%"
+                    height="300px"
+                    frameborder=0
+tabindex="0" style="float:right"; allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </iframe>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<!--footer section start-->
+   <!---footer section---->
+   <div class="footer" style="margin-top:20px;">
+    <div class="contain" style="padding:20px;">
+    <div class="col">
+  <h1>Menu</h1>
+  <ul>
+    <li>Deals</li>
+    <li>Pizza</li>
+    <li>Sides</li>
+    <li>Drinks</li>
+    <li>Desserts</li>
+  </ul>
+</div>
+ <div class="col">
+ <h1>About</h1>
+ <ul>
+    <li>About Us</li>
+    <li>Contactless delivery</li>
+    <li>Nutrition</li>
+ </ul>
+</div>
+<div class="col">
+<h1>Our Policies</h1>
+<ul>
+ <li>Privacy</li>
+ <li>Terms & Conditions</li>
+ <li>FAQs & Help</li>
+</ul>
+</div>
+<div class="col">
+<h1>Visit Pizza Hut</h1>
+<ul>
+ <li>Locate a store</li>
+ <li>Blog</li>
+</ul>
+</div>
+<div class="col social">
+  <h1>Follow Us</h1>
+  <ul>
+    <li><img src="static/img/twitter.png" width="25" style="width: 25px;"></li>
+    <li><img src="static/img/instas.png" width="25" style="width: 25px;"></li>
+    <li><img src="static/img/facebook.png" width="25" style="width: 25px;"></li>
+         <li><img src="static/img/youtube.png" width="25" style="width: 25px;"></li>
+  </ul>
+</div>
+ <div class="col social">
+     <ul>
+         <li><img src="static/img/apps.jpg" width="32" style="width: 200px;"></li>
+     </ul>
+   </div>
+</div>
+</div>
+<script src="static\js\script.js"></script>
+</body>
+</html>
