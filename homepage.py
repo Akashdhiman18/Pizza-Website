@@ -21,10 +21,39 @@ class CartItem(db.Model):
      base = db.Column(db.String(50))
      price = db.Column(db.Float)   
 
+class UserSignIn(db.Model):
+    userid = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    number = db.Column(db.String(20))
+    password = db.Column(db.String(255))
+
+    email = db.Column(db.String(255))
 
 @app.route('/')
 def home():
     return render_template('index.html')
+
+@app.route('/process_form', methods=['POST'])
+def process_form():
+    if request.method == 'POST':
+        name = request.form['name']
+        number = request.form['number']
+        password = request.form['password']
+   
+        email = request.form['email']
+
+        # Create a UserSignIn object
+        user = UserSignIn(name=name, number=number, password=password, email=email)
+
+        # Add the object to the database session
+        db.session.add(user)
+
+        # Commit the changes to the database
+        db.session.commit()
+
+        return 'User data stored successfully.'
+
+
 
 @app.route('/about')
 def about():
@@ -137,9 +166,6 @@ def process_checkout():
 def store_location():
     return render_template('store_location.html')
 
-@app.route('/signin')
-def signin():
-    return render_template('signin.html')
 
 with app.app_context(): #added code remove if it doesnt work
     db.create_all()

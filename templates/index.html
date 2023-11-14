@@ -66,29 +66,39 @@
     </div>
   </div>
 </div>
-<!----pop sigin--->
-<div class="form-popup" id="myForm" >
-    <form action="/home.html" class="form-con">
-             <label for="show" class="close-btn" title="close" onclick="closeForm()">×</label>
-      <h2 style="text-align:center; ">Signin</h2>
-  
+
+
+<!----pop signin--->
+<div class="form-popup" id="myForm">
+  <form action="/process_form" class="form-con" method="post">
+      <label for="show" class="close-btn" title="close" onclick="closeForm()">×</label>
+      <h2 style="text-align:center;">Sign In</h2>
+
       <p style="font-size:12px; margin-top:20px; margin-bottom:10px;">
           We need to send a One Time Password to your phone to help us keep your account safe.</p>
-      <label for="mobilenumber" ><b style="font-size:13px; margin-top:10px;">Mobile Number</b></label>
+
+      <label for="name"><b style="font-size:13px; margin-top:10px;">Name</b></label>
+      <input type="text" placeholder="Enter Your Name" name="name" required>
+
+      <label for="mobilenumber"><b style="font-size:13px; margin-top:10px;">Mobile Number</b></label>
       <input type="text" placeholder="Enter Number" name="number" required>
-  
-    <button type="submit" class="btn">Send One Time Password OTP</button>
-      <h5>OR</h5>
-      <div class="social" style="padding:20px;">
-   <ul>
-          <li><img src="static/img/fb.png" width="25" style="width: 25px;"></li>
-          <li><img src="static/img/google.png" width="25" style="width: 25px;"></li>
-      </ul>
-  </div>
-    </form>
-  </div>
-  </div>
-  
+
+      <label for="password"><b style="font-size:13px; margin-top:10px;">Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+
+    
+
+      <label for="email"><b style="font-size:13px; margin-top:10px;">Email</b></label>
+      <input type="email" placeholder="Enter Your Email" name="email" required>
+
+      <button type="submit" class="btn">Send One Time Password (OTP)</button>
+
+      
+  </form>
+</div>
+
+
+
   
 <!--section -->
 <div class="home-bg">
