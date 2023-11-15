@@ -29,6 +29,12 @@ def home():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+
+@app.route('/menu')
+def menu():
+    return render_template('menu.html', pizzas=pizzas)  
+
 pizzas = [ 
     {'name':'True Italian Pizza', 'image': 'static/Neapolitan-Pizza.jpg.webp','ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
     {'name':'Sicilian Pizza',  'image': 'static/Sicilian-Pizza.jpg.webp','ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'}, 
@@ -53,10 +59,6 @@ pizza_bases = [
 {'name': 'Thick Crust', 'price': 3},
 {'name': 'Gluten-Free', 'price': 5},    
 ]
-
-@app.route('/menu')
-def menu():
-    return render_template('menu.html', pizzas=pizzas)  
 
 sides = [  
     {'name':'Garlic Bread', 'image': 'static/Garlicbread.jpg','description': 'Buttery and garlicky, scattered with parsley, hot from  oven', 'price': 5.99},  
