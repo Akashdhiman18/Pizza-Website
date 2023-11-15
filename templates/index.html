@@ -7,9 +7,17 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
    <link href="static\index.css" rel="stylesheet" type="text/css" media="all">
-   <title>PIZZA HUT</title>
+   <title>PIZZA PIZZA</title>
 
 </head>
+<style>
+  body {
+     background-image: url('static/background.jpg'); 
+     background-size: cover; 
+     background-position: center; 
+     background-repeat: no-repeat; 
+  }
+</style>
 <body>
 <!-- header section starts  -->
 <div class="header">
@@ -26,29 +34,71 @@
        </div>
    </section>
 </div>
-<!----pop sigin--->
-<div class="form-popup" id="myForm" >
-    <form action="/home.html" class="form-con">
-             <label for="show" class="close-btn" title="close" onclick="closeForm()">×</label>
-      <h2 style="text-align:center; ">Signin</h2>
-  
+
+ <!-- Delivery Form -->
+ <div class="wrapper">
+  <h1>Our Delivery Service</h1>
+  <div class="slide-controls">
+    <input type="radio" name="slide" id="delivery" checked>
+    <input type="radio" name="slide" id="takeaway">
+    <label for="delivery" class="slide delivery">Delivery</label>
+    <label for="takeaway" class="slide takeaway">Takeaway</label>
+    <div class="slider-tab"></div>
+  </div>
+  <div class="form-container">
+    <div class="form-inner">
+      <form action="#" class="delivery">
+        <p style="font-size:15px;"><b>CONTACTLESS DELIVERY</b></p>
+        <p style="font-size:13px;">Contactless Delivery is now available! Learn More</p>
+        <div class="field">
+          <input type="text" placeholder="Enter the Location for delivery" required>
+        </div>
+        <p style="font-size:13px;">Find my current location</p>
+      </form>
+      <form action="#" class="takeaway">
+        <p style="font-size:14px;"><b>CONTACTLESS TAKEAWAY IS NOW AVAILABLE</b></p>
+        <p style="font-size:13px;">Order Online & collect safely.</p>
+        <div class="field">
+          <input type="text" placeholder="Enter the Location for delivery">
+        </div>
+        <p style="font-size:13px;">Find my current location</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!----pop signin--->
+<div class="form-popup" id="myForm">
+  <form action="/process_form" class="form-con" method="post">
+      <label for="show" class="close-btn" title="close" onclick="closeForm()">×</label>
+      <h2 style="text-align:center;">Sign In</h2>
+
       <p style="font-size:12px; margin-top:20px; margin-bottom:10px;">
           We need to send a One Time Password to your phone to help us keep your account safe.</p>
-      <label for="mobilenumber" ><b style="font-size:13px; margin-top:10px;">Mobile Number</b></label>
+
+      <label for="name"><b style="font-size:13px; margin-top:10px;">Name</b></label>
+      <input type="text" placeholder="Enter Your Name" name="name" required>
+
+      <label for="mobilenumber"><b style="font-size:13px; margin-top:10px;">Mobile Number</b></label>
       <input type="text" placeholder="Enter Number" name="number" required>
-  
-    <button type="submit" class="btn">Send One Time Password OTP</button>
-      <h5>OR</h5>
-      <div class="social" style="padding:20px;">
-   <ul>
-          <li><img src="static/img/fb.png" width="25" style="width: 25px;"></li>
-          <li><img src="static/img/google.png" width="25" style="width: 25px;"></li>
-      </ul>
-  </div>
-    </form>
-  </div>
-  </div>
-  
+
+      <label for="password"><b style="font-size:13px; margin-top:10px;">Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+
+    
+
+      <label for="email"><b style="font-size:13px; margin-top:10px;">Email</b></label>
+      <input type="email" placeholder="Enter Your Email" name="email" required>
+
+      <button type="submit" class="btn">Send One Time Password (OTP)</button>
+
+      
+  </form>
+</div>
+
+
+
   
 <!--section -->
 <div class="home-bg">
@@ -63,38 +113,48 @@
 </div>
 
 <!-- menu section -->
-<div class="home_f2">
-   <h1 style="font-size:30px; margin-top:100px;">Our Most Popular Deals</h1>
-   <div class="col_f2">
-          <ul>
-         <li><img src="static/img/b1.jpg" style="width:400px;"></li>
-          <li><img src="static/img/b2.jpg"  style="width:400px;"></li>
-          </ul>
-          <button class="btn_v">View All deals</button>
+<div class="home_f2" style="text-align: center; padding: 20px;">
+  <h1 style="font-size: 30px; margin-top: 50px; color: #333;">Our Most Popular Deals</h1>
+  <div class="col_f2" style="margin-top: 20px;">
+     <ul style="list-style: none; padding: 0; display: flex; justify-content: center;">
+
+        <li style="margin-right: 20px; overflow: hidden; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+           <img src="static/img/b1.jpg" style="width: 450px; height: 250px; object-fit: cover; border-radius: 15px;">
+        </li>
+
+        <li style="margin-left: 20px; overflow: hidden; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+           <img src="static/img/b2.jpg" style="width: 450px; height: 250px; object-fit: cover; border-radius: 15px;">
+        </li>
+
+     </ul>
+     <button class="btn_v" style="width:100%; margin-top: 20px; padding: 15px 40px; font-size: 18px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">View All Deals</button>
+
+  </div>
 </div>
-</div>
+
+
 <div class="home_f3" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-   <h1 style="font-size: 30px; text-align: center;">Our Menu</h1>
-   <div class="col_f3" style="width: 62%; display: flex; justify-content: center;">
-       <div class="img_m" style="width: 65%; display: flex; padding: 10px; justify-content: center;">
-           <div class="c_img1">
-               <img src="static/img/margherita_pizza.jpg" style="width: 190px; padding: 10px; height: 140px;">
-               <button class="btn_mnu" style="width: 190px; padding: 10px; text-align: center;">Pizza</button>
-           </div>
-           <div class="c_img1">
-               <img src="static/img/side.jpeg" style="width: 190px; padding: 10px; height: 140px;">
-               <button class="btn_mnu" style="width: 190px; padding: 10px;">Sides</button>
-           </div>
-           <div class="c_img1">
-               <img src="static/img/d.jpg" style="width: 190px; padding: 10px; height: 140px;">
-               <button class="btn_mnu" style="width: 190px; padding: 10px;">Desserts</button>
-           </div>
-           <div class="c_img1">
-               <img src="static/img/drink.jpeg" style="width: 190px; padding: 10px; height: 140px;">
-               <button class="btn_mnu" style="width: 190px; padding: 10px;">Drinks</button>
-           </div>
-       </div>
-   </div>
+  <h1 style="font-size: 30px; text-align: center;">Our Menu</h1>
+  <div class="col_f3" style="width: 95%; display: flex; justify-content: center;">
+      <div class="img_m" style="width: 80%; display: flex; padding: 20px; justify-content: center;">
+          <div class="c_img1" style="margin: 20px; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+              <img src="static/img/margherita_pizza.jpg" style="width: 100%; height: 180px; object-fit: cover; border-radius: 15px 15px 0 0;">
+              <button class="btn_mnu" style="width: 100%; padding: 20px; text-align: center; background-color: #4CAF50; color: white; border: none; border-radius: 0 0 15px 15px; cursor: pointer; font-size: 18px;">Pizza</button>
+          </div>
+          <div class="c_img1" style="margin: 20px; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+              <img src="static/img/side.jpeg" style="width: 100%; height: 180px; object-fit: cover; border-radius: 15px 15px 0 0;">
+              <button class="btn_mnu" style="width: 100%; padding: 20px; background-color: #FF9800; color: white; border: none; border-radius: 0 0 15px 15px; cursor: pointer; font-size: 18px;">Sides</button>
+          </div>
+          <div class="c_img1" style="margin: 20px; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+              <img src="static/img/d.jpg" style="width: 100%; height: 180px; object-fit: cover; border-radius: 15px 15px 0 0;">
+              <button class="btn_mnu" style="width: 100%; padding: 20px; background-color: #2196F3; color: white; border: none; border-radius: 0 0 15px 15px; cursor: pointer; font-size: 18px;">Desserts</button>
+          </div>
+          <div class="c_img1" style="margin: 20px; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+              <img src="static/img/drink.jpeg" style="width: 100%; height: 180px; object-fit: cover; border-radius: 15px 15px 0 0;">
+              <button class="btn_mnu" style="width: 100%; padding: 20px; background-color: #FF5722; color: white; border: none; border-radius: 0 0 15px 15px; cursor: pointer; font-size: 18px;">Drinks</button>
+          </div>
+      </div>
+  </div>
 </div>
 
 

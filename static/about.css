@@ -104,12 +104,11 @@ border-color: #000 transparent transparent;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 1200px;
+    width: 1100px;
+    margin-top: 100px;
     border-radius: 10px;
-    padding: 20px;
-    padding-top: 100px;
-    background-color: #c02318;
-    margin: 20px; /* Add margin to the whole content container */
+    padding: 10px;
+    background-color: #c02318;   
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .paragraph-image {
