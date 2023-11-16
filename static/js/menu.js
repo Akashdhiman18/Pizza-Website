@@ -1,13 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const sizeDropdownBtns = document.querySelectorAll('.size-dropdown-btn');
-    const baseDropdownBtns = document.querySelectorAll('.base-dropdown-btn');
-    const sizeDropdownContents = document.querySelectorAll('.size-dropdown-content');
-    const baseDropdownContents = document.querySelectorAll('.base-dropdown-content');
-    const sizeSelects = document.querySelectorAll('.size-select');
-    const baseSelects = document.querySelectorAll('.base-select');
+    const sizeDropdownBtns = document.querySelectorAll('.dropdown.size .dropdown-btn');
+    const baseDropdownBtns = document.querySelectorAll('.dropdown.base .dropdown-btn');
+    const sizeDropdownContents = document.querySelectorAll('.dropdown.size .dropdown-content');
+    const baseDropdownContents = document.querySelectorAll('.dropdown.base .dropdown-content');
+    const sizeSelects = document.querySelectorAll('.dropdown.size .select');
+    const baseSelects = document.querySelectorAll('.dropdown.base .select');
     const cartButtons = document.querySelectorAll('.cart-button');
 
-    // Function to toggle dropdown visibility
     // Function to toggle dropdown visibility with animation
     function toggleDropdown(dropdownContent) {
         // Close other open dropdowns
@@ -37,8 +36,6 @@ document.addEventListener("DOMContentLoaded", function() {
             toggleDropdown(baseDropdownContents[index]);
         });
     });
-
-    
 });
 
 // Function to toggle cart container

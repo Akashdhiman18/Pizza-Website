@@ -56,11 +56,11 @@
         <div class="listProduct">
             {% for drink in drinks_data %}
             <div class="item">
-                <img src="{{ url_for('static', filename=drink.image) }}" alt="{{ drink.name }}">
+                <img src="{{ drink.image }}" alt="{{ drink.name }}">
                 <h2>{{ drink.name }}</h2>  <!-- Change to drink.name -->
                 <div class="buttons">
                     <div class="dropdown">
-                        <button class="dropdown-button size-dropdown-btn">Size</button>
+                        <a class="dropdown-button size-dropdown-btn">Size</a>
                         <div class="dropdown-content">
                             <select class="size-select">
                                 {% for drink_size in drink_sizes %}
@@ -82,4 +82,5 @@
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </body>
     </html>
+    tml>
     

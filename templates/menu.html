@@ -50,20 +50,20 @@
             </div>
         </nav>
     </div>
+
+
+
     <div class="container">
         <div class="listProduct">
             {% for pizza in pizzas %}
             <div class="item">
                 <img src="{{ pizza.image }}" alt="{{ pizza.name }}">
                 <h2>{{ pizza.name }}</h2>
-                <p>{{ pizza.ingredients }}</p>
+                <p style="padding-bottom: 20px">{{ pizza.ingredients }}</p>
                 <div class="buttons">
-                    <!-- ... (previous code) ... -->
-
                     <div class="dropdown">
-                        <span class="button-name">Select Size: </span>
-                        <button class="dropdown-button size-dropdown-btn">Size </button>
-                        <div class="size-dropdown-content dropdown-content">
+                        <a> Size </a>
+                        <div class="size-dropdown-content ">
                             <select class="size-select">
                                 {% for size in pizza_sizes %}
                                 <option value="{{ size.name }}" data-price="{{ size.price }}"> {{ size.name }}: ${{ size.price }}</option>
@@ -71,11 +71,9 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="dropdown">
-                        <span class="button-name">Select Base: </span>
-                        <button class="dropdown-button base-dropdown-btn">Base </button>
-                        <div class="base-dropdown-content dropdown-content">
+                        <a> Base </a>
+                        <div class="base-dropdown-content ">
                             <select class="base-select">
                                 {% for base in pizza_bases %}
                                 <option value="{{ base.name }}" data-price="{{ base.price }}">{{ base.name }}: ${{ base.price }}</option>
@@ -83,13 +81,28 @@
                             </select>
                         </div>
                     </div>
-
                     <button class="add-cart-button" onclick="addToCart('{{ pizza.name }}')">Add To Cart</button>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+
+
+ <!-- Carrttttttttttttttt -->
+            
+ <div class="cart-container">
+    <div class="cart-header">
+        <img src="static/food-stand.png" alt="Cart Logo">
+        <h2>Pizza Cart</h2>
+    </div>
+
+    <div class="cart-items" style="padding-top: 10px;"></div>
+    <button class="checkout-button" onclick="checkout()">Checkout</button>
+</div>
+
+
+
     <script src="static/js/menu.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

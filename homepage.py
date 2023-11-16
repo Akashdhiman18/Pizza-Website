@@ -62,7 +62,7 @@ def about():
 
 @app.route('/menu')
 def menu():
-    return render_template('menu.html', pizzas=pizzas)  
+    return render_template('menu.html', pizzas=pizzas, pizza_sizes=pizza_sizes, pizza_bases=pizza_bases)  
 
 pizzas = [ 
     {'name':'True Italian Pizza', 'image': 'static/Neapolitan-Pizza.jpg.webp','ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
@@ -76,7 +76,6 @@ pizzas = [
     {'name': 'Canadian Pizza', 'image': 'static/St.-Louis-Pizza.jpg.webp' , 'ingredients':'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
     {'name': 'Mexican Pizza', 'image': 'static/Mexican-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'}, 
 ] 
-
 pizza_sizes = [
     {'name': 'Small', 'price': 10},
     {'name': 'Medium', 'price': 15},
@@ -89,6 +88,11 @@ pizza_bases = [
 {'name': 'Gluten-Free', 'price': 5},    
 ]
 
+
+@app.route('/sides')  
+def get_sides(): 
+    return render_template('sides.html' , sides=sides)  
+ 
 sides = [  
     {'name':'Garlic Bread', 'image': 'static/Garlicbread.jpg','description': 'Buttery and garlicky, scattered with parsley, hot from  oven', 'price': 5.99},  
     {'name':'Onion Rings', 'image': 'static/Onion Rings.jpg','description': 'Sweetly and soft on  inside, with a crispy crunchy coating.', 'price': 5.99},
@@ -102,9 +106,10 @@ sides = [
     {'name':'Caesar Salad', 'image': 'static/Caesar Salad.jpg','description':'Crisp romaine lettuce, croutons, and Caesar dressing.', 'price': 6.50},   
 ]
 
-@app.route('/sides')  
-def get_sides(): 
-    return render_template('sides.html' , sides=sides)   
+
+@app.route('/drinks')  
+def get_drinks():
+   return render_template('drinks.html', drinks_data=drinks_data, drink_sizes=drink_sizes) 
 
 drinks_data = [ 
      {'name':'Coca Cola', 'image': 'static/Coca_Cola.jpg'}, 
@@ -121,10 +126,6 @@ drink_sizes = [
     {'name': '330ml', 'price': 2.99},
 ]
 
-@app.route('/drinks')  
-def get_drinks():
-   return render_template('drinks.html', drinks_data=drinks_data, drink_sizes=drink_sizes) 
- 
 
 meal_deals = [    
     {'name': 'Double Value Deal', 'image': 'Double Value Deal.jpg', 'Description': '2 Large Pizzas & 2 Sides.', 'price': 35.00},
