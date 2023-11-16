@@ -296,7 +296,7 @@ body {
     margin: 10px;
 }
 .listProduct .item .buttons button:hover {
-    background-color: #e4a8a8;
+    background-color: #000000;
 }
 
 /* Dropdown styles */

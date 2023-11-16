@@ -40,10 +40,7 @@ def process_form():
         # Commit the changes to the database
         db.session.commit()
         return 'User data stored successfully.'
-
-
-
-
+    
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -69,17 +66,14 @@ pizza_sizes = [
     {'name': 'Medium', 'price': 15},
     {'name': 'Large', 'price': 20}, 
 ]
-
 pizza_bases = [
     {'name': 'Thin Crust', 'price': 2},
     {'name': 'Thick Crust', 'price': 3},
     {'name': 'Gluten-Free', 'price': 5},    
 ]
-
 @app.route('/sides')  
 def get_sides(): 
     return render_template('sides.html' , sides=sides)  
- 
 sides = [  
     {'name':'Garlic Bread', 'image': 'static/Garlicbread.jpg','description': 'Buttery and garlicky, scattered with parsley, hot from  oven', 'price': 5.99},  
     {'name':'Onion Rings', 'image': 'static/Onion Rings.jpg','description': 'Sweetly and soft on  inside, with a crispy crunchy coating.', 'price': 5.99},
@@ -92,7 +86,6 @@ sides = [
     {'name':'Boneless Chicken Bites', 'image': 'static/Chicken Bites.jpg','description': 'Warm baked dough bites coated in a buttery garlic glaze and covered in cheese.', 'price': 8.50}, 
     {'name':'Caesar Salad', 'image': 'static/Caesar Salad.jpg','description':'Crisp romaine lettuce, croutons, and Caesar dressing.', 'price': 6.50},   
 ]
-
 @app.route('/drinks')  
 def get_drinks():
    return render_template('drinks.html', drinks_data=drinks_data, drink_sizes=drink_sizes) 
@@ -149,7 +142,7 @@ def show_checkout():
 def store_location():
     return render_template('store_location.html')
 
-with app.app_context(): #added code remove if it doesnt work
+with app.app_context(): #added code /remove if it doesnt work
      db.create_all()
         
 if __name__ == '__main__':
