@@ -1,9 +1,7 @@
-from flask import Flask, render_template, redirect, request, redirect, url_for
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-import os
 from flask import jsonify
 
-#first configuration for the database
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pizza_cart.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -11,22 +9,17 @@ db = SQLAlchemy(app)
 
 class CartItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
     size = db.Column(db.String(50))
     base = db.Column(db.String(50))
     price = db.Column(db.Float)
-
-    class CheckoutItem(db.Model): #added code remove if it doesnt work  
-     id = db.Column(db.Integer, primary_key=True)
-     size = db.Column(db.String(50))
-     base = db.Column(db.String(50))
-     price = db.Column(db.Float)   
+    quantity = db.Column(db.Integer)
 
 class UserSignIn(db.Model):
     userid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
     number = db.Column(db.String(20))
     password = db.Column(db.String(255))
-
     email = db.Column(db.String(255))
 
 @app.route('/')
@@ -39,26 +32,21 @@ def process_form():
         name = request.form['name']
         number = request.form['number']
         password = request.form['password']
-   
         email = request.form['email']
-
         # Create a UserSignIn object
         user = UserSignIn(name=name, number=number, password=password, email=email)
-
         # Add the object to the database session
         db.session.add(user)
-
         # Commit the changes to the database
         db.session.commit()
-
         return 'User data stored successfully.'
+
 
 
 
 @app.route('/about')
 def about():
     return render_template('about.html')
-
 
 @app.route('/menu')
 def menu():
@@ -83,11 +71,10 @@ pizza_sizes = [
 ]
 
 pizza_bases = [
-{'name': 'Thin Crust', 'price': 2},
-{'name': 'Thick Crust', 'price': 3},
-{'name': 'Gluten-Free', 'price': 5},    
+    {'name': 'Thin Crust', 'price': 2},
+    {'name': 'Thick Crust', 'price': 3},
+    {'name': 'Gluten-Free', 'price': 5},    
 ]
-
 
 @app.route('/sides')  
 def get_sides(): 
@@ -105,7 +92,6 @@ sides = [
     {'name':'Boneless Chicken Bites', 'image': 'static/Chicken Bites.jpg','description': 'Warm baked dough bites coated in a buttery garlic glaze and covered in cheese.', 'price': 8.50}, 
     {'name':'Caesar Salad', 'image': 'static/Caesar Salad.jpg','description':'Crisp romaine lettuce, croutons, and Caesar dressing.', 'price': 6.50},   
 ]
-
 
 @app.route('/drinks')  
 def get_drinks():
@@ -125,7 +111,6 @@ drink_sizes = [
     {'name': '600ml', 'price': 3.89},
     {'name': '330ml', 'price': 2.99},
 ]
-
 
 meal_deals = [    
     {'name': 'Double Value Deal', 'image': 'Double Value Deal.jpg', 'Description': '2 Large Pizzas & 2 Sides.', 'price': 35.00},
@@ -154,24 +139,18 @@ desserts_data = [
 def show_desserts():
     return render_template('desserts.html', desserts=desserts_data)
 
-
 @app.route('/checkout')
-def checkout():
-
+def show_checkout():
     return render_template('checkout.html')
 
-def process_checkout():
-
-    return redirect(url_for('checkout')) 
 
 
 @app.route('/store_location')
 def store_location():
     return render_template('store_location.html')
 
-
 with app.app_context(): #added code remove if it doesnt work
-    db.create_all()
+     db.create_all()
         
 if __name__ == '__main__':
     app.run(debug=True, port=8080)

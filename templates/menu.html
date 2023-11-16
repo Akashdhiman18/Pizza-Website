@@ -50,9 +50,6 @@
             </div>
         </nav>
     </div>
-
-
-
     <div class="container">
         <div class="listProduct">
             {% for pizza in pizzas %}
@@ -88,20 +85,15 @@
         </div>
     </div>
 
-
- <!-- Carrttttttttttttttt -->
-            
- <div class="cart-container">
+<!-- Carrttttttttttttttt -->
+<div class="cart-container" id="cart-container">
     <div class="cart-header">
         <img src="static/food-stand.png" alt="Cart Logo">
         <h2>Pizza Cart</h2>
     </div>
-
     <div class="cart-items" style="padding-top: 10px;"></div>
     <button class="checkout-button" onclick="checkout()">Checkout</button>
 </div>
-
-
 
     <script src="static/js/menu.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
