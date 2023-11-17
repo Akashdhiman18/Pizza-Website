@@ -50,16 +50,16 @@ def menu():
     return render_template('menu.html', pizzas=pizzas, pizza_sizes=pizza_sizes, pizza_bases=pizza_bases)  
 
 pizzas = [ 
-    {'name':'True Italian Pizza', 'image': 'static/Neapolitan-Pizza.jpg.webp','ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
-    {'name':'Sicilian Pizza',  'image': 'static/Sicilian-Pizza.jpg.webp','ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'}, 
-    {'name':'Roman-style Pizza', 'image': 'static/Neapolitan-Pizza.jpg.webp','ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
-    {'name':'Staple American Pizza: ','image': 'static/Chicago-Deep-Dish-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
-    {'name':'New York-style Pizza','image': 'static/New-York-Style-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'}, 
-    {'name': 'Californian Pizza', 'image': 'static/Californian-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'}, 
-    {'name': 'Detroit Pizza', 'image': 'static/Detroit-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
-    {'name': 'St. Louis Pizza', 'image': 'static/St.-Louis-Pizza.jpg.webp' , 'ingredients':'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
-    {'name': 'Canadian Pizza', 'image': 'static/St.-Louis-Pizza.jpg.webp' , 'ingredients':'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'},
-    {'name': 'Mexican Pizza', 'image': 'static/Mexican-Pizza.jpg.webp', 'ingredients': 'Spiced paneer, Onion, Green Capsicum & Red Paprika in Tandoori Sauce'}, 
+    {'name':'True Italian Pizza', 'image': 'static/Neapolitan-Pizza.jpg.webp','ingredients': 'Soft dough, San Marzano tomatoes, buffalo mozzarella, fresh basil, olive oil. Authentic Italian perfection. '},
+    {'name':'Sicilian Pizza',  'image': 'static/Sicilian-Pizza.jpg.webp','ingredients': 'Thick Sicilian crust, robust tomato sauce, generous layer of gooey mozzarella, savory pepperoni rounds. A taste of Sicillian bold flavors.'}, 
+    {'name':'Roman-style Pizza', 'image': 'static/Neapolitan-Pizza.jpg.webp','ingredients': 'Crispy Roman crust, fresh tomato sauce, a medley of mozzarella and pecorino cheeses, a hint of basil.'}, 
+    {'name':'Staple American Pizza: ','image': 'static/Chicago-Deep-Dish-Pizza.jpg.webp', 'ingredients': 'Buttery deep-dish crust, robust tomato sauce, a hearty layer of mozzarella, spicy Italian sausage, green bell peppers, onions, and a crown of crushed tomatoes.'},
+    {'name':'New York-style Pizza','image': 'static/New-York-Style-Pizza.jpg.webp', 'ingredients': 'Thin, foldable crust, tangy tomato sauce, generous mozzarella cheese, a sprinkle of oregano, and a dash of olive oil.'}, 
+    {'name': 'Californian Pizza', 'image': 'static/Californian-Pizza.jpg.webp', 'ingredients': 'Thin, artisanal crust, garlic-infused olive oil base, a blend of mozzarella and goat cheese, topped with fresh, vibrant ingredients like sun-dried tomatoes, arugula, and slices of ripe avocado.'}, 
+    {'name': 'Detroit Pizza', 'image': 'static/Detroit-Pizza.jpg.webp', 'ingredients': 'Thick, airy Detroit-style crust, brick cheese, rich tomato sauce spread edge-to-edge, pepperoni, and a drizzle of garlic-infused olive oil.'},
+    {'name': 'St. Louis Pizza', 'image': 'static/St.-Louis-Pizza.jpg.webp' , 'ingredients':'St. Louis-style thin crust, Provel cheese blend (a mix of cheddar, Swiss, and provolone), sweet and tangy tomato sauce, and a sprinkle of Italian seasoning. A unique twist on pizza perfection.'},
+    {'name': 'Canadian Pizza', 'image': 'static/St.-Louis-Pizza.jpg.webp' , 'ingredients':'Classic hand-tossed crust, rich tomato sauce, a blend of mozzarella and cheddar cheese, bacon strips, sliced mushrooms, and a touch of sweet and tangy Canadian bacon.'},
+    {'name': 'Mexican Pizza', 'image': 'static/Mexican-Pizza.jpg.webp', 'ingredients': 'Thin, crispy crust, zesty salsa verde base, a blend of melted Monterey Jack and cheddar cheese, seasoned ground beef or chorizo, black beans, diced tomatoes, jalapeños, and a finish of fresh cilantro.'}, 
 ] 
 pizza_sizes = [
     {'name': 'Small', 'price': 10},
