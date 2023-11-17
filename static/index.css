@@ -124,7 +124,7 @@ section {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-40%, -50%);
+    transform: translate(-50%, -60%);
     text-align: left;
   }
 /* Style the heading */
@@ -340,6 +340,7 @@ section {
     height: 45px;
     background-color: #da291c;
     border-radius: 5px;
+    margin:10px;
     border: none;
     color: white;
     cursor: pointer;
@@ -374,7 +375,7 @@ section {
 
 
 .home-bg{
-  padding-top: 60px;
+  padding-top: 20px;
 
 }
 

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask import jsonify
 
@@ -22,6 +22,7 @@ class UserSignIn(db.Model):
     password = db.Column(db.String(255))
     email = db.Column(db.String(255))
 
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -40,7 +41,33 @@ def process_form():
         # Commit the changes to the database
         db.session.commit()
         return 'User data stored successfully.'
-    
+
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login(): 
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        # Check if the email and password are correct
+        user = UserSignIn.query.filter_by(email=email, password=password).first()
+        if user:
+            # If the user is found, log them in and redirect them to the home page
+            return redirect('menu')
+        else:
+            # If the user is not found, display an error message
+            return render_template('index.html', error_message='Invalid email or password.')
+    else:
+        # If the request is a GET request, display the login form
+        return render_template('index.html')
+
+
+
+
+
+
+
 @app.route('/about')
 def about():
     return render_template('about.html')

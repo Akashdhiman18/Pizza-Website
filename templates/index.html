@@ -35,15 +35,18 @@
    </section>
 </div>
 
+{% if error_message %}
+<p>{{ error_message }}</p>
+{% endif %}
 <!-- Login Form -->
 <div class="wrapper">
   <h1>Login to Your Account</h1>
   <div class="form-container">
     <div class="form-inner">
-      <form action="#" method="post" class="login">
+      <form action="/login" method="post" class="login">
         <div class="field">
-          <label for="username"><b>Enter your email</b></label>
-          <input type="text" id="username" name="username" placeholder="Enter your username" required>
+          <label for="email"><b>Enter your email</b></label>
+          <input type="text" id="email" name="email" placeholder="Enter your email ID" required>
         </div>
         <div class="field">
           <label for="password"><b>Enter your Password</b></label>
@@ -108,8 +111,8 @@
 
 <!-- menu section -->
 <div class="home_f2" style="text-align: center; padding: 20px;">
-  <h1 style="font-size: 30px; margin-top: 50px; color: #333;">Our Most Popular Deals</h1>
-  <div class="col_f2" style="margin-top: 20px;">
+  <h1 style="font-size: 30px; margin-top: 10px; color: #333;">Our Most Popular Deals</h1>
+  <div class="col_f2" style="margin-top: 10px;">
      <ul style="list-style: none; padding: 0; display: flex; justify-content: center;">
 
         <li style="margin-right: 20px; overflow: hidden; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
