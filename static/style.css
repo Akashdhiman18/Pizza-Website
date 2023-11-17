@@ -1,88 +1,147 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
-:root {
-    --box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
-}
-
-*{
-  padding: 0;
+body {
   margin: 0;
-  text-decoration: none;
-  list-style: none;
-}
-html{
-   font-size: 60.5%;
-   overflow-x: hidden;
-   scroll-behavior: smooth;
-   scroll-padding-top: 7.5rem;
+  padding: 0;
 }
 
-body{
-   background: var(--light-bg);
-   overflow-x: hidden;
+* {
+margin: 0;
+padding: 0;
+outline: none;
+font-family: 'Open Sans', sans-serif;
+box-sizing: border-box;
 }
-
+:root {
+--header-padding: 1px;
+--navbar-margin: 0.5rem;
+--primaryColor: rgb(0, 0, 0);
+--secondaryColor: yellow;
+--whiteColor: white;
+--blackColor: black;
+--greyColor: grey;
+--darkGreyColor: var(--darkGreyColor); /* This variable is undefined, you might want to define it */
+--softGreenColor: var(--softGreenColor); /* This variable is undefined, you might want to define it */
+}
+body {
+width: 100%;
+height: auto;
+display: flex;
+background-image: url('https://png.pngtree.com/back_origin_pic/05/16/24/acc79ee1b877b2854701801de875953d.jpg');
+background-repeat: no-repeat; /* Optional: prevent the background image from repeating */
+flex-direction: column; /* Ensure child elements are stacked vertically */
+align-items: center; /* Center content horizontally */
+padding-top: 10px;
+}
+/* Center content and limit width */
 section {
- padding: 20px;
-  margin: 0 auto;
-  max-width: 100%;
+padding: 1rem;
+margin: 0 auto;
+max-width: 100%;
 }
+/* Header styles */
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 9999;
+position: fixed;
+justify-content: center;
+top: 0;
+left: 0;
+right: 0;
+background: linear-gradient(to right, #007535 0%, #009246 30%, #948585 30%, #ffffff 70%, #ce2b37 70%, #961c24 100%);
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+z-index: 99999; /* Set a higher z-index value */
 }
 
+/* Header flex container styles */
 .header .flex {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: var(--header-padding);
 }
 
+/* Navbar links styles */
 .header .flex .navbar a {
-  margin-left: 20px; /* Adjust margin as needed */
-  color: black;
-  font-size: 17px;
-  padding: 25px 10px; /* Adjust padding as needed */
-  text-decoration: none;
-  transition: color 0.3s ease;
+margin: 0;
+color: var(--blackColor);
+text-decoration: none;
+font-size: 20px;
+transition: color 0.5s, background-color 0.3s, border-radius 0.3s;
+padding-right: 30px;
+position: relative;
 }
 
-.header .flex .navbar a.active,
 .header .flex .navbar a:hover {
-  color: #da291c;
+color: var(--whiteColor);
+background-color: #969696;
+border-radius: 10px;
 }
 
-.header .flex .icons div {
-  font-size: 2.5rem;
-  color: var(--light-color);
-  display: inline-block;
-  cursor: pointer;
-  margin-left: 10px;
-  transition: color 0.3s ease;
+/* Triangle indicator on hover */
+.header .flex .navbar a:hover::before {
+content: '';
+position: absolute;
+bottom: -10px;
+left: 50%;
+transform: translateX(-50%);
+border-width: 10px 10px 0;
+border-style: solid;
+border-color: #000 transparent transparent;
 }
-
-.header .flex .icons div:hover {
-  color: var(--red);
-}
-
-.header .flex .icons div span {
-  font-size: 2rem;
-}
-
+/* Updated styles for the search bar */
+.header .flex .navbar a:hover::before {
+content: '';
+position: absolute;
+bottom: -10px;
+left: 50%;
+transform: translateX(-50%);
+border-width: 10px 10px 0;
+border-style: solid;
+border-color: #000 transparent transparent;
+} 
 .btn_s {
   width: 80px;
-  height: 35px;
+  height: 45px;
   background-color: #da291c;
   border-radius: 5px;
   border: none;
   color: white;
   cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s; /* Added box shadow transition */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Box shadow present by default */
+  z-index: 2; /* Higher z-index to bring the button more to the front */
+}
+.btn_s:hover {
+  background-color: #b52016; /* Darken button color on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Increase shadow on hover */
+}
+.rainbow {
+  text-align: left;
+  text-decoration: underline;
+  font-size: 52px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  letter-spacing: 0px;
+  padding-bottom: 5px;
+  
+}
+.logo {
+  margin-left: 20px;
+}
+.rainbow_text_animated {
+  background: linear-gradient(to right, #4bff9c 0%, #66ffb0 30%, #948585 30%, #ffffff 70%, #ce2b37 70%, #961c24 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow_animation 6s ease-in-out infinite;
+  background-size: 400% 100%;
 }
 
+@keyframes rainbow_animation {
+  0%,100% {
+      background-position: 0 0;
+  }
+
+  50% {
+      background-position: 100% 0;
+  }
+}
 
 
 
