@@ -28,9 +28,12 @@
             <button class="cart-icon-btn" onclick="toggleCart()">
                 <img src="static/food-stand 1.png" alt="Cart Logo">
             </button>
-            <div class="icons">
-                <button class="btn_s" onclick="openForm()">Register</button>
-            </div>
+            <div class="icons" id="icons-container">
+                {% if user_authenticated %}
+                    <button id="logoutBtn" class="btn_s" onclick="logout()">Logout</button>
+                {% else %}
+                    <button id="registerBtn" class="btn_s" onclick="openForm()">Register</button></div>
+                {% endif %}
         </section>
     </div>
     <!-- MENU -->

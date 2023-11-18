@@ -8,10 +8,3 @@ function checkout() {
     // Replace '/cg' with the actual URL of your checkout page
     window.location.href = '/checkout';
   }
-
-
-
-
-
-
-  

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request,redirect
+from flask import Flask, render_template, request,redirect,url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask import jsonify
 
@@ -23,6 +23,16 @@ class UserSignIn(db.Model):
     email = db.Column(db.String(255))
 
 
+user_authenticated = False
+
+@app.route('/', methods=['GET'])
+def index():
+    # Display the login form with the current user authentication status
+    return render_template('index.html', user_authenticated=user_authenticated)
+
+
+
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -40,13 +50,15 @@ def process_form():
         db.session.add(user)
         # Commit the changes to the database
         db.session.commit()
-        return 'User data stored successfully.'
+        success_message = "You are successfully registered. Now you can order your favorite food."
+        return redirect(url_for('home', success_message=success_message))
 
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login(): 
     if request.method == 'POST':
+        global user_authenticated
         email = request.form['email']
         password = request.form['password']
 
@@ -54,18 +66,23 @@ def login():
         user = UserSignIn.query.filter_by(email=email, password=password).first()
         if user:
             # If the user is found, log them in and redirect them to the home page
+            user_authenticated = True
             return redirect('menu')
         else:
             # If the user is not found, display an error message
             return render_template('index.html', error_message='Invalid email or password.')
     else:
         # If the request is a GET request, display the login form
-        return render_template('index.html')
+        return render_template('index.html', user_authenticated=user_authenticated)
 
 
-
-
-
+@app.route('/logout')
+def logout():
+    global user_authenticated
+    # Set user_authenticated to False on logout
+    user_authenticated = False
+    # Redirect to the home page or wherever appropriate after logout
+    return render_template('index.html')
 
 
 @app.route('/about')
