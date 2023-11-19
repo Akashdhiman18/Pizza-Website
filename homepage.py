@@ -22,7 +22,6 @@ class UserSignIn(db.Model):
     password = db.Column(db.String(255))
     email = db.Column(db.String(255))
 
-
 user_authenticated = False
 
 @app.route('/', methods=['GET'])
@@ -30,13 +29,25 @@ def index():
     # Display the login form with the current user authentication status
     return render_template('index.html', user_authenticated=user_authenticated)
 
-
-
-
 @app.route('/')
 def home():
     return render_template('index.html')
 
+# @app.route('/process_form', methods=['POST'])
+# def process_form():
+#     if request.method == 'POST':
+#         name = request.form['name']
+#         number = request.form['number']
+#         password = request.form['password']
+#         email = request.form['email']
+#         # Create a UserSignIn object
+#         user = UserSignIn(name=name, number=number, password=password, email=email)
+#         # Add the object to the database session
+#         db.session.add(user)
+#         # Commit the changes to the database
+#         db.session.commit()
+#         success_message = "You are successfully registered. Now you can order your favorite food."
+#         return redirect(url_for('home', success_message=success_message))
 @app.route('/process_form', methods=['POST'])
 def process_form():
     if request.method == 'POST':
@@ -44,12 +55,16 @@ def process_form():
         number = request.form['number']
         password = request.form['password']
         email = request.form['email']
+        
         # Create a UserSignIn object
         user = UserSignIn(name=name, number=number, password=password, email=email)
+        
         # Add the object to the database session
         db.session.add(user)
+        
         # Commit the changes to the database
         db.session.commit()
+        
         success_message = "You are successfully registered. Now you can order your favorite food."
         return redirect(url_for('home', success_message=success_message))
 
@@ -76,15 +91,74 @@ def login():
         return render_template('index.html', user_authenticated=user_authenticated)
 
 
+# @app.route('/logout')
+# def logout():
+#     global user_authenticated
+#     # Set user_authenticated to False on logout
+#     user_authenticated = False
+#     # Redirect to the home page or wherever appropriate after logout
+#     return render_template('index.html')
 @app.route('/logout')
 def logout():
     global user_authenticated
     # Set user_authenticated to False on logout
     user_authenticated = False
     # Redirect to the home page or wherever appropriate after logout
-    return render_template('index.html')
+    return redirect(url_for('home'))
+
+# Shopping Cart Section -----------------------------------------------------------------------
+
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    data = request.get_json()
+
+    pizza_name = data['pizzaName']
+    size = data['size']
+    base = data['base']
+    total_price = data['totalPrice']
+
+    # Create a CartItem object and add it to the database
+    cart_item = CartItem(
+        name=pizza_name,
+        size=size,
+        base=base,
+        price=total_price,
+        quantity=1  # You can adjust the quantity as needed
+    )
+    
+    db.session.add(cart_item)
+    db.session.commit()
+
+    return jsonify({'message': 'Item added to cart'})
 
 
+@app.route('/get_cart_items', methods=['GET'])
+def get_cart_items():
+    # Fetch the current cart items from the database
+    cart_items = CartItem.query.all()
+
+    # Convert the cart items to a list of dictionaries
+    cart_items_data = [{'id': item.id, 'name': item.name, 'size': item.size, 'base': item.base, 'price': item.price} for item in cart_items]
+
+    return jsonify({'cartItems': cart_items_data})
+
+@app.route('/remove_from_cart', methods=['POST'])
+def remove_from_cart():
+    data = request.get_json()
+    item_id = data['itemId']
+
+    # Find the item in the database and remove it
+    cart_item = CartItem.query.get(item_id)
+    if cart_item:
+        db.session.delete(cart_item)
+        db.session.commit()
+
+    return jsonify({'message': 'Item removed from cart'})
+
+
+
+
+# ROUTES -------------------------------------------------------------------------------------
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -186,8 +260,12 @@ def show_checkout():
 def store_location():
     return render_template('store_location.html')
 
-with app.app_context(): #added code /remove if it doesnt work
-     db.create_all()
+@app.route('/initialize_database')
+def initialize_database():
+    with app.app_context():
+        db.create_all()
+    return "Database initialized successfully"
+
         
 if __name__ == '__main__':
     app.run(debug=True, port=8080)

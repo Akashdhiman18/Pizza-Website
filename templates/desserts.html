@@ -56,7 +56,7 @@
         <div class="listProduct">
             {% for dessert in desserts %}
             <div class="item">
-                <img src="{{ url_for('static', filename=dessert.image) }}" alt="{{ dessert.name }}">
+                <img src="{{ dessert.image }}" alt="{{ dessert.name }}">
                 <h2>{{ dessert.name }}</h2>
                 <p>{{ dessert.Description }}</p>
                 <div class="buttons">
