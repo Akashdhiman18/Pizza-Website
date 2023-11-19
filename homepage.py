@@ -1,11 +1,14 @@
-from flask import Flask, render_template, request,redirect,url_for
+from flask import Flask, render_template, request,redirect,url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from flask import jsonify
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pizza_cart.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = 'QWERTYUIOP'
 db = SQLAlchemy(app)  
+
+cart_items = []
 
 class CartItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -107,54 +110,11 @@ def logout():
     return redirect(url_for('home'))
 
 # Shopping Cart Section -----------------------------------------------------------------------
-
-@app.route('/add_to_cart', methods=['POST'])
-def add_to_cart():
+@app.route('/update_cart', methods=['POST'])
+def update_cart():
     data = request.get_json()
-
-    pizza_name = data['pizzaName']
-    size = data['size']
-    base = data['base']
-    total_price = data['totalPrice']
-
-    # Create a CartItem object and add it to the database
-    cart_item = CartItem(
-        name=pizza_name,
-        size=size,
-        base=base,
-        price=total_price,
-        quantity=1  # You can adjust the quantity as needed
-    )
-    
-    db.session.add(cart_item)
-    db.session.commit()
-
-    return jsonify({'message': 'Item added to cart'})
-
-
-@app.route('/get_cart_items', methods=['GET'])
-def get_cart_items():
-    # Fetch the current cart items from the database
-    cart_items = CartItem.query.all()
-
-    # Convert the cart items to a list of dictionaries
-    cart_items_data = [{'id': item.id, 'name': item.name, 'size': item.size, 'base': item.base, 'price': item.price} for item in cart_items]
-
-    return jsonify({'cartItems': cart_items_data})
-
-@app.route('/remove_from_cart', methods=['POST'])
-def remove_from_cart():
-    data = request.get_json()
-    item_id = data['itemId']
-
-    # Find the item in the database and remove it
-    cart_item = CartItem.query.get(item_id)
-    if cart_item:
-        db.session.delete(cart_item)
-        db.session.commit()
-
-    return jsonify({'message': 'Item removed from cart'})
-
+    cart_items.append(data)  
+    return jsonify(success=True)
 
 
 
@@ -163,10 +123,8 @@ def remove_from_cart():
 def about():
     return render_template('about.html')
 
-@app.route('/menu')
-def menu():
-    return render_template('menu.html', pizzas=pizzas, pizza_sizes=pizza_sizes, pizza_bases=pizza_bases)  
 
+# PIZZA LIST-------------------------------------------------------------------
 pizzas = [ 
     {'name':'True Italian Pizza', 'image': 'static/Neapolitan-Pizza.jpg.webp','ingredients': 'Soft dough, San Marzano tomatoes, buffalo mozzarella, fresh basil, olive oil. Authentic Italian perfection. '},
     {'name':'Sicilian Pizza',  'image': 'static/Sicilian-Pizza.jpg.webp','ingredients': 'Thick Sicilian crust, robust tomato sauce, generous layer of gooey mozzarella, savory pepperoni rounds. A taste of Sicillian bold flavors.'}, 
@@ -189,6 +147,14 @@ pizza_bases = [
     {'name': 'Thick Crust', 'price': 3},
     {'name': 'Gluten-Free', 'price': 5},    
 ]
+
+@app.route('/menu')
+def menu():
+    return render_template('menu.html', pizzas=pizzas, pizza_sizes=pizza_sizes, pizza_bases=pizza_bases, cart_items=cart_items)
+
+
+# SIDES LIST-------------------------------------------------------------------
+
 @app.route('/sides')  
 def get_sides(): 
     return render_template('sides.html' , sides=sides)  
@@ -204,6 +170,8 @@ sides = [
     {'name':'Boneless Chicken Bites', 'image': 'static/Chicken Bites.jpg','description': 'Warm baked dough bites coated in a buttery garlic glaze and covered in cheese.', 'price': 8.50}, 
     {'name':'Caesar Salad', 'image': 'static/Caesar Salad.jpg','description':'Crisp romaine lettuce, croutons, and Caesar dressing.', 'price': 6.50},   
 ]
+
+# DRINKS LIST -------------------------------------------------------------------
 @app.route('/drinks')  
 def get_drinks():
    return render_template('drinks.html', drinks_data=drinks_data, drink_sizes=drink_sizes) 
@@ -232,7 +200,7 @@ meal_deals = [
     {'name': '3 Pizzas 3 Sides', 'image': '3 Pizzas 3 Sides.jpg', 'Description': '3 Large Classic Value Pizzas & 3 Sides. Sides include Garlic Bread, Fries or 1.5L Drink.', 'price': 45.00},
     {'name': '4 Pizzas 4 Sides', 'image': '4 Pizzas 4 Sides.jpg', 'Description': '4 Large Classic Value Pizzas & 4 Sides. Sides include Garlic Bread, Fries or 1.5L Drink.', 'price': 33.00},  
 ]
-
+# MEALS LIST -------------------------------------------------------------------
 @app.route('/meal_deals') 
 def get_meal_deals():
     return render_template('meal_deals.html', meal_deals=meal_deals) 
@@ -245,6 +213,8 @@ desserts_data = [
     {'name': 'Ultimate Chocolate Chip Cookie', 'image': 'static/Chocolate Chip Cookie.jpg', 'Description': 'A giant chocolate chip cookie full of rich chocolate chips.', 'price': 9.99},
     {'name': 'Cookie Dough Ice Cream', 'image': 'static/Cookie Dough Ice Cream.jpg', 'price': 16.49},  # Added a default price
 ]
+
+
 
 @app.route('/desserts') 
 def show_desserts():

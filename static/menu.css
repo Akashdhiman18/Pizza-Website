@@ -283,6 +283,7 @@ body {
 /* style for dropdowns options */
 /*-------------------------------------------------------*/
 
+
 .listProduct .item .buttons button {
     background-color: #ff0011;
     padding-top: 10px;
@@ -394,4 +395,12 @@ body {
 
 .checkout-button:hover {
     background-color: #ff0000;
+}
+
+.cart-items {
+    margin-top: 10px;
+}
+.total-price {
+    margin-top: 10px;
+    font-weight: bold;
 }

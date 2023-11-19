@@ -80,7 +80,7 @@
                             </select>
                         </div>
                     </div>
-                    <button class="add-cart-button" onclick="addToCart('{{ pizza.name }}')">Add To Cart</button>
+                    <button class="add-cart-button" data-name="{{ pizza.name }}" data-price="0" onclick="addToCart(this)">Add To Cart</button>
                 </div>
             </div>
             {% endfor %}
@@ -88,14 +88,19 @@
     </div>
 
 <!-- Carrt -->
+
 <div class="cart-container" id="cart-container">
     <div class="cart-header">
         <img src="static/food-stand.png" alt="Cart Logo">
         <h2>Pizza Cart</h2>
     </div>
     <div class="cart-items" style="padding-top: 10px;"></div>
+    <div class="total-price">Total: $0.00</div>
+    <input type="number" class="quantity-input" value="1" min="1">
     <button class="checkout-button" onclick="checkout()">Checkout</button>
 </div>
+
+<!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="static/js/dist/menu.dev.js"></script>
     <script src="static/js/menu.js"></script>
