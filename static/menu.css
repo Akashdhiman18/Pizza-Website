@@ -362,9 +362,12 @@ body {
 
 .cart-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f8f8f8; /* Light gray background color */
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cart-header img {
@@ -409,11 +412,14 @@ body {
     margin-top: 10px;
 }
 .total-price {
-    margin-top: 10px;
+    font-size: 24px; /* Increase the font size */
     font-weight: bold;
+    color: #27ae60; 
+    margin-top: 15px; 
+    text-align: right; 
+    border-top: 2px solid #27ae60; 
+    padding-top: 5px; 
 }
-
-
 
 .cart-items {
     margin-top: 10px;
@@ -455,17 +461,33 @@ body {
     padding: 5px 10px;
     border-radius: 3px;
 }
-.close-button, .clear-button {
-    background-color: #007bff;
-    color: #fff;
+.close-button {
+    background-color: #3498db; 
+    color: white;
+    padding: 10px 15px; 
     border: none;
-    padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
-    margin-right: 10px; /* Add some margin between the buttons */
+    margin-right: 5px;
+    font-weight: bold; 
 }
 
-.close-button:hover, .clear-button:hover {
-    background-color: #0056b3;
+.close-button:hover {
+    background-color: #2980b9; 
+}
+
+/* Clear button styles */
+.clear-button {
+    background-color: peru; 
+    color: white;
+    padding: 10px 10px; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right:-50px; 
+    font-weight: bold; 
+}
+
+.clear-button:hover {
+    background-color: #27ae60; 
 }
