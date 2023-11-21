@@ -10,13 +10,13 @@ db = SQLAlchemy(app)
 
 cart_items = []
 
-class CartItem(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255))
-    size = db.Column(db.String(50))
-    base = db.Column(db.String(50))
-    price = db.Column(db.Float)
-    quantity = db.Column(db.Integer)
+class CartItem:
+    def __init__(self, name, size, base, price, quantity):
+        self.name = name
+        self.size = size
+        self.base = base
+        self.price = price
+        self.quantity = quantity  
 
 class UserSignIn(db.Model):
     userid = db.Column(db.Integer, primary_key=True)
@@ -36,21 +36,6 @@ def index():
 def home():
     return render_template('index.html')
 
-# @app.route('/process_form', methods=['POST'])
-# def process_form():
-#     if request.method == 'POST':
-#         name = request.form['name']
-#         number = request.form['number']
-#         password = request.form['password']
-#         email = request.form['email']
-#         # Create a UserSignIn object
-#         user = UserSignIn(name=name, number=number, password=password, email=email)
-#         # Add the object to the database session
-#         db.session.add(user)
-#         # Commit the changes to the database
-#         db.session.commit()
-#         success_message = "You are successfully registered. Now you can order your favorite food."
-#         return redirect(url_for('home', success_message=success_message))
 @app.route('/process_form', methods=['POST'])
 def process_form():
     if request.method == 'POST':
@@ -94,28 +79,23 @@ def login():
         return render_template('index.html', user_authenticated=user_authenticated)
 
 
-# @app.route('/logout')
-# def logout():
-#     global user_authenticated
-#     # Set user_authenticated to False on logout
-#     user_authenticated = False
-#     # Redirect to the home page or wherever appropriate after logout
-#     return render_template('index.html')
 @app.route('/logout')
-def logout():
+def logout(): 
     global user_authenticated
     # Set user_authenticated to False on logout
     user_authenticated = False
     # Redirect to the home page or wherever appropriate after logout
     return redirect(url_for('home'))
 
+
 # Shopping Cart Section -----------------------------------------------------------------------
+
+
 @app.route('/update_cart', methods=['POST'])
 def update_cart():
     data = request.get_json()
     cart_items.append(data)  
     return jsonify(success=True)
-
 
 
 # ROUTES -------------------------------------------------------------------------------------
