@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify,flash
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import relationship
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pizza_cart.db'
@@ -46,10 +48,33 @@ class UserSignIn(db.Model):
     name = db.Column(db.String(255))
     password = db.Column(db.String(255))
     email = db.Column(db.String(255))
+    payments = relationship('Payment', backref='user', lazy=True)
+    order_details = relationship('OrderDetail', backref='user', lazy=True)
 
-@app.route('/', methods=['GET'])
-def index():
-    return render_template('index.html')
+#defined a Payment class to represent 
+
+
+class Payment(db.Model):
+    payment_id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user_sign_in.user_id'))
+    amount = db.Column(db.Float)
+    date = db.Column(db.Date)  
+    time = db.Column(db.Time) 
+    order_id = db.Column(db.Integer, db.ForeignKey('order_detail.order_id'))  
+
+
+class OrderDetail(db.Model):
+    order_id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user_sign_in.user_id'))
+    item_name = db.Column(db.String(255))
+    quantity = db.Column(db.Integer)
+    date = db.Column(db.Date) 
+    time = db.Column(db.Time)  
+    address = db.Column(db.String(255))  
+    phone_number = db.Column(db.String(20)) 
+    payments = relationship('Payment', backref='order_detail', lazy=True)
+
+
 
 @app.route('/process_form', methods=['POST'])
 def process_form():
@@ -71,8 +96,8 @@ def process_form():
     
     return render_template('index.html')
 
+#use login section ------------------------------------
 
-# Route for user login
 @app.route('/login', methods=['GET', 'POST'])
 def login(): 
     # Handle login form submission
@@ -84,15 +109,19 @@ def login():
         # Check if the email and password are correct by querying the database
         user = UserSignIn.query.filter_by(email=email, password=password).first()
         if user:
-            # If the user is found, log them in and redirect to the menu
+            # If the user is found, log them in and set session variables
             user_authenticated = True
+            session['user_id'] = user.userid
+            session['user_name'] = user.name
+            session['user_email'] = user.email
             return redirect('menu')
         else:
             # If the user is not found, display an error message
             return render_template('index.html', error_message='Invalid email or password.')
     else:
         # If the request is a GET request, display the login form
-        return render_template('index.html', user_authenticated=user_authenticated) 
+        return render_template('index.html', user_authenticated=user_authenticated)
+
 
 
 
@@ -244,13 +273,36 @@ def show_desserts():
 
 @app.route('/checkout')
 def show_checkout():
-    return render_template('checkout.html')
+    # Check if the user is logged in
+    if 'user_id' in session:
+        # Get user details from session
+        user_id = session['user_id']
+        user_name = session['user_name']
+        user_email = session['user_email']
 
-
+        # Pass user details to the template
+        return render_template('checkout.html', user_id=user_id, user_name=user_name, user_email=user_email)
+    else:
+        # If the user is not logged in, redirect to the login page
+        return redirect(url_for('login'))
 
 @app.route('/store_location')
 def store_location():
     return render_template('store_location.html')
+
+# logout --------------------------
+
+
+@app.route('/logout')
+def logout():
+    # Clear the user session data
+    session.clear()
+    return render_template('index.html')
+
+@app.route('/')
+def index():
+    # Your index (home) page logic here
+    return render_template('index.html')
 
 @app.route('/initialize_database')
 def initialize_database():
