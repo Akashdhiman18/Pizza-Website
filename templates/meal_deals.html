@@ -60,7 +60,8 @@
                 <h2>{{ deal.name }}</h2>
                 <p>{{ deal.Description }}</p>
                 <div class="buttons">
-                    <button class="cart-button" onclick="addtoCart(this)">Add To Cart ${{ deal.price }}</button>
+                    <button class="cart-button" onclick="addToCart(this)" data-name="{{ deal.name }}" data-price="{{ deal.price }}">Add To Cart ${{ deal.price }}</button>
+
                 </div>
             </div>
             {% endfor %}

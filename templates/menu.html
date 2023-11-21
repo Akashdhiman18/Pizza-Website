@@ -80,7 +80,9 @@
                             </select>
                         </div>
                     </div>
-                    <button class="add-cart-button" data-name="{{ pizza.name }}" data-price="0" onclick="addToCart(this)">Add To Cart</button>
+                    <!-- <button class="add-cart-button" data-name="{{ pizza.name }}" data-price="0" onclick="addToCart(this)">Add To Cart</button> -->
+                    <button class="add-cart-button" data-name="{{ pizza.name }}" data-price="0" onclick="addToCart(this, 'pizza')">Add To Cart</button>
+
                 </div>
             </div>
             {% endfor %}

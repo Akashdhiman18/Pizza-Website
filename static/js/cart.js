@@ -126,3 +126,30 @@ function saveCartToLocalStorage() {
 document.addEventListener('DOMContentLoaded', function () {
     updateCartDisplay();
 });
+function addToCart(button, itemType) {
+    // Get the product details from the button's data attributes
+    var productName = button.getAttribute('data-name');
+    var productPrice = parseFloat(button.getAttribute('data-price'));
+
+    // Get additional details based on the item type (e.g., size, base)
+    var sizeSelect = button.parentElement.querySelector('.size-select');
+    var selectedSize = sizeSelect.options[sizeSelect.selectedIndex].value;
+
+    // Create an object to represent the item
+    var cartItem = {
+        type: itemType,
+        name: productName,
+        size: selectedSize,
+        price: productPrice,
+        quantity: 1
+    };
+
+    // Add the item to the cart array
+    cartItems.push(cartItem);
+
+    // Save the cart to localStorage
+    saveCartToLocalStorage();
+
+    // Call a function to update the cart display
+    updateCartDisplay();
+}

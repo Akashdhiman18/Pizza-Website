@@ -58,7 +58,8 @@
                 <h2>{{ side.name }}</h2>
                 <p>{{ side.description }}</p> 
                 <div class="buttons">
-                    <button class="add-cart-button" data-name="{{side.name}}" data-price="0" onclick="addToCart(this)">Add To Cart ${{ side.price }}</button>
+                    <button class="add-cart-button" data-name="{{ side.name }}" data-price="{{ side.price }}" onclick="addToCart(this)">Add To Cart ${{ side.price }}</button>
+
                 </div>
             </div>
             {% endfor %}
