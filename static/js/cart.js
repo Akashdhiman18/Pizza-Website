@@ -1,6 +1,7 @@
 
     var cartItems = [];
-
+    var Drink = [];
+    
     function addToCart(button) {
         // Get the product details from the button's data attributes
         var productName = button.getAttribute('data-name');
@@ -23,6 +24,9 @@
             price: totalProductPrice
         };
 
+        var Drink = {
+            
+        }
         // Add the item to the cart array
         cartItems.push(cartItem);
 
