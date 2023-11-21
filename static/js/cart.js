@@ -57,6 +57,8 @@
         // Implement the checkout logic here
         // You can send the cartItems array to the server or perform any other necessary actions
         // For now, let's just log the cart items to the console
+        window.location.href = '/checkout';
         console.log(cartItems);
     }
-
+ 
+    

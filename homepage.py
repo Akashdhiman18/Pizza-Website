@@ -1,6 +1,5 @@
-from flask import Flask, render_template, request,redirect,url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flask import jsonify
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pizza_cart.db'
@@ -10,6 +9,27 @@ db = SQLAlchemy(app)
 
 # Initialize a list to store cart items (temporary storage)
 cart_items = []
+
+class Dessert(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    description = db.Column(db.Text)
+    price = db.Column(db.Float)
+    # Add other relevant fields
+
+class MealDeal(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    description = db.Column(db.Text)
+    price = db.Column(db.Float)
+    # Add other relevant fields
+
+class Drink(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    description = db.Column(db.Text)
+    price = db.Column(db.Float)
+    # Add other relevant fields
 
 # Define a CartItem class to represent items in the shopping cart
 class CartItem(db.Model):
@@ -27,7 +47,6 @@ class UserSignIn(db.Model):
     number = db.Column(db.String(20))
     password = db.Column(db.String(255))
     email = db.Column(db.String(255))
-
 
 # Initialize a global variable to track user authentication status
 user_authenticated = False
@@ -98,12 +117,45 @@ def logout():
 
 # Shopping Cart Section -----------------------------------------------------------------------
 
-# Route to update the shopping cart
-@app.route('/update_cart', methods=['POST'])
-def update_cart():
-    # Retrieve JSON data from the request and add it to the cart_items list
-    data = request.get_json()
-    cart_items.append(data)  
+
+@app.route('/add_to_cart/dessert/<int:dessert_id>', methods=['POST'])
+def add_dessert_to_cart(dessert_id):
+    dessert = Dessert.query.get_or_404(dessert_id)
+    cart_item = {
+        'name': dessert.name,
+        'price': dessert.price
+    }
+    cart_items.append(cart_item)
+    return jsonify(success=True)
+
+@app.route('/add_to_cart/drink/<int:drink_id>', methods=['POST'])
+def add_drink_to_cart(drink_id):
+    drink = Drink.query.get_or_404(drink_id)
+    cart_item = {
+        'name': drink.name,
+        'price': drink.price
+    }
+    cart_items.append(cart_item)
+    return jsonify(success=True)
+
+@app.route('/add_to_cart/side/<int:side_id>', methods=['POST'])
+def add_side_to_cart(side_id):
+    side = side.query.get_or_404(side_id)
+    cart_item = {
+        'name': side.name,
+        'price': side.price
+    }
+    cart_items.append(cart_item)
+    return jsonify(success=True)
+
+@app.route('/add_to_cart/meal_deal/<int:meal_deal_id>', methods=['POST'])
+def add_meal_deal_to_cart(meal_deal_id):
+    meal_deal = MealDeal.query.get_or_404(meal_deal_id)
+    cart_item = {
+        'name': meal_deal.name,
+        'price': meal_deal.price
+    }
+    cart_items.append(cart_item)
     return jsonify(success=True)
 
 # ROUTES -------------------------------------------------------------------------------------
