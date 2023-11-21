@@ -27,7 +27,7 @@ body {
 section {
     padding: 1rem;
     margin: 0 auto;
-    max-width: 100%;
+    max-width: 1200px; 
 }
 
 /* Header styles */
@@ -42,26 +42,22 @@ section {
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
     z-index: 99999; /* Set a higher z-index value */
 }
-
-
-/* Header flex container styles */
 .header .flex {
-    display: flex;
+  display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
- 
-    padding: var(--header-padding);
+  
+  padding: var(--header-padding);
 }
-
 /* Navbar links styles */
 .header .flex .navbar a {
     margin: 0;
     color: var(--blackColor);
     text-decoration: none;
     font-size: 20px;
-    /* transition: color 0.5s, background-color 0.3s, border-radius 0.3s; */
-    padding-right: 60px;
-    position: relative;
+    transition: color 0.5s, background-color 0.3s, border-radius 0.3s; 
+    padding-right: 40px;
+    position: sticky;
 }
 
 .header .flex .navbar a:hover {
@@ -86,14 +82,14 @@ section {
 .rainbow {
     text-align: left;
     text-decoration: underline;
-    font-size: 52px;
+    font-size: 40px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     letter-spacing: 0px;
     padding-bottom: 5px;
     
 }
 .logo {
-    margin-left: 20px;
+    margin-left: px;
 }
 .rainbow_text_animated {
     background: linear-gradient(to right,rgb(173, 198, 173) , rgb(34, 55, 34) ,rgb(9, 43, 9) , rgb(173, 198, 173) , rgb(34, 55, 34)  );
@@ -101,7 +97,7 @@ section {
     background-clip: text;
     color: transparent;
     animation: rainbow_animation 6s ease-in-out infinite;
-    background-size: 400% 100%;
+    /* background-size: 400% 100%; */
 }
 
 @keyframes rainbow_animation {

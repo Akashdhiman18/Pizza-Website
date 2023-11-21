@@ -202,37 +202,54 @@ body {
 <script>
 // Function to update the cart content and total
 function updateCart() {
-var cartContent = document.getElementById('cart-content');
-var cartTotalPrice = document.getElementById('cart-total-price');
-var cartItems = getCartItems(); // Implement the function to get cart items
+    var cartContent = document.getElementById('cart-content');
+    var cartTotalPrice = document.getElementById('cart-total-price');
+    var cartItems = getCartItems(); // Implement the function to get cart items
 
-// Clear previous content
-cartContent.innerHTML = '';
+    // Clear previous content
+    cartContent.innerHTML = '';
 
-// Display cart items in the cart
-cartItems.forEach(function (item) {
-var cartItem = document.createElement('p');
-cartItem.textContent = item.name + ': $' + item.price.toFixed(2);
-cartContent.appendChild(cartItem);
-});
+    // Display cart items in the cart
+    cartItems.forEach(function (item) {
+        var cartItem = document.createElement('p');
+        cartItem.textContent = `${item.name} x ${item.quantity}  Price : $${(item.price * item.quantity).toFixed(2)}`;
+        cartContent.appendChild(cartItem);
+    });
 
-// Calculate and display the total price
-var totalPrice = cartItems.reduce(function (total, item) {
-return total + item.price;
-}, 0);
-cartTotalPrice.textContent = totalPrice.toFixed(2);
+    // Calculate and display the total price
+    var totalPrice = cartItems.reduce(function (total, item) {
+        return total + item.price * item.quantity;
+    }, 0);
+    cartTotalPrice.textContent = totalPrice.toFixed(2);
 }
 
-// Call the function to update the cart initially
 updateCart();
 
-// Implement the function to get cart items from localStorage
-function getCartItems() {
-var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-return cartItems;
+function getCartItems() {
+    var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+    return cartItems;
 }
 
+function addToCart(item) {
+    var cartItems = getCartItems();
+    var existingItem = cartItems.find(cartItem => cartItem.name === item.name);
+
+    if (existingItem) {
+        
+        existingItem.quantity += 1;
+    } else {
+       
+        cartItems.push({ ...item, quantity: 1 });
+    }
+
+   
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+
+    updateCart();
+}
 
 </script>
 

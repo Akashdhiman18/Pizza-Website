@@ -1,11 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify,flash
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pizza_cart.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'QWERTYUIOP'
-db = SQLAlchemy(app)  
+db = SQLAlchemy(app)
 
 # Initialize a list to store cart items (temporary storage)
 cart_items = []
@@ -47,39 +47,29 @@ class UserSignIn(db.Model):
     password = db.Column(db.String(255))
     email = db.Column(db.String(255))
 
-# Initialize a global variable to track user authentication status
-user_authenticated = False
-
 @app.route('/', methods=['GET'])
 def index():
-    # Display the login form with the current user authentication status
-    return render_template('index.html', user_authenticated=user_authenticated)
-
-@app.route('/')
-def home():
     return render_template('index.html')
 
-# Route to process user registration form
 @app.route('/process_form', methods=['POST'])
 def process_form():
-    # Retrieve user registration form data
     if request.method == 'POST':
         name = request.form['name']
         password = request.form['password']
         email = request.form['email']
         
-        # Create a UserSignIn object
-        user = UserSignIn(name=name, password=password, email=email)
-        
-        # Add the object to the database session
-        db.session.add(user)
-        
-        # Commit the changes to the database
-        db.session.commit()
-        
-        # Redirect to home page with success message
-        success_message = "You are successfully registered. Now you can order your favorite food."
-        return redirect(url_for('home', success_message=success_message))
+        try:
+            user = UserSignIn(name=name, password=password, email=email)
+            db.session.add(user)
+            db.session.commit()
+            flash("You are successfully registered. Now you can order your favorite food.", 'success')
+            return redirect(url_for('home'))
+        except Exception as e:
+            print("Error:", str(e))
+            db.session.rollback()
+            flash("Error occurred during registration. Please try again.", 'error')
+    
+    return render_template('index.html')
 
 
 # Route for user login
@@ -104,14 +94,8 @@ def login():
         # If the request is a GET request, display the login form
         return render_template('index.html', user_authenticated=user_authenticated) 
 
-# Route to handle user logout
-@app.route('/logout')
-def logout(): 
-    global user_authenticated
-    # Set user_authenticated to False on logout
-    user_authenticated = False
-    # Redirect to the home page or wherever appropriate after logout
-    return redirect(url_for('home'))
+
+
 
 # Shopping Cart Section -----------------------------------------------------------------------
 
