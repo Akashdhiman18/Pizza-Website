@@ -48,31 +48,49 @@ class UserSignIn(db.Model):
     name = db.Column(db.String(255))
     password = db.Column(db.String(255))
     email = db.Column(db.String(255))
-    payments = relationship('Payment', backref='user', lazy=True)
-    order_details = relationship('OrderDetail', backref='user', lazy=True)
+#     payments = relationship('Payment', backref='user', lazy=True)
+#     order_details = relationship('OrderDetail', backref='user', lazy=True)
 
-#defined a Payment class to represent 
-
-
-class Payment(db.Model):
-    payment_id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user_sign_in.user_id'))
-    amount = db.Column(db.Float)
-    date = db.Column(db.Date)  
-    time = db.Column(db.Time) 
-    order_id = db.Column(db.Integer, db.ForeignKey('order_detail.order_id'))  
+# #defined a Payment class to represent 
 
 
-class OrderDetail(db.Model):
-    order_id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user_sign_in.user_id'))
-    item_name = db.Column(db.String(255))
-    quantity = db.Column(db.Integer)
-    date = db.Column(db.Date) 
-    time = db.Column(db.Time)  
-    address = db.Column(db.String(255))  
-    phone_number = db.Column(db.String(20)) 
-    payments = relationship('Payment', backref='order_detail', lazy=True)
+# class Payment(db.Model):
+#     payment_id = db.Column(db.Integer, primary_key=True)
+#     user_id = db.Column(db.Integer, db.ForeignKey('user_sign_in.user_id'))
+#     amount = db.Column(db.Float)
+#     date = db.Column(db.Date)  
+#     time = db.Column(db.Time) 
+#     order_id = db.Column(db.Integer, db.ForeignKey('order_detail.order_id'))  
+
+
+# class OrderDetail(db.Model):
+#     order_id = db.Column(db.Integer, primary_key=True)
+#     user_id = db.Column(db.Integer, db.ForeignKey('user_sign_in.user_id'))
+#     item_name = db.Column(db.String(255))
+#     quantity = db.Column(db.Integer)
+#     date = db.Column(db.Date) 
+#     time = db.Column(db.Time)  
+#     address = db.Column(db.String(255))  
+#     phone_number = db.Column(db.String(20)) 
+#     payments = relationship('Payment', backref='order_detail', lazy=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -301,8 +319,9 @@ def logout():
 
 @app.route('/')
 def index():
-    # Your index (home) page logic here
-    return render_template('index.html')
+    user_authenticated = False  
+    return render_template('index.html', user_authenticated=user_authenticated)
+
 
 @app.route('/initialize_database')
 def initialize_database():

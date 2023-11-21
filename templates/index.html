@@ -22,15 +22,17 @@
 <!-- header section starts  -->
 <div class="header">
    <section class="flex">
-    <a href="/" class="rainbow rainbow_text_animated"><img src="static\logo.png" style="width:5%; ">Pizza Pizza</a>
+    <a href="/" class="rainbow rainbow_text_animated"><img src="static\logo.png" style="width:5%; ">NZ Pizza</a>
        <nav class="navbar">
          <a href="/">Home</a>
          <a href="/about">About</a>
-         <a href="/menu"{% if not user_authenticated %} disabled{% endif %}>Menu</a>
+         {% if user_authenticated %}
+         <a href="/menu">Menu</a>
+     {% endif %}
          <a href="/store_location">Store Locate</a>
        </nav>
        <div class="icons">
-           <button class="btn_s" onclick="openForm()">Register</button>
+           <button class="btn_s" onclick="openForm()">Login or Signup</button>
        </div>
    </section>
 </div>
@@ -206,7 +208,6 @@
    <ul>
       <li>About Us</li>
       <li>Contactless delivery</li>
-      <li>Nutrition</li>
    </ul>
 </div>
 <div class="col">
@@ -218,7 +219,7 @@
 </ul>
 </div>
 <div class="col">
-<h1>Visit Pizza Hut</h1>
+<h1>Visit NZ Pizza</h1>
 <ul>
    <li>Locate a store</li>
    <li>Blog</li>
