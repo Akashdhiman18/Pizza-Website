@@ -63,12 +63,12 @@
                         <div class="dropdown-content">
                             <select class="size-select">
                                 {% for drink_size in drink_sizes %}
-                                <option value="{{ drink_size.name }}">{{ drink_size.name }}: ${{ drink_size.price }}</option>
+                                <option value="{{ drink_size.name }}" data-price="{{ drink_size.price }}">{{ drink_size.name }}: ${{ drink_size.price }}</option>
                                 {% endfor %}
                             </select>
                         </div>
                     </div>
-                    <button class="add-cart-button" data-name="{{ drink.name }}" data-price="{{ drink.price }}" onclick="addToCart(this, 'drink')">Add To Cart</button>
+                    <button class="add-cart-button" data-name="{{ drink.name }}" data-price="0" onclick="addToCart(this, 'drinks')">Add To Cart</button>
 
 
                 </div>

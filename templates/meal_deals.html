@@ -56,12 +56,11 @@
         <div class="listProduct">
             {% for deal in meal_deals %}
             <div class="item">
-                <img src="{{ url_for('static', filename=deal.image) }}" alt="{{ deal.name }}">
+                <img src="{{ url_for('static', filename=deal.image) }}" alt="{{ deal.name }}" data-price="{{deal.price}}">
                 <h2>{{ deal.name }}</h2>
                 <p>{{ deal.Description }}</p>
                 <div class="buttons">
-                    <button class="cart-button" onclick="addToCart(this)" data-name="{{ deal.name }}" data-price="{{ deal.price }}">Add To Cart ${{ deal.price }}</button>
-
+                    <button class="cart-button" onclick="addToCart(this,'mealdeals')" data-name="{{ deal.name }}" data-price="{{ deal.price }}">Add To Cart ${{ deal.price }}</button>
                 </div>
             </div>
             {% endfor %}

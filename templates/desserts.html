@@ -60,14 +60,8 @@
                 <h2>{{ dessert.name }}</h2>
                 <p>{{ dessert.Description }}</p>
                 <div class="buttons">
-                    {% if 'Cookie Dough Ice Cream' in dessert.name %}
-                    <div class="dropdown">
-                        <div class="dropdown-content">
-                            </select>
-                        </div>
-                    </div>
-                    {% endif %}
-                    <button class="cart-button">Add To Cart ${{ dessert.price }}</button>
+                    
+                    <button class="cart-button" data-name="{{ dessert.name }}" data-price="{{dessert.price}}" onclick="addToCart(this, 'desserts')">Add To Cart ${{ dessert.price }}</button>
                 </div>
             </div>
             {% endfor %}

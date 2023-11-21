@@ -7,7 +7,6 @@
 }
 :root {
     --header-padding: 1px;
-    --navbar-margin: 0.5rem;
     --primaryColor: green;
     --secondaryColor: yellow;
     --whiteColor: white;
@@ -37,9 +36,10 @@ section {
     justify-content: center;
     top: 0;
     left: 0;
+    max-width:100%;
     right: 0;
     background: linear-gradient(to right, #007535 0%, #009246 30%, #948585 30%, #ffffff 70%, #ce2b37 70%, #961c24 100%);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
     z-index: 99999; /* Set a higher z-index value */
 }
 
@@ -49,6 +49,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+ 
     padding: var(--header-padding);
 }
 
@@ -58,62 +59,28 @@ section {
     color: var(--blackColor);
     text-decoration: none;
     font-size: 20px;
-    transition: color 0.5s, background-color 0.3s, border-radius 0.3s;
-    padding-right: 30px;
+    /* transition: color 0.5s, background-color 0.3s, border-radius 0.3s; */
+    padding-right: 60px;
     position: relative;
 }
 
 .header .flex .navbar a:hover {
     color: var(--whiteColor);
     background-color: #969696;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
-/* Triangle indicator on hover */
-.header .flex .navbar a:hover::before {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 10px 10px 0;
-    border-style: solid;
-    border-color: #000 transparent transparent;
-}
 /* Updated styles for the search bar */
 .header .flex .navbar a:hover::before {
-    content: '';
+    
     position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
+    
+    transform: translateX(-30%);
     border-width: 10px 10px 0;
     border-style: solid;
     border-color: #000 transparent transparent;
 }
 
-.search input[type="text"] {
-    flex: 1;
-    border: 2px solid var(--blackColor);
-    padding: 10px;
-    font-size: 15px;
-    border-radius: 20px;
-    margin-right: 10px;
-}
-.search button.search-btn {
-    background-color: #ff0505;
-    color: var(--whiteColor);
-    border: none;
-    padding: 12px 14px;
-    font-size: 15px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-.search button.search-btn:hover {
-    background-color: #45a049;
-}
-/* deliverey form:*/
 
 /* Button styles */
 .rainbow {

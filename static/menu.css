@@ -347,7 +347,7 @@ body {
     right: 0;
     background-color: white;
     height: calc(100vh - var(--header-height));
-    width: 500px; /* Adjust the width as needed */
+    width: 40%; /* Adjust the width as needed */
     box-shadow: -2px 0px 5px 0px rgba(0, 0, 0, 0.5);
     overflow-y: auto;
     display: flex;
@@ -365,6 +365,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+   
     background-color: #f8f8f8; /* Light gray background color */
     border-bottom: 1px solid #ddd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

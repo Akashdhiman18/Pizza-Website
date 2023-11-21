@@ -57,14 +57,16 @@
                 <img src="{{ side.image }}" alt="{{ side.name }}">
                 <h2>{{ side.name }}</h2>
                 <p>{{ side.description }}</p> 
+           
                 <div class="buttons">
-                    <button class="add-cart-button" data-name="{{ side.name }}" data-price="{{ side.price }}" onclick="addToCart(this)">Add To Cart ${{ side.price }}</button>
-
+                    
+                    <button class="add-cart-button" data-name="{{ side.name }}" data-price="{{ side.price }}" onclick="addToCart(this, 'sides')">Add To Cart ${{ side.price }} </button>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+    
 
 
     
@@ -78,7 +80,6 @@
     <div class="cart-items" style="padding-top: 10px;"></div>
     <div class="total-price">Total: $0.00</div>
  
-   
     <button class="checkout-button" onclick="checkout()">Checkout</button>
 </div>
     
