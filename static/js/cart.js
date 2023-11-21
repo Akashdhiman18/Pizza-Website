@@ -1,19 +1,5 @@
 var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function addToCart(button) {
     // Get the product details from the button's data attributes
     var productName = button.getAttribute('data-name');

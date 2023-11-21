@@ -44,7 +44,6 @@ class CartItem(db.Model):
 class UserSignIn(db.Model):
     userid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
-    number = db.Column(db.String(20))
     password = db.Column(db.String(255))
     email = db.Column(db.String(255))
 
@@ -66,12 +65,11 @@ def process_form():
     # Retrieve user registration form data
     if request.method == 'POST':
         name = request.form['name']
-        number = request.form['number']
         password = request.form['password']
         email = request.form['email']
         
         # Create a UserSignIn object
-        user = UserSignIn(name=name, number=number, password=password, email=email)
+        user = UserSignIn(name=name, password=password, email=email)
         
         # Add the object to the database session
         db.session.add(user)

@@ -35,60 +35,93 @@
    </section>
 </div>
 
-{% if error_message %}
-<p>{{ error_message }}</p>
-{% endif %}
-<!-- Login Form -->
-<div class="wrapper">
-  <h1>Login to Your Account</h1>
+
+
+  <!--- delivery form--->
+  <div class="wrappered" style="position: absolute; ">
+  
+    <div class="form-containered">
+      <div class="slide-controled">
+        <input type="radio" name="slide" id="delivery" checked>
+        <input type="radio" name="slide" id="takeaway">
+        <label for="delivery" class="slide delivery">Delivery</label>
+        <label for="takeaway" class="slide takeaway">Takeaway</label>
+        <div class="slider-tab"></div>
+      </div>
+      <div class="form-innered">
+        <form action="#" class="delivery">
+          <p style="font-size:15px;"><b>CONTACTLESS DELIVERY</b></p>
+          <p style="font-size:13px;">Contactless Delivery is now available ! Learn More</p>
+          <div class="field">
+            <input type="text" placeholder="Enter the Location for delivery" required>  </div>
+            <p style="font-size:13px; margin-left:6px; color:sienna"><b>Find my current location</b></p>
+
+        </form>
+        <form action="#" class="takeaway">
+           <p  style="font-size:14px;"><b>CONTACTLESS TAKEAWAY IS NOW AVAILABLE</b></p>
+                <p style="font-size:13px;"> Order Online & collect safely.</p>
+                <div class="field">
+                <input type="text" placeholder="Enter the Location for delivery"></div>
+                 <p style="font-size:13px; margin-left:6px; color:sienna"><b>Find my current location</b></p>
+
+        </form>
+      </div>
+  </div>
+  </div>
+
+<!-- Wrapper and form content -->
+<div class="wrapper" id="registration-wrapper">
+  <div class="title-text">
+      <div class="title login">Login Form</div>
+      <div class="title signup">Signup Form</div>
+  </div>
+  <div class="slide-controls">
+      <input type="radio" name="slide" id="login" checked>
+      <input type="radio" name="slide" id="signup">
+      <label for="login" class="slide login">Login</label>
+      <label for="signup" class="slide signup">Signup</label>
+      <div class="slider-tab"></div>
+  </div>
   <div class="form-container">
-    <div class="form-inner">
-      <form action="/login" method="post" class="login">
-        <div class="field">
-          <label for="email"><b>Enter your email</b></label>
-          <input type="text" id="email" name="email" placeholder="Enter your email ID" required>
-        </div>
-        <div class="field">
-          <label for="password"><b>Enter your Password</b></label>
-          <input type="password" id="password" name="password" placeholder="Enter your password" required>
-        </div>
-        <button type="submit" style=" background-color: #04AA6D;
-        color: white;
-        height:40px;
-        border: none;
-        margin-top:6px;
-        cursor: pointer;
-        width: 100%; ">Login</button>
-      </form>
-    </div>
+      <div class="form-inner">
+          <form action="/login" class="login" method="post">
+              <div class="field">
+                  <input type="text" placeholder="Email Address" required name="email" id="email">
+              </div>
+              <div class="field">
+                  <input type="password" placeholder="Password" required name="password" id="password">
+              </div>
+              <div class="field btn">
+                  <div class="btn-layer"></div>
+                  <input type="submit" value="Login">
+              </div>
+              <div class="signup-link">
+                  Not a member? <a href="">Signup now</a>
+              </div>
+          </form>
+          <form action="/process_form" class="signup" method="post">
+            <div class="field">
+              <input type="text" placeholder="Name" required name="name" id="name">
+          </div>
+        
+              <div class="field">
+                  <input type="text" placeholder="Email Address" required name="email" id="email">
+              </div>
+            
+              <div class="field">
+                  <input type="password" placeholder="Password" required name="password" id="password">
+              </div>
+              
+              <div class="field btn">
+                  <div class="btn-layer"></div>
+                  <input type="submit" value="Signup">
+              </div>
+          </form>
+      </div>
   </div>
 </div>
 
-<!----pop signin--->
-<div class="form-popup" id="myForm">
-  <form action="/process_form" class="form-con" method="post">
-      <label for="show" class="close-btn" title="close" onclick="closeForm()">×</label>
-      <h2 style="text-align:center;">Sign In</h2>
-      <label for="name"><b >Name</b></label>
-      <input type="text" placeholder="Enter Your Name" name="name" required>
 
-      <label for="mobilenumber"><b >Mobile Number</b></label>
-      <input type="text" placeholder="Enter Number" name="number" required>
-
-      <label for="password"><b >Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" required>
-
-      <label for="email"><b>Email</b></label>
-      <input type="email" placeholder="Enter Your Email" name="email" required>
-
-      <button type="submit" class="btn">Submit</button>
-      <div id="successMessage" style="display:none; text-align:center; margin-top: 10px;">
-        You are successfully registered. Now you can order your favorite food.
-    </div>
-      
-  </form>
-</div>
- 
 <!--section -->
 <div class="home-bg">
 
@@ -103,11 +136,11 @@
 
 <!-- menu section -->
 <div class="home_f2" style="text-align: center; padding: 20px;">
-  <h1 style="font-size: 30px; margin-top: 10px; color: #333;">Our Most Popular Deals</h1>
+  <h1 style="font-size: 30px; margin-top:20px; color: #333;">Our Most Popular Deals</h1>
   <div class="col_f2" style="margin-top: 10px;">
      <ul style="list-style: none; padding: 0; display: flex; justify-content: center;">
 
-        <li style="margin-right: 20px; overflow: hidden; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <li style="margin-right: 20px; margin-top: 10px; overflow: hidden; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
            <img src="static/img/b1.jpg" style="width: 450px; height: 250px; object-fit: cover; border-radius: 15px;">
         </li>
 
