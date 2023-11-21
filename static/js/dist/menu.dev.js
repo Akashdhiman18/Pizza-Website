@@ -14,7 +14,14 @@ function checkout() {
 
 function addToCart(button) {
   var itemName = button.getAttribute('data-name');
-  var itemPrice = parseFloat(button.getAttribute('data-price'));
+  var itemPriceAttr = button.getAttribute('data-price'); // Check if itemPriceAttr is a valid number
+
+  if (!itemPriceAttr || isNaN(itemPriceAttr)) {
+    console.error("Invalid or missing data-price attribute for ".concat(itemName));
+    return;
+  }
+
+  var itemPrice = parseFloat(itemPriceAttr);
   var itemSize = document.querySelector('.size-select').value;
   var itemBase = document.querySelector('.base-select').value;
   var itemQuantity = parseInt(document.querySelector('.quantity-input').value) || 1;
@@ -39,7 +46,8 @@ function updateCart(cartItem) {
   cartItemsContainer.appendChild(cartItemDiv); // Update total price
 
   var currentTotal = parseFloat(totalDiv.innerText.replace('$', '')) || 0;
-  var newTotal = currentTotal + itemTotal;
+  var newTotal = currentTotal + itemTotal; // Update totalDiv with the new total
+
   totalDiv.innerText = "$".concat(newTotal.toFixed(2));
 }
 //# sourceMappingURL=menu.dev.js.map

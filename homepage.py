@@ -8,16 +8,19 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'QWERTYUIOP'
 db = SQLAlchemy(app)  
 
+# Initialize a list to store cart items (temporary storage)
 cart_items = []
 
-class CartItem:
-    def __init__(self, name, size, base, price, quantity):
-        self.name = name
-        self.size = size
-        self.base = base
-        self.price = price
-        self.quantity = quantity  
+# Define a CartItem class to represent items in the shopping cart
+class CartItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    size = db.Column(db.String(50))
+    base = db.Column(db.String(50))
+    price = db.Column(db.Float)
+    quantity = db.Column(db.Integer) 
 
+# Define a UserSignIn class to represent user information for authentication
 class UserSignIn(db.Model):
     userid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
@@ -25,6 +28,8 @@ class UserSignIn(db.Model):
     password = db.Column(db.String(255))
     email = db.Column(db.String(255))
 
+
+# Initialize a global variable to track user authentication status
 user_authenticated = False
 
 @app.route('/', methods=['GET'])
@@ -36,8 +41,10 @@ def index():
 def home():
     return render_template('index.html')
 
+# Route to process user registration form
 @app.route('/process_form', methods=['POST'])
 def process_form():
+    # Retrieve user registration form data
     if request.method == 'POST':
         name = request.form['name']
         number = request.form['number']
@@ -53,22 +60,24 @@ def process_form():
         # Commit the changes to the database
         db.session.commit()
         
+        # Redirect to home page with success message
         success_message = "You are successfully registered. Now you can order your favorite food."
         return redirect(url_for('home', success_message=success_message))
 
 
-
+# Route for user login
 @app.route('/login', methods=['GET', 'POST'])
 def login(): 
+    # Handle login form submission
     if request.method == 'POST':
         global user_authenticated
         email = request.form['email']
         password = request.form['password']
 
-        # Check if the email and password are correct
+        # Check if the email and password are correct by querying the database
         user = UserSignIn.query.filter_by(email=email, password=password).first()
         if user:
-            # If the user is found, log them in and redirect them to the home page
+            # If the user is found, log them in and redirect to the menu
             user_authenticated = True
             return redirect('menu')
         else:
@@ -76,9 +85,9 @@ def login():
             return render_template('index.html', error_message='Invalid email or password.')
     else:
         # If the request is a GET request, display the login form
-        return render_template('index.html', user_authenticated=user_authenticated)
+        return render_template('index.html', user_authenticated=user_authenticated) 
 
-
+# Route to handle user logout
 @app.route('/logout')
 def logout(): 
     global user_authenticated
@@ -87,16 +96,15 @@ def logout():
     # Redirect to the home page or wherever appropriate after logout
     return redirect(url_for('home'))
 
-
 # Shopping Cart Section -----------------------------------------------------------------------
 
-
+# Route to update the shopping cart
 @app.route('/update_cart', methods=['POST'])
 def update_cart():
+    # Retrieve JSON data from the request and add it to the cart_items list
     data = request.get_json()
     cart_items.append(data)  
     return jsonify(success=True)
-
 
 # ROUTES -------------------------------------------------------------------------------------
 @app.route('/about')
