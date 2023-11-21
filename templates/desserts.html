@@ -75,16 +75,23 @@
     </div>
     <!-- Carrt -->
 
-<div class="cart-container" id="cart-container">
-    <div class="cart-header">
-        <img src="static/food-stand.png" alt="Cart Logo">
-        <h2>Pizza Cart</h2>
+   
+    <div class="cart-container" id="cart-container">
+        <div class="cart-header">
+            <img src="static/food-stand.png" alt="Cart Logo">
+            <h2>Pizza Cart</h2>
+            <button class="close-button" onclick="closeCart()">Close</button>
+            <button class="clear-button" onclick="clearCart()">Clear All</button>
+        </div>
+        <div class="cart-items" style="padding-top: 10px;"></div>
+        <div class="total-price">Total: $0.00</div>
+     
+       
+        <button class="checkout-button" onclick="checkout()">Checkout</button>
     </div>
-    <div class="cart-items" style="padding-top: 10px;"></div>
-    <div class="total-price">Total: $0.00</div>
-    <input type="number" class="quantity-input" value="1" min="1">
-    <button class="checkout-button" onclick="checkout()">Checkout</button>
-</div>
+
+
+
     <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="static/js/dist/menu.dev.js"></script>

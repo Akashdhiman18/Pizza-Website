@@ -1,6 +1,7 @@
 
     var cartItems = [];
-    var Drink = [];
+    var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
     
     function addToCart(button) {
         // Get the product details from the button's data attributes
@@ -24,31 +25,43 @@
             price: totalProductPrice
         };
 
-        var Drink = {
-            
-        }
+        
         // Add the item to the cart array
         cartItems.push(cartItem);
 
+        saveCartToLocalStorage();
         // Call a function to update the cart display
         updateCartDisplay();
     }
+
 
     function updateCartDisplay() {
         // Get the cart container and items element
         var cartContainer = document.getElementById('cart-container');
         var cartItemsElement = cartContainer.querySelector('.cart-items');
-
+    
         // Clear the existing content
         cartItemsElement.innerHTML = '';
-
+    
         // Loop through the items in the cart and display them
-        cartItems.forEach(function (item) {
+        cartItems.forEach(function (item, index) {
             var itemElement = document.createElement('div');
-            itemElement.innerHTML = `${item.name} - ${item.size} - ${item.base}: $${item.price.toFixed(2)}`;
+            itemElement.classList.add('cart-item');
+    
+            // Display item details
+            itemElement.innerHTML = `
+                <span>${item.name} - ${item.size} - ${item.base}: $${item.price.toFixed(2)}</span>
+                <div class="quantity-controls">
+                <button onclick="changeQuantity(${index}, 'subtract')">-</button>
+                <input type="number" class="quantity-input" value="${cartItems[index].quantity}" min="1" id="quantity-input-${index}">
+                <button onclick="changeQuantity(${index}, 'add')">+</button>
+                </div>
+                <button class="remove-button" onclick="removeItem(${index})">Remove</button>
+            `;
+    
             cartItemsElement.appendChild(itemElement);
         });
-
+    
         // Calculate and display the total price
         var totalPriceElement = cartContainer.querySelector('.total-price');
         var totalPrice = cartItems.reduce(function (total, item) {
@@ -56,13 +69,56 @@
         }, 0);
         totalPriceElement.textContent = `Total: $${totalPrice.toFixed(2)}`;
     }
-
-    function checkout() {
-        // Implement the checkout logic here
-        // You can send the cartItems array to the server or perform any other necessary actions
-        // For now, let's just log the cart items to the console
-        window.location.href = '/checkout';
-        console.log(cartItems);
+    
+    function changeQuantity(index, action) {
+        var quantityInput = document.getElementById(`quantity-input-${index}`);
+        var currentQuantity = parseInt(quantityInput.value);
+    
+        if (action === "add") {
+            quantityInput.value = currentQuantity + 1;
+        } else if (action === "subtract" && currentQuantity > 1) {
+            quantityInput.value = currentQuantity - 1;
+        }
+    
+        // Update the quantity in the cart array (if needed)
+        cartItems[index].quantity = parseInt(quantityInput.value);
+    
+        saveCartToLocalStorage();
+        // Update the total price and refresh the display
+        updateCartDisplay();
     }
- 
+    function updateCartItem(index) {
+        var quantityInput = document.getElementById(`quantity-input-${index}`);
+        cartItems[index].quantity = parseInt(quantityInput.value);
+
+        saveCartToLocalStorage();
+        updateCartDisplay();
+    }
+
+    function removeItem(index) {
+        cartItems.splice(index, 1);
+
+        saveCartToLocalStorage();
+        updateCartDisplay();
+    }
+
+    function clearCart() {
+        var cartItemsElement = document.querySelector('.cart-items');
+        cartItemsElement.innerHTML = '';
+        cartItems = [];
+
+        // Save empty cart to localStorage
+        saveCartToLocalStorage();
+
+        updateCartDisplay();
+    }
+
+    function saveCartToLocalStorage() {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        updateCartDisplay();
+    });
+    
     

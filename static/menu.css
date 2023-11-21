@@ -347,14 +347,15 @@ body {
     right: 0;
     background-color: white;
     height: calc(100vh - var(--header-height));
-    width: 300px;
+    width: 500px; /* Adjust the width as needed */
     box-shadow: -2px 0px 5px 0px rgba(0, 0, 0, 0.5);
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     transform: translateX(100%); /* Initially move the cart off-screen */
-    transition: transform 0.3s ease-in-out; /* Add smooth transition effect */
+    transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
 }
+
 .cart-container.open {
     transform: translateX(0); /* Move the cart back to its original position */
 }
@@ -410,4 +411,61 @@ body {
 .total-price {
     margin-top: 10px;
     font-weight: bold;
+}
+
+
+
+.cart-items {
+    margin-top: 10px;
+}
+
+.cart-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-controls button {
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border-radius: 3px;
+}
+
+.quantity-input {
+    width: 40px;
+    text-align: center;
+}
+
+.remove-button {
+    cursor: pointer;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+.close-button, .clear-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px; /* Add some margin between the buttons */
+}
+
+.close-button:hover, .clear-button:hover {
+    background-color: #0056b3;
 }
