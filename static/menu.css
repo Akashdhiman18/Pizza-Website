@@ -265,7 +265,7 @@ body {
 .listProduct .item img {
     width: 100%; /* Set the width to 100% to fill the container */
     height: 35%; /* Automatically adjust the height to maintain aspect ratio */
-    border-radius: 3px; /* Optional: Add border radius for rounded corners */
+    border-radius: 7px; /* Optional: Add border radius for rounded corners */
     object-fit: cover; /* Maintain aspect ratio and cover the container */
 }
 .listProduct .item {
@@ -273,7 +273,7 @@ body {
     padding: 7px; /* Adjust padding */
     position: relative;
     border: 1px solid var(--blackColor); /* Border properties */
-    border-radius: 5px; /* Optional: Border radius for rounded corners */
+    border-radius: 7px; /* Optional: Border radius for rounded corners */
     transition: transform 0.3s ease-in-out; /* Add smooth transition effect */
 }
 .listProduct .item:hover {
@@ -295,6 +295,7 @@ body {
     padding-top: 10px;
     color: white;
     font-size: 20px;
+    border-radius: 7px;
     width: 80%;
     border: none;
     padding-bottom: 10px;
