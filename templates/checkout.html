@@ -132,7 +132,7 @@ body {
 
   <div class="checkout-container">
     <div class="checkout-form">
-      <form action="/action_page.php">
+      <form action="/checkout_form" method="post" class="checkout_form" >
         <div class="row">
           <div class="col-50">
             <h3>Billing Address</h3>
@@ -173,8 +173,11 @@ body {
           </div>
         </div>
         <label>
-         
-        <button type="button" onclick="goBack()" class="btn btn-error">Back</button>
+          <input type="hidden" id="cart-item-name" name="item_name">
+          <input type="hidden" id="cart-quantity" name="quantity">
+          <!-- <input type="hidden" id="cart-total-price" name="amount">  -->
+       
+          <button type="button" onclick="goBack()" class="btn btn-error">Back</button>
         <input type="submit" value="Continue to checkout" class="btn">
       
 
@@ -185,7 +188,7 @@ body {
       <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b id="cart-item-count"></b></span></h4>
       <div id="cart-content"></div>
       <hr>
-      <p>Total <span class="price" style="color:black" id="cart-total-price"><b></b></span></p>
+      <p>Total <span class="price"name="price" style="color:black" id="cart-total-price"><b></b></span></p>
     </div>
   </div>
 </div>

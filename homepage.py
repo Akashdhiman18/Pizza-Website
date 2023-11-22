@@ -2,12 +2,17 @@ from flask import Flask, render_template, request, redirect, url_for, session, j
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from datetime import datetime
+from sqlalchemy import create_engine, Column, Integer, ForeignKey
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pizza_cart.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'QWERTYUIOP'
+app.config['SQLALCHEMY_BINDS'] = {'pizza_cart.db': 'sqlite:///pizza_cart.db'}
 db = SQLAlchemy(app)
+
+
 
 # Initialize a list to store cart items (temporary storage)
 cart_items = []
@@ -34,7 +39,7 @@ class Drink(db.Model):
     # Add other relevant fields
 
 # Define a CartItem class to represent items in the shopping cart
-class CartItem(db.Model):
+class CartI(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
     size = db.Column(db.String(50))
@@ -42,55 +47,40 @@ class CartItem(db.Model):
     price = db.Column(db.Float)
     quantity = db.Column(db.Integer) 
 
-# Define a UserSignIn class to represent user information for authentication
 class UserSignIn(db.Model):
     userid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
     password = db.Column(db.String(255))
     email = db.Column(db.String(255))
-#     payments = relationship('Payment', backref='user', lazy=True)
-#     order_details = relationship('OrderDetail', backref='user', lazy=True)
 
-# #defined a Payment class to represent 
+    # Correct the relationship name to match 'user'
+    order_detail = db.relationship('OrderDetail', back_populates='user')
 
+class Payment(db.Model):
+    payment_id = db.Column(db.Integer, primary_key=True)
+    userid = db.Column(db.Integer, db.ForeignKey('user_sign_in.userid'))
+    amount = db.Column(db.Float)
+    date = db.Column(db.Date)  
+    time = db.Column(db.Time) 
+    order_id = db.Column(db.Integer, db.ForeignKey('order_detail.order_id'))  
 
-# class Payment(db.Model):
-#     payment_id = db.Column(db.Integer, primary_key=True)
-#     user_id = db.Column(db.Integer, db.ForeignKey('user_sign_in.user_id'))
-#     amount = db.Column(db.Float)
-#     date = db.Column(db.Date)  
-#     time = db.Column(db.Time) 
-#     order_id = db.Column(db.Integer, db.ForeignKey('order_detail.order_id'))  
+    # Correct the relationship name to match 'order_detail'
+    order_detail = db.relationship('OrderDetail', back_populates='payment')
 
+class OrderDetail(db.Model):
+    order_id = db.Column(db.Integer, primary_key=True)
+    userid = db.Column(db.Integer, db.ForeignKey('user_sign_in.userid'))
 
-# class OrderDetail(db.Model):
-#     order_id = db.Column(db.Integer, primary_key=True)
-#     user_id = db.Column(db.Integer, db.ForeignKey('user_sign_in.user_id'))
-#     item_name = db.Column(db.String(255))
-#     quantity = db.Column(db.Integer)
-#     date = db.Column(db.Date) 
-#     time = db.Column(db.Time)  
-#     address = db.Column(db.String(255))  
-#     phone_number = db.Column(db.String(20)) 
-#     payments = relationship('Payment', backref='order_detail', lazy=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    item_name = db.Column(db.String(255))
+    quantity = db.Column(db.Integer)
+    date = db.Column(db.Date) 
+    time = db.Column(db.Time)  
+    address = db.Column(db.String(255))  
+    phone_number = db.Column(db.String(20)) 
+    
+    # Correct the relationship names to match 'user' and 'payment'
+    user = db.relationship('UserSignIn', back_populates='order_detail')
+    payment = db.relationship('Payment', back_populates='order_detail')
 
 
 
@@ -304,6 +294,53 @@ def show_checkout():
         # If the user is not logged in, redirect to the login page
         return redirect(url_for('login'))
 
+@app.route('/checkout_form', methods=['POST'])
+def checkout_form():
+    try:
+        user_id = session.get('user_id')  # Assuming you have a user session
+        amount = float(request.form['price'])  # Fix the field name to 'price'
+        item_name = request.form['item_name']
+        quantity = int(request.form['quantity'])
+        date = datetime.now().date()
+        time = datetime.now().time()
+
+        # Retrieve or create an order for the user
+        order = OrderDetail.query.filter_by(user_id=user_id).first()
+        if not order:
+            # Create a new order for the user
+            order = OrderDetail(user_id=user_id)
+            db.session.add(order)
+            db.session.commit()
+
+        # Create and add Payment to the database
+        new_payment = Payment(
+            user_id=user_id,
+            amount=amount,
+            date=date,
+            time=time,
+            order_id=order.order_id  # Use the order_id from the order
+        )
+        db.session.add(new_payment)
+
+        # Update OrderDetail details
+        order.item_name = item_name
+        order.quantity = quantity
+        order.date = date
+        order.time = time
+        order.address = request.form['address']
+        order.phone_number = request.form['phone']
+
+        # Commit changes to the database
+        db.session.commit()
+
+        flash('Payment and order details added successfully!', 'success')
+        return render_template('menu.html')  # Redirect to home or another page
+
+    except Exception as e:
+        flash(f'Error during checkout: {str(e)}', 'error')
+        return render_template('checkout.html')
+
+    
 @app.route('/store_location')
 def store_location():
     return render_template('store_location.html')
@@ -329,8 +366,11 @@ def initialize_database():
         db.create_all()
     return "Database initialized successfully"
 
-        
+
+   
 if __name__ == '__main__':
+    
     app.run(debug=True, port=8080)
+ 
 
 
