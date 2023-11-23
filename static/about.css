@@ -105,7 +105,7 @@ border-color: #000 transparent transparent;
     flex-wrap: wrap;
     justify-content: space-around;
     width: 1100px;
-    margin-top: 100px;
+    margin-top: 80px;
     border-radius: 10px;
     padding: 10px;
     background-color: #c02318;   
@@ -131,7 +131,7 @@ border-color: #000 transparent transparent;
 h1 {
     text-align: center;
     color: white;
-    padding-top: 100px;
+    padding-top: 60px;
     margin-bottom: 20px;
     border-bottom: 2px solid var(--primaryColor);
     padding-bottom: 10px;
