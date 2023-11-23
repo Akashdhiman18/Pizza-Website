@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from sqlalchemy import create_engine, Column, Integer, ForeignKey
+from sqlalchemy.exc import SQLAlchemyError
 
 
 app = Flask(__name__)
@@ -54,22 +55,22 @@ class UserSignIn(db.Model):
     email = db.Column(db.String(255))
 
     # Correct the relationship name to match 'user'
-    order_detail = db.relationship('OrderDetail', back_populates='user')
+    orders = relationship("OrderDetail", back_populates="user")
 
 class Payment(db.Model):
-    payment_id = db.Column(db.Integer, primary_key=True)
-    userid = db.Column(db.Integer, db.ForeignKey('user_sign_in.userid'))
+    payment_id = db.Column(db.Integer, primary_key=True,autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user_sign_in.userid'))
     amount = db.Column(db.Float)
     date = db.Column(db.Date)  
     time = db.Column(db.Time) 
     order_id = db.Column(db.Integer, db.ForeignKey('order_detail.order_id'))  
 
     # Correct the relationship name to match 'order_detail'
-    order_detail = db.relationship('OrderDetail', back_populates='payment')
+    order = relationship("OrderDetail", back_populates="payments")
 
 class OrderDetail(db.Model):
-    order_id = db.Column(db.Integer, primary_key=True)
-    userid = db.Column(db.Integer, db.ForeignKey('user_sign_in.userid'))
+    order_id = db.Column(db.Integer, primary_key=True , autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user_sign_in.userid'))
 
     item_name = db.Column(db.String(255))
     quantity = db.Column(db.Integer)
@@ -78,9 +79,8 @@ class OrderDetail(db.Model):
     address = db.Column(db.String(255))  
     phone_number = db.Column(db.String(20)) 
     
-    # Correct the relationship names to match 'user' and 'payment'
-    user = db.relationship('UserSignIn', back_populates='order_detail')
-    payment = db.relationship('Payment', back_populates='order_detail')
+    user = relationship("UserSignIn", back_populates="orders")
+    payments = relationship("Payment", back_populates="order")
 
 
 
@@ -297,50 +297,62 @@ def show_checkout():
 @app.route('/checkout_form', methods=['POST'])
 def checkout_form():
     try:
-        user_id = session.get('user_id')  # Assuming you have a user session
-        amount = float(request.form['price'])  # Fix the field name to 'price'
+        userid = session.get('user_id')
+        # price = float(request.form['price'])
         item_name = request.form['item_name']
         quantity = int(request.form['quantity'])
-        date = datetime.now().date()
-        time = datetime.now().time()
+        address = request.form['address']
+        phone = request.form['phone']
 
         # Retrieve or create an order for the user
-        order = OrderDetail.query.filter_by(user_id=user_id).first()
+        order = OrderDetail.query.filter_by(user_id=userid).first()
         if not order:
             # Create a new order for the user
-            order = OrderDetail(user_id=user_id)
+            order = OrderDetail(user_id=userid)
             db.session.add(order)
-            db.session.commit()
 
         # Create and add Payment to the database
         new_payment = Payment(
-            user_id=user_id,
-            amount=amount,
-            date=date,
-            time=time,
-            order_id=order.order_id  # Use the order_id from the order
+            user_id=userid,
+            # amount=price,
+            date=datetime.now().date(),
+            time=datetime.now().time(),
+            order_id=order.order_id
         )
         db.session.add(new_payment)
 
         # Update OrderDetail details
         order.item_name = item_name
         order.quantity = quantity
-        order.date = date
-        order.time = time
-        order.address = request.form['address']
-        order.phone_number = request.form['phone']
+        order.address = address
+        order.phone_number = phone
 
-        # Commit changes to the database
+        # Commit changes to the database within a transaction
         db.session.commit()
 
+        # Print all data with the given user_id (for debugging, remove in production)
+        user_orders = OrderDetail.query.filter_by(user_id=userid).all()
+        for user_order in user_orders:
+            print(f"Order ID: {user_order.order_id}, Item Name: {user_order.item_name}, Quantity: {user_order.quantity}, Date: {user_order.date}, Time: {user_order.time}")
+            print(f"Address: {user_order.address}, Phone Number: {user_order.phone_number}")
+
         flash('Payment and order details added successfully!', 'success')
-        return render_template('menu.html')  # Redirect to home or another page
+        return render_template('index.html')
 
-    except Exception as e:
-        flash(f'Error during checkout: {str(e)}', 'error')
-        return render_template('checkout.html')
+    except ValueError as ve:
+        db.session.rollback()
+        flash(f'Error during checkout: {str(ve)}', 'error')
+        return jsonify({'error': f'Error during checkout: {str(ve)}'}), 400
 
-    
+    except SQLAlchemyError as sqle:
+        db.session.rollback()
+        flash(f'Database error during checkout: {str(sqle)}', 'error')
+        return jsonify({'error': f'Database error during checkout: {str(sqle)}'}), 500
+
+
+
+
+
 @app.route('/store_location')
 def store_location():
     return render_template('store_location.html')
